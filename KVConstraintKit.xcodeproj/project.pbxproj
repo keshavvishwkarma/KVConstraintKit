@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6BF09CCB1D58F67C0030699A /* KVConstraintKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BF09CD21D58F67C0030699A /* KVConstraintKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */; };
+		6BF09CD71D58F67C0030699A /* KVConstraintKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CD61D58F67C0030699A /* KVConstraintKitTests.swift */; };
+		6BF09CE21D58F7410030699A /* KVConstraintKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE11D58F7410030699A /* KVConstraintKit.swift */; };
+		6BF09CE81D58F94C0030699A /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */; };
+		6BF09CEA1D58F9620030699A /* ApplyViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */; };
+		6BF09CEC1D58FC7A0030699A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */; };
+		6BF09CEE1D590BCF0030699A /* PrepareViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CED1D590BCF0030699A /* PrepareViewConstraint.swift */; };
+		6BF09CF01D590BEF0030699A /* AddRemoveViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CEF1D590BEF0030699A /* AddRemoveViewConstraint.swift */; };
+		6BF09CF21D590ED70030699A /* AccessAppliedConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CF11D590ED70030699A /* AccessAppliedConstraint.swift */; };
+		6BF09CF61D5920920030699A /* UpdateAppliedConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CF51D5920920030699A /* UpdateAppliedConstraint.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6BF09CD31D58F67C0030699A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BF09CBE1D58F67C0030699A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BF09CC61D58F67C0030699A;
+			remoteInfo = KVConstraintKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KVConstraintKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintKit.h; sourceTree = "<group>"; };
+		6BF09CCC1D58F67C0030699A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BF09CD11D58F67C0030699A /* KVConstraintKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KVConstraintKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BF09CD61D58F67C0030699A /* KVConstraintKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVConstraintKitTests.swift; sourceTree = "<group>"; };
+		6BF09CD81D58F67C0030699A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BF09CE11D58F7410030699A /* KVConstraintKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKit.swift; sourceTree = "<group>"; };
+		6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
+		6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyViewConstraint.swift; sourceTree = "<group>"; };
+		6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		6BF09CED1D590BCF0030699A /* PrepareViewConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareViewConstraint.swift; sourceTree = "<group>"; };
+		6BF09CEF1D590BEF0030699A /* AddRemoveViewConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRemoveViewConstraint.swift; sourceTree = "<group>"; };
+		6BF09CF11D590ED70030699A /* AccessAppliedConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessAppliedConstraint.swift; sourceTree = "<group>"; };
+		6BF09CF51D5920920030699A /* UpdateAppliedConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAppliedConstraint.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BF09CC31D58F67C0030699A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BF09CCE1D58F67C0030699A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BF09CD21D58F67C0030699A /* KVConstraintKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6BF09CBD1D58F67C0030699A = {
+			isa = PBXGroup;
+			children = (
+				6BF09CC91D58F67C0030699A /* KVConstraintKit */,
+				6BF09CD51D58F67C0030699A /* KVConstraintKitTests */,
+				6BF09CC81D58F67C0030699A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6BF09CC81D58F67C0030699A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */,
+				6BF09CD11D58F67C0030699A /* KVConstraintKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BF09CC91D58F67C0030699A /* KVConstraintKit */ = {
+			isa = PBXGroup;
+			children = (
+				6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */,
+				6BF09CE11D58F7410030699A /* KVConstraintKit.swift */,
+				6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */,
+				6BF09CED1D590BCF0030699A /* PrepareViewConstraint.swift */,
+				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
+				6BF09CEF1D590BEF0030699A /* AddRemoveViewConstraint.swift */,
+				6BF09CF11D590ED70030699A /* AccessAppliedConstraint.swift */,
+				6BF09CF51D5920920030699A /* UpdateAppliedConstraint.swift */,
+				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
+				6BF09CCC1D58F67C0030699A /* Info.plist */,
+			);
+			path = KVConstraintKit;
+			sourceTree = "<group>";
+		};
+		6BF09CD51D58F67C0030699A /* KVConstraintKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				6BF09CD61D58F67C0030699A /* KVConstraintKitTests.swift */,
+				6BF09CD81D58F67C0030699A /* Info.plist */,
+			);
+			path = KVConstraintKitTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6BF09CC41D58F67C0030699A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BF09CCB1D58F67C0030699A /* KVConstraintKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6BF09CC61D58F67C0030699A /* KVConstraintKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BF09CDB1D58F67C0030699A /* Build configuration list for PBXNativeTarget "KVConstraintKit" */;
+			buildPhases = (
+				6BF09CC21D58F67C0030699A /* Sources */,
+				6BF09CC31D58F67C0030699A /* Frameworks */,
+				6BF09CC41D58F67C0030699A /* Headers */,
+				6BF09CC51D58F67C0030699A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KVConstraintKit;
+			productName = KVConstraintKit;
+			productReference = 6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6BF09CD01D58F67C0030699A /* KVConstraintKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BF09CDE1D58F67C0030699A /* Build configuration list for PBXNativeTarget "KVConstraintKitTests" */;
+			buildPhases = (
+				6BF09CCD1D58F67C0030699A /* Sources */,
+				6BF09CCE1D58F67C0030699A /* Frameworks */,
+				6BF09CCF1D58F67C0030699A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BF09CD41D58F67C0030699A /* PBXTargetDependency */,
+			);
+			name = KVConstraintKitTests;
+			productName = KVConstraintKitTests;
+			productReference = 6BF09CD11D58F67C0030699A /* KVConstraintKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6BF09CBE1D58F67C0030699A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Keshav;
+				TargetAttributes = {
+					6BF09CC61D58F67C0030699A = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					6BF09CD01D58F67C0030699A = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 6BF09CC11D58F67C0030699A /* Build configuration list for PBXProject "KVConstraintKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6BF09CBD1D58F67C0030699A;
+			productRefGroup = 6BF09CC81D58F67C0030699A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6BF09CC61D58F67C0030699A /* KVConstraintKit */,
+				6BF09CD01D58F67C0030699A /* KVConstraintKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6BF09CC51D58F67C0030699A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BF09CCF1D58F67C0030699A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6BF09CC21D58F67C0030699A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BF09CEE1D590BCF0030699A /* PrepareViewConstraint.swift in Sources */,
+				6BF09CEC1D58FC7A0030699A /* UIViewControllerExtension.swift in Sources */,
+				6BF09CE21D58F7410030699A /* KVConstraintKit.swift in Sources */,
+				6BF09CF21D590ED70030699A /* AccessAppliedConstraint.swift in Sources */,
+				6BF09CF01D590BEF0030699A /* AddRemoveViewConstraint.swift in Sources */,
+				6BF09CEA1D58F9620030699A /* ApplyViewConstraint.swift in Sources */,
+				6BF09CE81D58F94C0030699A /* NSLayoutConstraintExtension.swift in Sources */,
+				6BF09CF61D5920920030699A /* UpdateAppliedConstraint.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BF09CCD1D58F67C0030699A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BF09CD71D58F67C0030699A /* KVConstraintKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6BF09CD41D58F67C0030699A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BF09CC61D58F67C0030699A /* KVConstraintKit */;
+			targetProxy = 6BF09CD31D58F67C0030699A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6BF09CD91D58F67C0030699A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6BF09CDA1D58F67C0030699A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6BF09CDC1D58F67C0030699A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KVConstraintKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6BF09CDD1D58F67C0030699A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = KVConstraintKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		6BF09CDF1D58F67C0030699A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KVConstraintKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6BF09CE01D58F67C0030699A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KVConstraintKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BF09CC11D58F67C0030699A /* Build configuration list for PBXProject "KVConstraintKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BF09CD91D58F67C0030699A /* Debug */,
+				6BF09CDA1D58F67C0030699A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BF09CDB1D58F67C0030699A /* Build configuration list for PBXNativeTarget "KVConstraintKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BF09CDC1D58F67C0030699A /* Debug */,
+				6BF09CDD1D58F67C0030699A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6BF09CDE1D58F67C0030699A /* Build configuration list for PBXNativeTarget "KVConstraintKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BF09CDF1D58F67C0030699A /* Debug */,
+				6BF09CE01D58F67C0030699A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6BF09CBE1D58F67C0030699A /* Project object */;
+}
