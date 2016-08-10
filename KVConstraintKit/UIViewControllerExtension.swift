@@ -85,9 +85,9 @@ private extension UIViewController
     final func prepareLayoutGuideConstraintTo(view: UIView, type t: LayoutGuideType) -> NSLayoutConstraint {
         switch t {
         case .Top:
-            return KVConstraintKit.prepareConstraint(view, attribute: .Top, toItem: topLayoutGuide, attribute: .Bottom)
+            return NSLayoutConstraint.prepareConstraint(view, attribute: .Top, toItem: topLayoutGuide, attribute: .Bottom)
         case .Bottom:
-            return KVConstraintKit.prepareConstraint(bottomLayoutGuide, attribute: .Top, toItem: view, attribute: .Bottom)
+            return NSLayoutConstraint.prepareConstraint(bottomLayoutGuide, attribute: .Top, toItem: view, attribute: .Bottom)
         }
     }
     

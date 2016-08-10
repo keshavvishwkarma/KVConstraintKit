@@ -28,9 +28,29 @@
 
 import Foundation
 
-public struct Defualt {
-     public static let iPadRation      = CGFloat(3.0/4.0)
-     public static let lessMaxPriority = CGFloat(999.99996)
+extension NSLayoutConstraint
+{
+    public struct Defualt {
+        public static let iPadRation      = CGFloat(3.0/4.0)
+        public static let lessMaxPriority = CGFloat(999.99996)
+    }
+    
+    /// :name:	prepareConstraint
+    public static func prepareConstraint(item: AnyObject, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, toItem: AnyObject?=nil, attribute attr2: NSLayoutAttribute = .NotAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: item, attribute: attr1, relatedBy: relation, toItem: toItem, attribute: attr2, multiplier: multiplier, constant: constant)
+    }
+    
+    /// :name:	prepare Self Constraint
+    public static func prepareSelfConstraint(item: AnyObject, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, attribute attr2: NSLayoutAttribute = .NotAnAttribute, constant: CGFloat = 0) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: item, attribute: attr1, relatedBy: relation, toItem:  (attr2 == .NotAnAttribute) ? nil : item, attribute: attr2, multiplier: 1, constant: constant)
+    }
+    
+    /// prepare Constraint by Visual Format Language
+    public final class func prepareConstraint(format: String, options: NSLayoutFormatOptions = [], metrics: Dictionary<String, AnyObject>?=nil, views: Dictionary<String, AnyObject>) -> [NSLayoutConstraint] {
+        return NSLayoutConstraint.constraintsWithVisualFormat( format, options: options, metrics: metrics, views: views )
+    }
+    
+    
 }
 
 extension NSLayoutConstraint
@@ -80,7 +100,7 @@ extension NSLayoutConstraint
         if firstItem === secondItem && ( firstAttribute == .Width && secondAttribute == .Height || firstAttribute == .Height && secondAttribute == .Width){
             return true
         }
-        //        if (firstItem !== secondItem && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height)
+        // if (firstItem !== secondItem && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height)
         
         if (secondItem == nil && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height) {
             return true
