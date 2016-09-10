@@ -29,49 +29,73 @@
 #if os(iOS) || os(tvOS)
 
 import UIKit
-
+    
+@available(iOS 7.0, *)
 public enum LayoutGuideType {
     case Top, Bottom
+}
+
+@available(iOS 7.0, *)
+extension UIViewController : LayoutGuidable {   }
+
+@available(iOS 7.0, *)
+public func +< T : UIViewController >(lhs: T, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint {
+    
+    return lhs.applyLayoutGuideConastraintTo(rhs.0, type: rhs.1)
+}
+
+@available(iOS 7.0, *)
+public func -< T : UIViewController >(lhs: T, rhs: (View, LayoutGuideType)) {
+    
+    if let appliedConstraint = lhs.accessLayoutGuideConstraintOf(rhs.0, type: rhs.1) {
+        lhs.view - (appliedConstraint)
+    }
+}
+
+@available(iOS 7.0, *)
+public func <-< T : UIViewController >(lhs: T, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
+
+    return lhs.accessLayoutGuideConstraintOf(rhs.0, type: rhs.1)
 }
 
 extension UIViewController
 {
     /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
-    public final func accessAppliedTopLayoutGuideConstraintFrom(view: UIView) -> NSLayoutConstraint? {
-        return accessAppliedLayoutGuideConstraintFrom(view, type: .Top)
+    public final func accessAppliedTopLayoutGuideConstraintFrom(view: View) -> NSLayoutConstraint? {
+        return accessLayoutGuideConstraintOf(view, type: .Top)
     }
     
     /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
-    public final func accessAppliedBottomLayoutGuideConstraintFrom(view: UIView) -> NSLayoutConstraint? {
-        return accessAppliedLayoutGuideConstraintFrom(view, type: .Bottom)
+    public final func accessAppliedBottomLayoutGuideConstraintFrom(view: View) -> NSLayoutConstraint? {
+        return accessLayoutGuideConstraintOf(view, type: .Bottom)
     }
     
     /// To add Top layout guide constaints
     @available(iOS 7.0, *)
-    public final func applyTopLayoutGuideConastrainTo(view: UIView, padding p: CGFloat) {
-        applyLayoutGuideConastrainTo(view, type: .Bottom).constant = p
+    public final func applyTopLayoutGuideConastraintTo(view: View, padding p: CGFloat) {
+        applyLayoutGuideConastraintTo(view, type: .Bottom).constant = p
     }
     
     /// To add Bottom layout guide constaints
     @available(iOS 7.0, *)
-    public final func applyBottomLayoutGuideConastrainTo(view: UIView, padding p: CGFloat) {
-        applyLayoutGuideConastrainTo(view, type: .Bottom).constant = p
+    public final func applyBottomLayoutGuideConastraintTo(view: View, padding p: CGFloat) {
+        applyLayoutGuideConastraintTo(view, type: .Bottom).constant = p
     }
     
     /// These method is used to remove the Top Layout Guide constraint. But you cann't remove default TopLayoutGuide constraint.
     @available(iOS 7.0, *)
-    public final func removeAppliedTopLayoutGuideConstraintFrom(view: UIView) {
-        if let appliedConstraint = accessAppliedLayoutGuideConstraintFrom(view, type: .Top) {
+    public final func removeAppliedTopLayoutGuideConstraintFrom(view: View) {
+        if let appliedConstraint = accessLayoutGuideConstraintOf(view, type: .Top) {
             view.removeConstraint(appliedConstraint)
         }
     }
     
     /// These method is used to remove the Bottom Layout Guide constraint. But you cann't remove default BottomLayoutGuide constraint.
     @available(iOS 7.0, *)
-    public final func removeAppliedBottomLayoutGuideConstraintFrom(view: UIView)  {
-        if  let appliedConstraint = accessAppliedLayoutGuideConstraintFrom(view, type: .Bottom) {
+    public final func removeAppliedBottomLayoutGuideConstraintFrom(view: View)  {
+        if  let appliedConstraint = accessLayoutGuideConstraintOf(view, type: .Bottom) {
             view.removeConstraint(appliedConstraint)
         }
     }
@@ -82,7 +106,7 @@ private extension UIViewController
 {
     /// These method is used to generate Top/Bottom Layout Guide constraint
     @available(iOS 7.0, *)
-    final func prepareLayoutGuideConstraintTo(view: UIView, type t: LayoutGuideType) -> NSLayoutConstraint {
+    final func prepareLayoutGuideConstraintTo(view: View, type t: LayoutGuideType) -> NSLayoutConstraint {
         switch t {
         case .Top:
             return NSLayoutConstraint.prepareConstraint(view, attribute: .Top, toItem: topLayoutGuide, attribute: .Bottom)
@@ -93,8 +117,8 @@ private extension UIViewController
     
     /// To add Top/Bottom layout guide constaints
     @available(iOS 7.0, *)
-    final func applyLayoutGuideConastrainTo(view:UIView, type t: LayoutGuideType)->NSLayoutConstraint{
-        if let appliedConstraint = accessAppliedLayoutGuideConstraintFrom(view, type: t) {
+    final func applyLayoutGuideConastraintTo(view: View, type t: LayoutGuideType)->NSLayoutConstraint {
+        if let appliedConstraint = accessLayoutGuideConstraintOf(view, type: t) {
             return appliedConstraint
         } else {
             let prepareLayoutGuideConstraint = prepareLayoutGuideConstraintTo(view, type: t)
@@ -105,7 +129,7 @@ private extension UIViewController
     
     /// These method is used to access applied LayoutGuide constraint from view of ViewController(self.view) to a specific view(toView).
     @available(iOS 7.0, *)
-    final func accessAppliedLayoutGuideConstraintFrom(view: UIView, type: LayoutGuideType) -> NSLayoutConstraint?
+    final func accessLayoutGuideConstraintOf(view: View, type: LayoutGuideType) -> NSLayoutConstraint?
     {
         let layoutGuide : UILayoutSupport            = (type == .Top) ? topLayoutGuide : bottomLayoutGuide
         let viewAttribute : NSLayoutAttribute        = (type == .Top) ?  .Top          : .Bottom;
