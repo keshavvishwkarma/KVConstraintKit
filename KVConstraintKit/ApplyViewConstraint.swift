@@ -69,8 +69,8 @@ extension View
 extension View
 {
     private final func applyPreparedEqualRelationPinConstraintToSuperview(attribute attr1: NSLayoutAttribute, constant:CGFloat = 0) {
-// All ready check it,   assert(self.superview != nil, "You should have addSubView on any other its called's Superview \(self)");
-        superview?.applyPreparedConstraintInView(constraint: self.prepareEqualRelationPinConstraintToSuperview(attribute: attr1, constant: constant))
+// All ready check it,   assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
+        superview?.applyPreparedConstraintInView(constraint: self.prepareConstraintToSuperview(attribute: attr1, constant: constant))
     }
     
     ///All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
@@ -125,10 +125,6 @@ extension View
         applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
     }
     
-    public final func applyConstraintFitToSuperview() {
-        applyConstraintFitToSuperview(ContentInset: UIEdgeInsetsZero)
-    }
-    
     public final func applyConstraintFitToSuperviewHorizontally()
     {
         applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading )
@@ -141,7 +137,7 @@ extension View
         applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom )
     }
     
-    public final func applyConstraintFitToSuperview(ContentInset inset:UIEdgeInsets)
+    public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets = UIEdgeInsetsZero)
     {
         if !(inset.top.isFinite && inset.top.isNaN) {
             applyTopPinConstraintToSuperview(padding: inset.top)

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B339E4B1D64FD5600C2E917 /* KVConstraintKitAccessableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B339E481D64FD5600C2E917 /* KVConstraintKitAccessableOperator.swift */; };
+		6B339E4C1D64FD5600C2E917 /* KVConstraintKitAddableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B339E491D64FD5600C2E917 /* KVConstraintKitAddableOperator.swift */; };
+		6B339E4D1D64FD5600C2E917 /* KVConstraintKitRemovableOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B339E4A1D64FD5600C2E917 /* KVConstraintKitRemovableOperator.swift */; };
+		6B4B394D1D62601B006AE3E4 /* KVConstraintKitOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */; };
 		6BF09CCB1D58F67C0030699A /* KVConstraintKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BF09CD21D58F67C0030699A /* KVConstraintKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */; };
 		6BF09CD71D58F67C0030699A /* KVConstraintKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CD61D58F67C0030699A /* KVConstraintKitTests.swift */; };
@@ -27,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B339E481D64FD5600C2E917 /* KVConstraintKitAccessableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKitAccessableOperator.swift; sourceTree = "<group>"; };
+		6B339E491D64FD5600C2E917 /* KVConstraintKitAddableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKitAddableOperator.swift; sourceTree = "<group>"; };
+		6B339E4A1D64FD5600C2E917 /* KVConstraintKitRemovableOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKitRemovableOperator.swift; sourceTree = "<group>"; };
+		6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKitOperators.swift; sourceTree = "<group>"; };
 		6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KVConstraintKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintKit.h; sourceTree = "<group>"; };
 		6BF09CCC1D58F67C0030699A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +90,10 @@
 				6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */,
 				6BF09CE11D58F7410030699A /* KVConstraintKit.swift */,
 				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
+				6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */,
+				6B339E491D64FD5600C2E917 /* KVConstraintKitAddableOperator.swift */,
+				6B339E481D64FD5600C2E917 /* KVConstraintKitAccessableOperator.swift */,
+				6B339E4A1D64FD5600C2E917 /* KVConstraintKitRemovableOperator.swift */,
 				6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */,
 				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
 				6BF09CCC1D58F67C0030699A /* Info.plist */,
@@ -206,10 +218,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B339E4D1D64FD5600C2E917 /* KVConstraintKitRemovableOperator.swift in Sources */,
+				6B339E4B1D64FD5600C2E917 /* KVConstraintKitAccessableOperator.swift in Sources */,
 				6BF09CEC1D58FC7A0030699A /* UIViewControllerExtension.swift in Sources */,
 				6BF09CE21D58F7410030699A /* KVConstraintKit.swift in Sources */,
 				6BF09CEA1D58F9620030699A /* ApplyViewConstraint.swift in Sources */,
 				6BF09CE81D58F94C0030699A /* NSLayoutConstraintExtension.swift in Sources */,
+				6B4B394D1D62601B006AE3E4 /* KVConstraintKitOperators.swift in Sources */,
+				6B339E4C1D64FD5600C2E917 /* KVConstraintKitAddableOperator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
