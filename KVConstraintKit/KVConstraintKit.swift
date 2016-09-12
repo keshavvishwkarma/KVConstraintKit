@@ -95,9 +95,16 @@ extension View
         let appliedConstraint = constraints.containsApplied(constraint: c)
         
         // if this constraint is already added then it update the constraint values else added new constraint
-        if (appliedConstraint != nil) {
+        if (appliedConstraint != nil)
+        {
             appliedConstraint!.constant = c.constant
-            return appliedConstraint!
+            
+            if appliedConstraint!.multiplier != c.multiplier  || appliedConstraint!.relation != c.relation  {
+                removeConstraint(appliedConstraint!)
+            }
+            else{
+                return appliedConstraint!
+            }
         }
         
         addConstraint(c)
@@ -105,6 +112,7 @@ extension View
         return c
         
     }
+    
     
     /// MARK: - Remove Constraints From a specific View
     public final func removeAppliedConstraintFromSupreview() {

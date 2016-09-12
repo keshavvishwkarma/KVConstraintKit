@@ -26,7 +26,7 @@
 //
 //
 
-import Foundation
+import UIKit
 
 extension NSLayoutConstraint
 {
@@ -55,15 +55,22 @@ extension NSLayoutConstraint
 
 extension NSLayoutConstraint
 {
-    public final func isEqualTo(constraint c:NSLayoutConstraint, shouldIgnoreMutiplier m:Bool = false)-> Bool
+    public final func isEqualTo(constraint c:NSLayoutConstraint, shouldIgnoreMutiplier m:Bool = true, shouldIgnoreRelation r:Bool = true)-> Bool
     {
-        let isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && relation == c.relation && firstItem === c.firstItem && secondAttribute == c.secondAttribute
+        let isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && firstItem === c.firstItem && secondAttribute == c.secondAttribute
+        debugPrint(isEqualExceptMultiplier)
         
-        if m {
+        if m && r {
             return isEqualExceptMultiplier
         }
+        else if m {
+            return isEqualExceptMultiplier && multiplier == c.multiplier
+        }
+        else if r {
+            return isEqualExceptMultiplier && relation == c.relation
+        }
         
-        return isEqualExceptMultiplier && multiplier == c.multiplier
+        return isEqualExceptMultiplier && multiplier == c.multiplier && relation == c.relation
     }
     
     public final func reverseConstraintItems() -> NSLayoutConstraint

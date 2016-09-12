@@ -6,7 +6,7 @@
 //  Copyright © 2016 Keshav. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //********* Define LayoutGuidable protocol *********//
 

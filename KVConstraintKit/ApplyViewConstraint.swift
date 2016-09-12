@@ -28,39 +28,38 @@
 
 import UIKit
 
-//MARK: - TO APPLY PREPARED SELF CONSTRAINTS -
+// MARK: - TO APPLY PREPARED SELF CONSTRAINTS -
+
 extension View
 {
-    //All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
+    ///All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
     
     public final func applyAspectRatioConstraint() {
         applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self,attribute: .Width, attribute: .Height))
     }
     
-    public final func applyWidthConstraint(width w: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, constant: w))
+    public final func applyWidthConstraint(width: CGFloat) {
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, constant: width))
     }
     
-    public final func applyHeightConstraint(height h: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, constant: h))
+    public final func applyHeightConstraint(height: CGFloat) {
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, constant: height))
     }
     
-    public final func applyAtLeastWidthConstraint(width w: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: w))
+    public final func applyAtLeastWidthConstraint(width: CGFloat){
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
     }
     
-    public final func applyAtLeastHeightConstraint(height h: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.GreaterThanOrEqual ,constant: h))
-
-        // applyPreparedConstraintInView( constraint: KVConstraintKit.prepareWidthConstraint(self, relation:.GreaterThanOrEqual, constant: h) )
+    public final func applyAtLeastHeightConstraint(height: CGFloat){
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.GreaterThanOrEqual ,constant: height))
     }
     
-    public final func applyAtMostWidthConstraint(width w:CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: w))
+    public final func applyAtMostWidthConstraint(width:CGFloat) {
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
     }
     
-    public final func applyAtMostHeightConstraint(height h: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.LessThanOrEqual ,constant: h))
+    public final func applyAtMostHeightConstraint(height: CGFloat){
+        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.LessThanOrEqual ,constant: height))
     }
     
 }
