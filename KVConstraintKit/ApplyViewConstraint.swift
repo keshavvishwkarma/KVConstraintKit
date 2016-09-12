@@ -68,43 +68,52 @@ extension View
 //MARK: - TO APPLIED PREPARED CONSTRAINTS
 extension View
 {
-    private final func applyPreparedEqualRelationPinConstraintToSuperview(attribute attr1: NSLayoutAttribute, constant:CGFloat = 0) {
-// All ready check it,   assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
+    private final func applyEqualRelationPinConstraintToSuperview(attribute attr1: NSLayoutAttribute, constant:CGFloat = 0) {
+        // All ready check it,   assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
+        
+        let methodStart = NSDate()
+        
+        /* ... Do whatever you need to do ... */
         superview?.applyPreparedConstraintInView(constraint: self.prepareConstraintToSuperview(attribute: attr1, constant: constant))
+        
+        let methodFinish = NSDate()
+        let executionTime = methodFinish.timeIntervalSinceDate(methodStart)
+        debugPrint("Execution time: \(executionTime)")
+        
     }
     
     ///All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     
     public final func applyLeftPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Left, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Left, constant: p)
     }
     
     public final func applyRightPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Right, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Right, constant: -p)
     }
     
     public final func applyTopPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
     }
     
     public final func applyBottomPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
     }
     
     public final func applyLeadingPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
     }
     
     public final func applyTrailingPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
     }
     
     public final func applyCenterXPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterX, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterX, constant: p)
     }
     
     public final func applyCenterYPinConstraintToSuperview(padding p: CGFloat) {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterY, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterY, constant: p)
     }
     
 }
@@ -114,27 +123,27 @@ extension View
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
     public final func applyLeadingAndTrailingPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
     }
     
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
     public final func applyTopAndBottomPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
     }
     
     public final func applyConstraintFitToSuperviewHorizontally()
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading )
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Trailing )
+        applyEqualRelationPinConstraintToSuperview(attribute: .Leading )
+        applyEqualRelationPinConstraintToSuperview(attribute: .Trailing )
     }
     
     public final func applyConstraintFitToSuperviewVertically()
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Top )
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom )
+        applyEqualRelationPinConstraintToSuperview(attribute: .Top )
+        applyEqualRelationPinConstraintToSuperview(attribute: .Bottom )
     }
     
     public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets = UIEdgeInsetsZero)
@@ -172,48 +181,48 @@ extension View
     /// alignFromHorizontallyCenterAndVerticallyCenter
     public final func applyConstraintForCenterInSuperview()
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterX )
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterY )
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterX )
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterY )
     }
     
     /// alignFromHorizontallyCenter
     public final func applyConstraintForHorizontallyCenterInSuperview()
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterX )
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterX )
     }
     
     /// alignFromVerticallyCenter
     public final func applyConstraintForVerticallyCenterInSuperview()
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .CenterY )
+        applyEqualRelationPinConstraintToSuperview(attribute: .CenterY )
     }
     
     /// alignFromTopLeft
     public final func applyLeadingAndTopPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
     }
     
     ///alignFromTopRight
     public final func applyTopAndTrailingPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Top, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
     }
     
     ///alignFromBottomLeft
     public final func applyLeadingAndBottomPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Leading, constant: p)
     }
     
     ///alignFromBottomRight
     public final func applyBottomAndTrailingPinConstraintToSuperview(padding p: CGFloat)
     {
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
-        applyPreparedEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Bottom, constant: -p)
+        applyEqualRelationPinConstraintToSuperview(attribute: .Trailing, constant: -p)
     }
     
 }

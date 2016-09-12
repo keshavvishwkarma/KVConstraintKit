@@ -53,7 +53,7 @@ extension View {
     
     /// Generalized public constraint methods for views
     // For operator +<=,  +==,  +>=,
-    public func prepareConstraintToSuperview(attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal) -> NSLayoutConstraint! {
+    public final func prepareConstraintToSuperview(attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal) -> NSLayoutConstraint! {
         assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
         return View.prepareConstraintFor(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation)
     }
