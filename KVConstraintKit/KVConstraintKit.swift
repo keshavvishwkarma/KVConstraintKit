@@ -30,7 +30,7 @@ import UIKit
 
 public typealias View = UIView
 
-//MARK: TO PREPARE VIEW FORCONSTRAINTS
+// MARK: TO PREPARE VIEW FORCONSTRAINTS
 
 extension View {
     
@@ -48,7 +48,7 @@ extension View {
     
 }
 
-//MARK: TO PREPARE CONSTRAINTS
+// MARK: TO PREPARE CONSTRAINTS
 extension View {
     
     /// Generalized public constraint methods for views
@@ -100,7 +100,7 @@ extension View
             appliedConstraint!.constant = c.constant
             
             if appliedConstraint!.multiplier != c.multiplier  || appliedConstraint!.relation != c.relation  {
-                removeConstraint(appliedConstraint!)
+                self - appliedConstraint!
             }
             else{
                 return appliedConstraint!
@@ -128,7 +128,7 @@ extension View
     
 }
 
-//MARK: TO ACCESS APPLIED CONSTRAINTS
+// MARK: TO ACCESS APPLIED CONSTRAINTS
 extension View
 {
     // MARK: - To Access Applied Constraint By Attributes From a specific View
@@ -185,32 +185,16 @@ extension View
     
     /// This method is used to replace already applied constraint by new constraint.
     
-    public final func replaceAppliedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceByConstraint rc: NSLayoutConstraint!) {
-        assert( rc != nil, "modified constraint must not be nil")
-        if ac.isEqualTo(constraint: rc) {
-            removeConstraint(ac)
-            addConstraint(rc)
-        } else {
-            debugPrint("applied constraint does not contain receiver view = \(self) \n applied constraint =  \(ac)")
-        }
+    public final func replaceAppliedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceBy constraint: NSLayoutConstraint!) {
+        assert( constraint != nil, "modified constraint must not be nil")
+        self ~ (ac, constraint )
     }
     
     /// This method is used to change the priority of constraint.
-    /// TO DO Optimise Algorithm - a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.
+    /// TO DO : Optimise Algorithm
     
-    public final func changeAppliedConstraint(priority p: UILayoutPriority, forAttribute attr: NSLayoutAttribute)
-    {
-        guard let appliedConstraint = accessAppliedConstraintBy(attribute: attr) else { return  }
-        
-        if appliedConstraint.isSelfConstraint() {
-            removeConstraint(appliedConstraint)
-            appliedConstraint.priority = p
-            addConstraint(appliedConstraint)
-        } else {
-            superview?.removeConstraint( appliedConstraint)
-            appliedConstraint.priority = p
-            superview?.addConstraint(appliedConstraint)
-        }
+    public final func changeAppliedConstraint(priority p: UILayoutPriority, forAttribute attr: NSLayoutAttribute) {
+        self ~ (attr, p )
     }
     
 }

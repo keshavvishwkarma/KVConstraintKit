@@ -9,6 +9,7 @@
 import UIKit
 
 //********* DEFINE NEW OPERATOR *********//
+infix operator    ~ { }
 infix operator   <- { }
 infix operator  +== { }
 infix operator  +>= { }
@@ -17,6 +18,7 @@ infix operator +*<= { }
 infix operator +*== { }
 infix operator +*>= { }
 
+// To Do -> support In Future
 infix operator <+==> { }
 infix operator <+>=> { }
 infix operator <+<=> { }
@@ -65,7 +67,44 @@ public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
     lhs.removeConstraints(rhs); return rhs
 }
 
-//MARK: LayoutRelationable
+// MARK: Modifiable
+extension View :  Modifiable { }
+
+/// (containerView ~ (constraint, multiplier))
+public func *(lhs: View, rhs: (NSLayoutConstraint, CGFloat)) {
+    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(multiplier: rhs.1)))
+}
+
+/// (containerView ~ (constraint, multiplier))
+public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutRelation)) {
+    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(relation: rhs.1)))
+}
+
+/// (containerView ~ (old, new))
+public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutConstraint)) {
+    // Remove old one
+    rhs.0.isSelfConstraint() ? lhs - rhs.0 : lhs.superview! - rhs.0
+    rhs.1.isSelfConstraint() ? lhs - rhs.1 : lhs.superview! - rhs.1
+}
+
+/// (containerView ~ (.Top, .Equal))
+public func ~(lhs: View, rhs: (NSLayoutAttribute, UILayoutPriority))
+{
+    guard let constraint = (lhs <- rhs.0) else { return  }
+    
+    if constraint.isSelfConstraint() {
+        lhs - constraint
+        constraint.priority = rhs.1
+        lhs + constraint
+    } else {
+        lhs.superview! - constraint
+        constraint.priority = rhs.1
+        lhs.superview! + constraint
+    }
+    
+}
+
+// MARK: LayoutRelationable
 extension View : LayoutRelationable { }
 
 /// TO ADD SINGLE RELATION CONSTRAINT

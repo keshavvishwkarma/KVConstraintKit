@@ -54,6 +54,24 @@ public protocol Removable:class {
     func -(lhs: Self, rhs: [NSLayoutConstraint])-> [NSLayoutConstraint]
 }
 
+//********* Define Modifyable protocol *********//
+
+public protocol Modifiable:class {
+    /// TO CHANGE MULTIPLIER OF CONSTRAINTS
+    func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
+    
+    /// TO CHANGE PRIORITY OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutAttribute, UILayoutPriority))
+    
+    /// TO CHANGE RELATION OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
+    
+    /// TO CHANGE REPLACE ALREADY APPLIED CONSTRAINTS VIA NEW ONE
+    /// (containerView ~ (old, new))
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
+    
+}
+
 //********* Define LayoutRelationable protocol *********//
 
 public protocol LayoutRelationable:class {
