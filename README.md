@@ -51,7 +51,7 @@ v.superview?.addConstraints([top, leading, trailing, bottom])
 ```
 
 ##### Using KVConstraintKit
-> view +== [.Top, .Leading, .Trailing, .Bottom]
+> v +== [.Top, .Leading, .Trailing, .Bottom]
 
 ## Author
 
