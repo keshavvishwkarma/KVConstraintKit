@@ -61,7 +61,7 @@ public protocol Modifiable:class {
     func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
     
     /// TO CHANGE PRIORITY OF CONSTRAINTS
-    func ~(lhs: Self, rhs: (NSLayoutAttribute, UILayoutPriority))
+    func ~(lhs: Self, rhs: (NSLayoutAttribute, LayoutPriority))
     
     /// TO CHANGE RELATION OF CONSTRAINTS
     func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
@@ -70,6 +70,12 @@ public protocol Modifiable:class {
     /// (containerView ~ (old, new))
     func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
     
+}
+
+public protocol SelfAddable:class {
+    func +==(lhs: Self, rhs: (SelfAttribute, CGFloat))
+    func +>=(lhs: Self, rhs: (SelfAttribute, CGFloat))
+    func +<=(lhs: Self, rhs: (SelfAttribute, CGFloat))
 }
 
 //********* Define LayoutRelationable protocol *********//
@@ -95,4 +101,7 @@ public protocol LayoutRelationable:class {
     func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     
+    func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+    func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+    func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
 }

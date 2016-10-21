@@ -18,28 +18,79 @@ infix operator +*<= { }
 infix operator +*== { }
 infix operator +*>= { }
 
-// To Do -> support In Future
 infix operator <+==> { }
 infix operator <+>=> { }
 infix operator <+<=> { }
+
+/**
+ 
+ ### Relations
+ 
+ Relations are expressed using the overloaded operators `==` (`NSLayoutRelation.Equal`), `>=` (`NSLayoutRelation.GreaterThanOrEqual`), and `<=` (`NSLayoutRelation.LessThanOrEqual`).
+ The following types of operators are provided by KVConstraintKit, to add, remove, access and modify constraints.
+ 
+ */
 
 //Defining operators definations
 
 // MARK: Addable
 extension View : Addable { }
 
-/// to add single constraint on the receiver view
+/**
+ Add single constraint on the receiver view
+ - parameter left:  view object to assign
+ - parameter right: NSLayoutConstraint object to apply
+ 
+ - returns: A added NSLayoutConstraint object
+ */
+
 public func +(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
     return lhs.applyPreparedConstraintInView(constraint: rhs)
 }
 
-/// to add multiple constraints on the receiver view
+/**
+ Add multiple constraint on the receiver view
+ - parameter left:  view object to assign
+ - parameter right: array of NSLayoutConstraint object to apply
+ 
+ - returns: A added array of NSLayoutConstraint object
+ */
+ 
+ /// to add multiple constraints on the receiver view
 public func +(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     for c in rhs {
         constraints.append( lhs + c )
     }
     return constraints
+}
+
+// MARK: Removable
+extension View : Removable { }
+
+/**
+ Remove single constraint from the receiver view
+ - parameter left:  view object to assign
+ - parameter right: NSLayoutConstraint object to apply
+ 
+ - returns: A removed NSLayoutConstraint object
+ */
+
+public func -(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
+    lhs.removeConstraint(rhs); return rhs
+}
+
+/**
+ Remove multiple constraint from the receiver view
+ - parameter left:  view object to assign
+ - parameter right: array of NSLayoutConstraint object to apply
+ 
+ - returns: A removed NSLayoutConstraint object
+ */
+
+public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
+    if rhs.isEmpty {    return rhs     }
+    lhs.removeConstraints(rhs); return rhs
 }
 
 // MARK: Accessable
@@ -51,20 +102,6 @@ public func <-(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint?{
 
 public func <-(lhs: View, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?{
     return lhs.accessAppliedConstraintBy(attribute: rhs.0, relation: rhs.1)
-}
-
-// MARK: Removable
-extension View : Removable { }
-
-/// to remove single constraint from the receiver view
-public func -(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
-    lhs.removeConstraint(rhs); return rhs
-}
-
-/// to remove multiple constraints from the receiver view
-public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
-    if rhs.isEmpty {    return rhs     }
-    lhs.removeConstraints(rhs); return rhs
 }
 
 // MARK: Modifiable
@@ -88,8 +125,7 @@ public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutConstraint)) {
 }
 
 /// (containerView ~ (.Top, .Equal))
-public func ~(lhs: View, rhs: (NSLayoutAttribute, UILayoutPriority))
-{
+public func ~(lhs: View, rhs: (NSLayoutAttribute, UILayoutPriority)) {
     guard let constraint = (lhs <- rhs.0) else { return  }
     
     if constraint.isSelfConstraint() {
@@ -142,13 +178,12 @@ public func +>=(lhs: View, rhs: [NSLayoutAttribute]) {
 
 /// TO ADD SINGLE EQUAL RELATION CONSTRAINT WITH MULTIPLEIR
 //-------------------------------------------------------------
-/// (containerView +== (.Top, 1.5))
+/// (containerView +== (.Top, 1.5)).constant = 0
 
 public func +*>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
 }
 
-/// (containerView *== (.Top, multiplier) ).constant = 0
 public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, multiplier: rhs.1)
 }
@@ -169,7 +204,52 @@ public func +*<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
 public func +*==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
     for attribute in rhs { lhs +*== attribute }
 }
+
 public func +*>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
     for attribute in rhs { lhs +*>= attribute }
+}
+
+/// TO ADD SIBLINGS RELATION CONSTRAINT
+//-------------------------------------------------------------
+
+public func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.LessThanOrEqual, multiplier: rhs.3)
+}
+
+public func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, multiplier: rhs.3)
+}
+
+public func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.GreaterThanOrEqual, multiplier: rhs.3)
+}
+
+/// TO ADD SelfAddable CONSTRAINT
+//-------------------------------------------------------------
+
+extension View : SelfAddable { }
+
+public func +<=(lhs: View, rhs: (SelfAttribute, CGFloat)){
+    if rhs.0 == .AspectRatio {
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, relation:.LessThanOrEqual,secondView:lhs, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }else{
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, relation:.LessThanOrEqual, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }
+}
+
+public func +==(lhs: View, rhs: (SelfAttribute, CGFloat)){
+    if rhs.0 == .AspectRatio {
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }else{
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }
+}
+
+public func +>=(lhs: View, rhs: (SelfAttribute, CGFloat)){
+    if rhs.0 == .AspectRatio {
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, relation:.GreaterThanOrEqual, secondView:lhs, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }else{
+        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, relation:.GreaterThanOrEqual, attribute:rhs.0.attribute().1, constant:rhs.1)
+    }
 }
 

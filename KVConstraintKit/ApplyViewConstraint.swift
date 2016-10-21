@@ -32,73 +32,73 @@ import UIKit
 
 extension View
 {
-    ///All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
+    /// All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
     
     public final func applyAspectRatioConstraint() {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self,attribute: .Width, attribute: .Height))
+        self +== (.AspectRatio, 0)
     }
     
     public final func applyWidthConstraint(width: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, constant: width))
+        self +== (.Width, width)
     }
     
     public final func applyHeightConstraint(height: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, constant: height))
+        self +== (.Height, height)
     }
     
-    public final func applyAtLeastWidthConstraint(width: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
+    public final func applyAtLeastHeightConstraint(height: CGFloat) {
+        self +>= (.Height, height)
     }
     
-    public final func applyAtLeastHeightConstraint(height: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.GreaterThanOrEqual ,constant: height))
+    public final func applyAtMostHeightConstraint(height: CGFloat) {
+        self +<= (.Height, height)
+    }
+    
+    public final func applyAtLeastWidthConstraint(width: CGFloat) {
+        self +>= (.Width, width)
     }
     
     public final func applyAtMostWidthConstraint(width:CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
-    }
-    
-    public final func applyAtMostHeightConstraint(height: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.LessThanOrEqual ,constant: height))
+        self +<= (.Width, width)
     }
     
 }
 
-// MARK: - TO APPLIED PREPARED CONSTRAINTS
+// MARK : - TO APPLIED PREPARED CONSTRAINTS
 extension View
 {
     ///All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     
-    public final func applyLeftPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Left).constant = p
+    public final func applyLeftPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Left).constant = padding
     }
     
-    public final func applyRightPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Right).constant = -p
+    public final func applyRightPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Right).constant = -padding
     }
     
-    public final func applyTopPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Top).constant = p
+    public final func applyTopPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Top).constant = padding
     }
     
-    public final func applyBottomPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Bottom).constant = -p
+    public final func applyBottomPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Bottom).constant = -padding
     }
     
-    public final func applyLeadingPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Leading).constant = p
+    public final func applyLeadingPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Leading).constant = padding
     }
     
-    public final func applyTrailingPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Trailing).constant = -p
+    public final func applyTrailingPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Trailing).constant = -padding
     }
     
-    public final func applyCenterXPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .CenterX).constant = -p
+    public final func applyCenterXPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .CenterX).constant = -padding
     }
     
-    public final func applyCenterYPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .CenterY).constant = -p
+    public final func applyCenterYPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .CenterY).constant = -padding
     }
     
 }
@@ -106,15 +106,15 @@ extension View
 extension View
 {
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
-    public final func applyLeadingAndTrailingPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Leading).constant  = p
-        (self +== .Trailing).constant = -p
+    public final func applyLeadingAndTrailingPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Leading).constant  = padding
+        (self +== .Trailing).constant = -padding
     }
     
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
-    public final func applyTopAndBottomPinConstraintToSuperview(padding p: CGFloat) {
-        (self +== .Top).constant = p
-        (self +== .Bottom).constant = -p
+    public final func applyTopAndBottomPinConstraintToSuperview(padding: CGFloat) {
+        (self +== .Top).constant = padding
+        (self +== .Bottom).constant = -padding
     }
     
     public final func applyConstraintFitToSuperview() {
