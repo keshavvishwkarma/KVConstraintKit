@@ -10,7 +10,7 @@ import UIKit
 
 //********* Define LayoutGuidable protocol *********//
 
-public protocol LayoutGuidable:class {
+public protocol LayoutGuidable: class {
     /// TO ADD SINGLE CONSTRAINTS
     func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
     
@@ -23,30 +23,17 @@ public protocol LayoutGuidable:class {
 
 //********* Define Addable protocol *********//
 
-public protocol Addable:class {
+public protocol Addable: class {
     /// TO ADD SINGLE CONSTRAINTS
     func +(lhs: Self, rhs: NSLayoutConstraint)  -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE CONSTRAINTS
     func +(lhs: Self, rhs: [NSLayoutConstraint])-> [NSLayoutConstraint]
-    
-    //func +(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])-> [NSLayoutConstraint]
-    
-}
-
-//********* Define Accessable protocol *********//
-
-public protocol Accessable:class {
-    /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
-    func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
-    
-    // To Do -> Optiomise In Future
-    func <-(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?
 }
 
 //********* Define Removable protocol *********//
 
-public protocol Removable:class {
+public protocol Removable: class {
     /// TO REMOVE SINGLE CONSTRAINTS
     func -(lhs: Self, rhs: NSLayoutConstraint)  -> NSLayoutConstraint
     
@@ -54,27 +41,17 @@ public protocol Removable:class {
     func -(lhs: Self, rhs: [NSLayoutConstraint])-> [NSLayoutConstraint]
 }
 
-//********* Define Modifyable protocol *********//
+//********* Define SelfAddable protocol *********//
 
-public protocol Modifiable:class {
-    /// TO CHANGE MULTIPLIER OF CONSTRAINTS
-    func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
-    
-    /// TO CHANGE PRIORITY OF CONSTRAINTS
-    func ~(lhs: Self, rhs: (NSLayoutAttribute, UILayoutPriority))
-    
-    /// TO CHANGE RELATION OF CONSTRAINTS
-    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
-    
-    /// TO CHANGE REPLACE ALREADY APPLIED CONSTRAINTS VIA NEW ONE
-    /// (containerView ~ (old, new))
-    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
-    
+public protocol SelfAddable: class {
+    func +==(lhs: Self, rhs: (SelfAttribute, CGFloat))
+    func +>=(lhs: Self, rhs: (SelfAttribute, CGFloat))
+    func +<=(lhs: Self, rhs: (SelfAttribute, CGFloat))
 }
 
 //********* Define LayoutRelationable protocol *********//
 
-public protocol LayoutRelationable:class {
+public protocol LayoutRelationable: class {
     /// TO ADD SINGLE RELATION CONSTRAINT
     func +==(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
     func +>=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
@@ -94,5 +71,36 @@ public protocol LayoutRelationable:class {
     func +*==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
+    
+    func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+    func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+    func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+}
+
+//********* Define Accessable protocol *********//
+
+public protocol Accessable: class {
+    /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
+    func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
+    
+    // To Do -> Optiomise In Future
+    func <-(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?
+}
+
+//********* Define Modifyable protocol *********//
+
+public protocol Modifiable: class {
+    /// TO CHANGE MULTIPLIER OF CONSTRAINTS
+    func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
+    
+    /// TO CHANGE PRIORITY OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutAttribute, LayoutPriority))
+    
+    /// TO CHANGE RELATION OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
+    
+    /// TO CHANGE REPLACE ALREADY APPLIED CONSTRAINTS VIA NEW ONE
+    /// (containerView ~ (old, new))
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
     
 }
