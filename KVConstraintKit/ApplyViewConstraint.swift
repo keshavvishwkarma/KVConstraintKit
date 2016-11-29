@@ -67,7 +67,7 @@ extension View
 // MARK : - TO APPLIED PREPARED CONSTRAINTS
 extension View
 {
-    ///All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
+    /// All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     
     public final func applyLeftPinConstraintToSuperview(padding: CGFloat) {
         (self +== .Left).constant = padding

@@ -45,7 +45,7 @@ extension NSLayoutConstraint
 {
     public final func isEqualTo(constraint c:NSLayoutConstraint, shouldIgnoreMutiplier m:Bool = true, shouldIgnoreRelation r:Bool = true)-> Bool
     {
-        let isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && firstItem === c.firstItem && secondAttribute == c.secondAttribute
+        let isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && secondItem === c.secondItem && secondAttribute == c.secondAttribute
         debugPrint(isEqualExceptMultiplier)
         
         if m && r {
@@ -106,7 +106,6 @@ extension NSLayoutConstraint
     
 }
 
-// Same functionality for classes,
 extension Array where Element: NSLayoutConstraint
 {
     func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
