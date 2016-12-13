@@ -18,28 +18,41 @@ infix operator +*<= { }
 infix operator +*== { }
 infix operator +*>= { }
 
-// To Do -> support In Future
 infix operator <+==> { }
 infix operator <+>=> { }
 infix operator <+<=> { }
 
-//Defining operators definations
-
+// Defining operators definations
+ 
 // MARK: Addable
 extension View : Addable { }
 
-/// to add single constraint on the receiver view
+/// To add single constraint on the receiver view
 public func +(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
     return lhs.applyPreparedConstraintInView(constraint: rhs)
 }
 
-/// to add multiple constraints on the receiver view
+/// To add multiple constraints on the receiver view
 public func +(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     for c in rhs {
         constraints.append( lhs + c )
     }
     return constraints
+}
+
+// MARK: Removable
+extension View : Removable { }
+
+/// To remove single constraint from the receiver view
+public func -(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
+    lhs.removeConstraint(rhs); return rhs
+}
+
+/// To remove multiple constraint from the receiver view
+public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
+    if rhs.isEmpty {    return rhs     }
+    lhs.removeConstraints(rhs); return rhs
 }
 
 // MARK: Accessable
@@ -53,31 +66,17 @@ public func <-(lhs: View, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayou
     return lhs.accessAppliedConstraintBy(attribute: rhs.0, relation: rhs.1)
 }
 
-// MARK: Removable
-extension View : Removable { }
-
-/// to remove single constraint from the receiver view
-public func -(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
-    lhs.removeConstraint(rhs); return rhs
-}
-
-/// to remove multiple constraints from the receiver view
-public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
-    if rhs.isEmpty {    return rhs     }
-    lhs.removeConstraints(rhs); return rhs
-}
-
 // MARK: Modifiable
 extension View :  Modifiable { }
 
 /// (containerView ~ (constraint, multiplier))
 public func *(lhs: View, rhs: (NSLayoutConstraint, CGFloat)) {
-    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(multiplier: rhs.1)))
+    (lhs ~ (rhs.0, rhs.0.modified(multiplier: rhs.1)))
 }
 
 /// (containerView ~ (constraint, multiplier))
 public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutRelation)) {
-    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(relation: rhs.1)))
+    (lhs ~ (rhs.0, rhs.0.modified(relation: rhs.1)))
 }
 
 /// (containerView ~ (old, new))
@@ -112,15 +111,15 @@ extension View : LayoutRelationable { }
 /// (containerView +== .Top).constant = 0
 
 public func +<=(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, relation: .LessThanOrEqual)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs, relation: .LessThanOrEqual)
 }
 
 public func +==(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, constant: 0)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs)
 }
 
 public func +>=(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, relation: .GreaterThanOrEqual)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs, relation: .GreaterThanOrEqual)
 }
 
 /// TO ADD MULTIPLE EQUAL RELATION CONSTRAINT
@@ -142,21 +141,20 @@ public func +>=(lhs: View, rhs: [NSLayoutAttribute]) {
 
 /// TO ADD SINGLE EQUAL RELATION CONSTRAINT WITH MULTIPLEIR
 //-------------------------------------------------------------
-/// (containerView +== (.Top, 1.5))
+/// (containerView +*== (.Top, 1.5))
 
 public func +*>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
 }
 
-/// (containerView *== (.Top, multiplier) ).constant = 0
+/// (containerView +*== (.Top, multiplier) ).constant = 0
 public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, multiplier: rhs.1)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, multiplier: rhs.1)
 }
 
 public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, relation: .LessThanOrEqual, multiplier: rhs.1)
+    return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .LessThanOrEqual, multiplier: rhs.1)
 }
-
 
 /// TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
 //-------------------------------------------------------------
@@ -169,7 +167,24 @@ public func +*<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
 public func +*==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
     for attribute in rhs { lhs +*== attribute }
 }
+
 public func +*>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
     for attribute in rhs { lhs +*>= attribute }
 }
+
+/// TO ADD SIBLINGS RELATION CONSTRAINT
+//-------------------------------------------------------------
+
+public func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.LessThanOrEqual, multiplier: rhs.3)
+}
+
+public func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, multiplier: rhs.3)
+}
+
+public func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
+    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.GreaterThanOrEqual, multiplier: rhs.3)
+}
+
 

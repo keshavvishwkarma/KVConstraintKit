@@ -32,34 +32,33 @@ import UIKit
 
 extension View
 {
-    ///All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
-    
+    /// All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
     public final func applyAspectRatioConstraint() {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self,attribute: .Width, attribute: .Height))
+        self + NSLayoutConstraint.prepareConstraint(self,attribute: .Width, attribute: .Height)
     }
     
     public final func applyWidthConstraint(width: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, constant: width))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Width, constant: width)
     }
     
     public final func applyHeightConstraint(height: CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, constant: height))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Height, constant: height)
     }
     
     public final func applyAtLeastWidthConstraint(width: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width)
     }
     
     public final func applyAtLeastHeightConstraint(height: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.GreaterThanOrEqual ,constant: height))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Height, relation:.GreaterThanOrEqual ,constant: height)
     }
     
     public final func applyAtMostWidthConstraint(width:CGFloat) {
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Width, relation:.LessThanOrEqual ,constant: width)
     }
     
     public final func applyAtMostHeightConstraint(height: CGFloat){
-        applyPreparedConstraintInView( constraint: NSLayoutConstraint.prepareSelfConstraint(self, attribute: .Height, relation:.LessThanOrEqual ,constant: height))
+        self + NSLayoutConstraint.prepareConstraint(self, attribute: .Height, relation:.LessThanOrEqual ,constant: height)
     }
     
 }
@@ -67,7 +66,7 @@ extension View
 // MARK: - TO APPLIED PREPARED CONSTRAINTS
 extension View
 {
-    ///All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
+    /// All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     
     public final func applyLeftPinConstraintToSuperview(padding p: CGFloat) {
         (self +== .Left).constant = p

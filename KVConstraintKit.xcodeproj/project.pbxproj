@@ -86,8 +86,8 @@
 				6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */,
 				6BF09CE11D58F7410030699A /* KVConstraintKit.swift */,
 				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
-				6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */,
 				6BA7D2921D83EE4A004B3A91 /* KVConstraintKitProtocol.swift */,
+				6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */,
 				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
 				6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */,
 				6BF09CCC1D58F67C0030699A /* Info.plist */,
@@ -340,6 +340,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KVConstraintKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,6 +360,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = KVConstraintKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Keshav-Vishwkarma.KVConstraintKit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
