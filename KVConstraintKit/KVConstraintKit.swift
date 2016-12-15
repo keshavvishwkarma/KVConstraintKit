@@ -130,10 +130,10 @@ extension View
         let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
         return appliedConstraint
     }
+
     
-    
-    /**
-    This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
+    /** 
+        This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
     */
     //    public final func accessAppliedConstraintFromSiblingViewByAttribute(attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute, ofView otherSiblingView: UIView!) -> NSLayoutConstraint{
     //

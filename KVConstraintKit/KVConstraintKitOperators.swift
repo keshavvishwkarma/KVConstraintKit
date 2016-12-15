@@ -36,27 +36,12 @@ infix operator <+<=> { }
 // MARK: Addable
 extension View : Addable { }
 
-/**
- Add single constraint on the receiver view
- - parameter left:  view object to assign
- - parameter right: NSLayoutConstraint object to apply
- 
- - returns: A added NSLayoutConstraint object
- */
-
+/// To add single constraint on the receiver view
 public func +(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
     return lhs.applyPreparedConstraintInView(constraint: rhs)
 }
 
-/**
- Add multiple constraint on the receiver view
- - parameter left:  view object to assign
- - parameter right: array of NSLayoutConstraint object to apply
- 
- - returns: A added array of NSLayoutConstraint object
- */
- 
- /// to add multiple constraints on the receiver view
+/// To add multiple constraints on the receiver view
 public func +(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
     var constraints = [NSLayoutConstraint]()
     for c in rhs {
@@ -68,26 +53,12 @@ public func +(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
 // MARK: Removable
 extension View : Removable { }
 
-/**
- Remove single constraint from the receiver view
- - parameter left:  view object to assign
- - parameter right: NSLayoutConstraint object to apply
- 
- - returns: A removed NSLayoutConstraint object
- */
-
+/// To remove single constraint from the receiver view
 public func -(lhs: View, rhs: NSLayoutConstraint) -> NSLayoutConstraint {
     lhs.removeConstraint(rhs); return rhs
 }
 
-/**
- Remove multiple constraint from the receiver view
- - parameter left:  view object to assign
- - parameter right: array of NSLayoutConstraint object to apply
- 
- - returns: A removed NSLayoutConstraint object
- */
-
+/// To remove multiple constraint from the receiver view
 public func -(lhs: View, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
     if rhs.isEmpty {    return rhs     }
     lhs.removeConstraints(rhs); return rhs
@@ -109,12 +80,12 @@ extension View :  Modifiable { }
 
 /// (containerView ~ (constraint, multiplier))
 public func *(lhs: View, rhs: (NSLayoutConstraint, CGFloat)) {
-    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(multiplier: rhs.1)))
+    (lhs ~ (rhs.0, rhs.0.modified(multiplier: rhs.1)))
 }
 
 /// (containerView ~ (constraint, multiplier))
 public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutRelation)) {
-    (lhs ~ (rhs.0, rhs.0.modifyConstraintBy(relation: rhs.1)))
+    (lhs ~ (rhs.0, rhs.0.modified(relation: rhs.1)))
 }
 
 /// (containerView ~ (old, new))
@@ -184,7 +155,7 @@ public func +*>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstr
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
 }
 
- /// (containerView *== (.Top, multiplier) ).constant = 0
+/// (containerView +*== (.Top, multiplier) ).constant = 0
 public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, multiplier: rhs.1)
 }
@@ -192,7 +163,6 @@ public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstr
 public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .LessThanOrEqual, multiplier: rhs.1)
 }
-
 
 /// TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
 //-------------------------------------------------------------
