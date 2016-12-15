@@ -29,6 +29,7 @@
 import UIKit
 
 public typealias View = UIView
+public typealias LayoutPriority = UILayoutPriority
 
 /// MARK: TO PREPARE VIEW FOR CONSTRAINTS
 
@@ -54,13 +55,13 @@ extension View {
     /// Generalized public constraint methods for views.
     public final func prepareConstraintToSuperview( attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0 ) -> NSLayoutConstraint! {
         assert(superview != nil, "You should have `addSubView` on any other it's called `superview` \(self)");
-        return View.prepareConstraintFor(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation, multiplier:multiplier)
+        return View.prepareConstraint(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation, multiplier:multiplier)
     }
     
     /// Prepare constraint of one sibling view to other sibling view and add it into its superview view.
     public final func prepareConstraintFromSiblingView(attribute attr1: NSLayoutAttribute, toAttribute attr2:NSLayoutAttribute, ofView otherSiblingView: View, relation:NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0 ) -> NSLayoutConstraint! {
         assert(((NSSet(array: [superview!,otherSiblingView.superview!])).count == 1), "All the sibling views must belong to same superview")
-        return View.prepareConstraintFor(self, attribute: attr1, secondView:otherSiblingView, attribute:attr2, relation:relation,  multiplier: multiplier )
+        return View.prepareConstraint(self, attribute: attr1, secondView:otherSiblingView, attribute:attr2, relation:relation,  multiplier: multiplier )
     }
     
 }
@@ -87,6 +88,15 @@ extension View
         return c
     }
     
+    public final func applyConstraintFromSiblingView(attribute attr1: NSLayoutAttribute, toAttribute attr2:NSLayoutAttribute, ofView otherSiblingView: View, constant:CGFloat) -> NSLayoutConstraint {
+        assert(!constant.isInfinite, "constant of view must not be INFINITY.")
+        assert(!constant.isNaN, "constant of view must not be NaN.")
+        
+        let c = self.prepareConstraintFromSiblingView(attribute: attr1, toAttribute: attr2, ofView: otherSiblingView)
+        c.constant = constant
+        return self.superview! + c
+    }
+    
     /// MARK: - Remove Constraints From a specific View
     public final func removeAppliedConstraintFromSupreview() {
         let superview = self.superview
@@ -106,16 +116,21 @@ extension View
 {
     // MARK: - To Access Applied Constraint By Attributes From a specific View.
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal)->NSLayoutConstraint? {
-        let c = prepareConstraintToSuperview(attribute: attr, attribute: attr, relation: relation)
-        let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
-        return appliedConstraint
+        return accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation)
     }
     
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, completionHandler: (NSLayoutConstraint?) -> Void){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            completionHandler(self.accessAppliedConstraintBy(attribute: attr, relation: relation))
+            completionHandler(self.accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation))
         }
     }
+    
+    public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, attribute attr2: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal)->NSLayoutConstraint? {
+        let c = prepareConstraintToSuperview(attribute: attr, attribute: attr2, relation: relation)
+        let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
+        return appliedConstraint
+    }
+
     
     /** 
         This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
@@ -129,36 +144,6 @@ extension View
 /// MARK: TO UPDATE/MODIFY APPLIED CONSTRAINTS
 extension View
 {
-    // MARK : To Update Modified Applied Constraints
-    public final func updateModifyConstraints() {
-        layoutIfNeeded()
-        setNeedsLayout()
-    }
-    
-    public final func updateModifyConstraintsWithAnimation(completion:((Bool) -> Void)?) {
-        let duration = NSTimeInterval(UINavigationControllerHideShowBarDuration)
-        let referenceView = (superview != nil) ? superview! : self
-        UIView.animateWithDuration(duration, animations: { () -> Void in
-            referenceView.updateModifyConstraints()
-            }, completion: completion)
-    }
-    
-    public final func updateAppliedConstraintConstantValueForIpadBy(attribute a: NSLayoutAttribute) {
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) {
-            updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRation )
-        }
-    }
-    
-    public final func updateAppliedConstraintConstantValueForIphoneBy(attribute a: NSLayoutAttribute) {
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone) {
-            updateAppliedConstraintConstantValueBy(a, withConstantRatio: 1.0/NSLayoutConstraint.Defualt.iPadRation )
-        }
-    }
-    
-    public final func updateAppliedConstraintConstantValueBy(attribute: NSLayoutAttribute, withConstantRatio ratio: CGFloat) {
-        accessAppliedConstraintBy(attribute: attribute)?.constant *= ratio
-    }
-    
     /// This method is used to replace already applied constraint by new constraint.
     public final func replaceAppliedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceBy constraint: NSLayoutConstraint!) {
         assert( constraint != nil, "modified constraint must not be nil")
@@ -170,11 +155,40 @@ extension View
         self ~ (attr, p )
     }
     
+    /// This method is used to Update Modified Applied Constraints
+    public final func updateModifyConstraints(){
+        layoutIfNeeded()
+        setNeedsLayout()
+    }
+    
+    public final func updateModifyConstraintsWithAnimation(completion:((Bool) -> Void)?)
+    {
+        let duration = NSTimeInterval(UINavigationControllerHideShowBarDuration)
+        let referenceView = (superview != nil) ? superview! : self
+        
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            referenceView.updateModifyConstraints()
+            }, completion: completion)
+        
+    }
+    
+    public final func updateAppliedConstraintConstantValueForIpadBy(attribute a: NSLayoutAttribute) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) {
+            updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRation )
+        }
+    }
+    
+    public final func updateAppliedConstraintConstantValueBy(attribute: NSLayoutAttribute, withConstantRatio ratio: CGFloat){
+        accessAppliedConstraintBy(attribute: attribute)?.constant *= ratio
+    }
+    
+    
 }
 
-private extension View {
-    class final func prepareConstraintFor(firstView: View!, attribute attr1: NSLayoutAttribute, secondView: View?=nil, attribute attr2: NSLayoutAttribute = .NotAnAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint! {
-//        assert( (secondView != nil), "both firstView & secondView must not be nil.")
+private extension View
+{
+    class final func prepareConstraint(firstView: View!, attribute attr1: NSLayoutAttribute, secondView: View?=nil, attribute attr2: NSLayoutAttribute = .NotAnAttribute, relation: NSLayoutRelation = .Equal, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint!{
+        // assert( (secondView != nil), "both firstView & secondView must not be nil.")
         
         assert(!multiplier.isInfinite, "Multiplier/Ratio of view must not be INFINITY.")
         assert(!multiplier.isNaN, "Multiplier/Ratio of view must not be NaN.")
@@ -182,6 +196,10 @@ private extension View {
         assert(!constant.isInfinite, "constant of view must not be INFINITY.")
         assert(!constant.isNaN, "constant of view must not be NaN.")
         
+        // let preparePinConastrain : NSLayoutConstraint = NSLayoutConstraint(item: firstView, attribute: attr1, relatedBy: relation, toItem: secondView, attribute: attr2, multiplier: multiplier, constant: constant)
+        // return preparePinConastrain
+        
         return NSLayoutConstraint(item: firstView, attribute: attr1, relatedBy: relation, toItem: secondView, attribute: attr2, multiplier: multiplier, constant: constant)
+        
     }
 }
