@@ -71,10 +71,11 @@ public protocol LayoutRelationable: class {
     func +*==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    
-    func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
-    func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
-    func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+
+    /// TO ADD SIBLINGS RELATION CONSTRAINT
+    func <+<=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+    func <+==>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+    func <+>=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
 }
 
 //********* Define Accessable protocol *********//
