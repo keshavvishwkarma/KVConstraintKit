@@ -8,6 +8,8 @@
 
 import UIKit
 
+#if os(iOS) || os(tvOS)
+
 //********* Define LayoutGuidable protocol *********//
 
 public protocol LayoutGuidable: class {
@@ -20,6 +22,8 @@ public protocol LayoutGuidable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
     func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
 }
+
+#endif
 
 //********* Define Addable protocol *********//
 
@@ -42,7 +46,6 @@ public protocol Removable: class {
 }
 
 //********* Define SelfAddable protocol *********//
-
 public protocol SelfAddable: class {
     func +==(lhs: Self, rhs: (SelfAttribute, CGFloat))
     func +>=(lhs: Self, rhs: (SelfAttribute, CGFloat))
@@ -50,7 +53,6 @@ public protocol SelfAddable: class {
 }
 
 //********* Define LayoutRelationable protocol *********//
-
 public protocol LayoutRelationable: class {
     /// TO ADD SINGLE RELATION CONSTRAINT
     func +==(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
@@ -71,7 +73,7 @@ public protocol LayoutRelationable: class {
     func +*==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-
+    
     /// TO ADD SIBLINGS RELATION CONSTRAINT
     func <+<=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
     func <+==>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
@@ -79,7 +81,6 @@ public protocol LayoutRelationable: class {
 }
 
 //********* Define Accessable protocol *********//
-
 public protocol Accessable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
     func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
@@ -89,7 +90,6 @@ public protocol Accessable: class {
 }
 
 //********* Define Modifyable protocol *********//
-
 public protocol Modifiable: class {
     /// TO CHANGE MULTIPLIER OF CONSTRAINTS
     func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
@@ -105,3 +105,4 @@ public protocol Modifiable: class {
     func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
     
 }
+
