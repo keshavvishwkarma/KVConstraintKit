@@ -31,13 +31,13 @@ import UIKit
 public typealias View = UIView
 public typealias LayoutPriority = UILayoutPriority
 
-// MARK: TO PREPARE VIEW FORCONSTRAINTS
+/// MARK: TO PREPARE VIEW FOR CONSTRAINTS
 
 extension View {
     
     /// This method is used to create new instance of ui elements for autolayout.
-    public final class func prepareNewViewForAutoLayout() -> View! {
-        let preparedView = View()
+    public final class func prepareNewViewForAutoLayout<T:View>() -> T! {
+        let preparedView = T()
         preparedView.translatesAutoresizingMaskIntoConstraints = false
         return preparedView
     }
@@ -49,51 +49,34 @@ extension View {
     
 }
 
-// MARK: TO PREPARE CONSTRAINTS
+/// MARK: TO PREPARE CONSTRAINTS
 extension View {
     
-    /// Generalized public constraint methods for views
-    // For operator +<=,  +==,  +>=,
-    public final func prepareConstraintToSuperview(attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal) -> NSLayoutConstraint! {
-        assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
-        return View.prepareConstraint(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation)
-    }
-    
-    // For operator +== , =<= , =>=
-    // For operator +*==, +*>= , +*<=
-    public final func prepareConstraintToSuperview(attribute attr1: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0, constant:CGFloat = 0.0) -> NSLayoutConstraint! {
-        assert(superview != nil, "You should have addSubView on any other its called's Superview \(self)");
-        
-        let preparePinConastrain : NSLayoutConstraint = View.prepareConstraint(self, attribute: attr1, secondView: superview, attribute:attr1, relation: relation, multiplier:multiplier, constant:constant)
-        return preparePinConastrain
+    /// Generalized public constraint methods for views.
+    public final func prepareConstraintToSuperview( attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0 ) -> NSLayoutConstraint! {
+        assert(superview != nil, "You should have `addSubView` on any other it's called `superview` \(self)");
+        return View.prepareConstraint(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation, multiplier:multiplier)
     }
     
     /// Prepare constraint of one sibling view to other sibling view and add it into its superview view.
-    // For operator <+<=>,  <+==>, <+>=>
-    // <+*<=>, <+*==>, <+*>=>
-    public final func prepareConstraintFromSiblingView(attribute attr1: NSLayoutAttribute, toAttribute attr2:NSLayoutAttribute, ofView otherSiblingView: View, relation:NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0, constant:CGFloat = 0.0 ) -> NSLayoutConstraint! {
+    public final func prepareConstraintFromSiblingView(attribute attr1: NSLayoutAttribute, toAttribute attr2:NSLayoutAttribute, ofView otherSiblingView: View, relation:NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0 ) -> NSLayoutConstraint! {
         assert(((NSSet(array: [superview!,otherSiblingView.superview!])).count == 1), "All the sibling views must belong to same superview")
-        
-        return View.prepareConstraint(self, attribute: attr1, secondView:otherSiblingView, attribute:attr2, relation:relation,  multiplier: multiplier, constant:constant)
+        return View.prepareConstraint(self, attribute: attr1, secondView:otherSiblingView, attribute:attr2, relation:relation,  multiplier: multiplier )
     }
     
 }
 
-/// TO APPLY/ADD CONSTRAINTS
+/// TO APPLY/ADD CONSTRAINTS OR TO REMOVE APPLIED CONSTRAINTS
 extension View
 {
     /// This is the common methods to add the constraint in the receiver only once. If constraint already exists then it will only update that constraint and return that constraint.
-    public final func applyPreparedConstraintInView(constraint c: NSLayoutConstraint) -> NSLayoutConstraint
-    {
+    public final func applyPreparedConstraintInView(constraint c: NSLayoutConstraint) -> NSLayoutConstraint {
         // If this constraint is already added then it update the constraint values else added new constraint.
         let appliedConstraint = constraints.containsApplied(constraint: c)
-        
-        // if this constraint is already added then it update the constraint values else added new constraint
         if (appliedConstraint != nil)
         {
             appliedConstraint!.constant = c.constant
-            
-            if appliedConstraint!.multiplier != c.multiplier  || appliedConstraint!.relation != c.relation  {
+            if appliedConstraint!.multiplier != c.multiplier || appliedConstraint!.relation != c.relation {
                 self - appliedConstraint!
             }
             else{
@@ -102,7 +85,6 @@ extension View
         }
         
         addConstraint(c)
-        
         return c
     }
     
@@ -114,12 +96,8 @@ extension View
         c.constant = constant
         return self.superview! + c
     }
-}
-
-/// MARK : OR TO REMOVE APPLIED CONSTRAINTS
-extension View
-{
-    /// MARK : - Remove Constraints From a specific View
+    
+    /// MARK: - Remove Constraints From a specific View
     public final func removeAppliedConstraintFromSupreview() {
         let superview = self.superview
         removeFromSuperview()
@@ -133,17 +111,17 @@ extension View
     
 }
 
-// MARK : TO ACCESS APPLIED CONSTRAINTS
+/// MARK: TO ACCESS APPLIED CONSTRAINTS
 extension View
 {
-    // MARK : - To Access Applied Constraint By Attributes From a specific View
+    // MARK: - To Access Applied Constraint By Attributes From a specific View.
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal)->NSLayoutConstraint? {
         return accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation)
     }
     
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, completionHandler: (NSLayoutConstraint?) -> Void){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            completionHandler(self.accessAppliedConstraintBy(attribute: attr, relation: relation))
+            completionHandler(self.accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation))
         }
     }
     
@@ -152,28 +130,32 @@ extension View
         let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
         return appliedConstraint
     }
+
+    
+    /** 
+        This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
+    */
+    //    public final func accessAppliedConstraintFromSiblingViewByAttribute(attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute, ofView otherSiblingView: UIView!) -> NSLayoutConstraint{
+    //
+    //    }
     
 }
 
-/// MARK : TO UPDATE/MODIFY APPLIED CONSTRAINTS
+/// MARK: TO UPDATE/MODIFY APPLIED CONSTRAINTS
 extension View
 {
     /// This method is used to replace already applied constraint by new constraint.
-    
     public final func replaceAppliedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceBy constraint: NSLayoutConstraint!) {
         assert( constraint != nil, "modified constraint must not be nil")
         self ~ (ac, constraint )
     }
     
     /// This method is used to change the priority of constraint.
-    /// TO DO Optimise Algorithm - a process or set of rules to be followed in calculations or other problem-solving operations, especially by a computer.
-    
     public final func changeAppliedConstraint(priority p: UILayoutPriority, forAttribute attr: NSLayoutAttribute) {
         self ~ (attr, p )
     }
     
-    // MARK : To Update Modified Applied Constraints
-    
+    /// This method is used to Update Modified Applied Constraints
     public final func updateModifyConstraints(){
         layoutIfNeeded()
         setNeedsLayout()
