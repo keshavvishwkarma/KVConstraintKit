@@ -83,7 +83,6 @@ public protocol LayoutRelationable: class {
 }
 
 //********* Define Accessable protocol *********//
-
 public protocol Accessable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
     func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
@@ -93,7 +92,6 @@ public protocol Accessable: class {
 }
 
 //********* Define Modifyable protocol *********//
-
 public protocol Modifiable: class {
     /// TO CHANGE MULTIPLIER OF CONSTRAINTS
     func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
@@ -109,3 +107,4 @@ public protocol Modifiable: class {
     func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
     
 }
+
