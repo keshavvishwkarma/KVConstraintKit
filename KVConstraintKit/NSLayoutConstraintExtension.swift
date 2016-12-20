@@ -61,7 +61,7 @@ extension NSLayoutConstraint
         return isEqualExceptMultiplier && multiplier == c.multiplier && relation == c.relation
     }
     
-    public final func reverseConstraintItems() -> NSLayoutConstraint
+    public final func reversed() -> NSLayoutConstraint
     {
         if let secondItemObj = secondItem {
             return NSLayoutConstraint(item: secondItemObj, attribute: secondAttribute, relatedBy: relation, toItem: firstItem, attribute: firstAttribute, multiplier: multiplier, constant: constant)
@@ -71,7 +71,7 @@ extension NSLayoutConstraint
         
     }
     
-    public final func modifyConstraintBy(relation r: NSLayoutRelation) -> NSLayoutConstraint
+    public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint
     {
         if relation == r {
             return self
@@ -80,7 +80,7 @@ extension NSLayoutConstraint
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
     }
     
-    public final func modifyConstraintBy(multiplier m: CGFloat) -> NSLayoutConstraint
+    public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint
     {
         if multiplier == m {
             return self
@@ -106,7 +106,6 @@ extension NSLayoutConstraint
     
 }
 
-// Same functionality for classes,
 extension Array where Element: NSLayoutConstraint
 {
     func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
@@ -119,3 +118,5 @@ extension Array where Element: NSLayoutConstraint
             }.first
     }
 }
+
+

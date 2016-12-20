@@ -51,12 +51,17 @@ v.superview?.addConstraints([top, leading, trailing, bottom])
 ```
 
 ##### Using KVConstraintKit
-> view +== [.Top, .Leading, .Trailing, .Bottom]
+> v +== [.Top, .Leading, .Trailing, .Bottom]
 
-## Author
-
-Keshav Vishwkarma, keshavvbe@gmail.com
 
 ## License
 
 KVConstraintKit is available under the MIT license. See the LICENSE file for more info.
+
+## Contributions
+
+Any contribution is more than welcome! You can contribute through pull requests and issues on GitHub.
+
+## Author
+
+If you wish to contact me, email at: keshavvbe@gmail.com

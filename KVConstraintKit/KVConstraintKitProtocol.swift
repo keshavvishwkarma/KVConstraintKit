@@ -8,6 +8,8 @@
 
 import UIKit
 
+#if os(iOS) || os(tvOS)
+
 //********* Define LayoutGuidable protocol *********//
 
 public protocol LayoutGuidable: class {
@@ -20,6 +22,8 @@ public protocol LayoutGuidable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
     func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
 }
+
+#endif
 
 //********* Define Addable protocol *********//
 
@@ -72,9 +76,36 @@ public protocol LayoutRelationable: class {
     func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
     
-    func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
-    func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
-    func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint
+    /// TO ADD SIBLINGS RELATION CONSTRAINT
+    func <+<=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+    func <+==>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+    func <+>=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+}
+
+//********* Define Accessable protocol *********//
+public protocol Accessable: class {
+    /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
+    func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
+    
+    // To Do -> Optiomise In Future
+    func <-(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?
+}
+
+//********* Define Modifyable protocol *********//
+public protocol Modifiable: class {
+    /// TO CHANGE MULTIPLIER OF CONSTRAINTS
+    func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
+    
+    /// TO CHANGE PRIORITY OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutAttribute, LayoutPriority))
+    
+    /// TO CHANGE RELATION OF CONSTRAINTS
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
+    
+    /// TO CHANGE REPLACE ALREADY APPLIED CONSTRAINTS VIA NEW ONE
+    /// (containerView ~ (old, new))
+    func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutConstraint))
+    
 }
 
 //********* Define Accessable protocol *********//
