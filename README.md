@@ -1,5 +1,5 @@
 # KVConstraintKit
-Impressive Auto Layout DSL for iOS. & It is written in pure swift.
+KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS with Swift
 
 ## Custom Operators
 The following types of `operators` are provided by `KVConstraintKit`, to `add`, `remove`, `access` and `modify` constraints.
