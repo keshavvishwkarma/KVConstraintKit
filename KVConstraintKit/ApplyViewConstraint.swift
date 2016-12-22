@@ -105,27 +105,23 @@ extension View
 
 extension View
 {
-    /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview.
-
-    public final func applyConstraintFitToSuperview() {
-        self +== [.Top, .Bottom, .Leading, .Trailing]
-    }
-    
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
     
-    public final func applyConstraintFitToSuperviewHorizontally(padding: CGFloat = 0.0) {
+    public final func applyConstraintFitHorizontallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Leading).constant  = padding
         (self +== .Trailing).constant = -padding
     }
 
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
  
-    public final func applyConstraintFitToSuperviewVertically(padding: CGFloat = 0.0) {
+    public final func applyConstraintFitVerticallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Top).constant = padding
         (self +== .Bottom).constant = -padding
     }
     
-    public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets)
+    /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview.
+
+    public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets = UIEdgeInsetsZero)
     {
         if !(inset.top.isFinite && inset.top.isNaN) {
             (self +== .Top).constant = inset.top
@@ -153,17 +149,14 @@ extension View
         
     }
     
-    /// alignCenter
     public final func applyConstraintToCenterInSuperview() {
         self +== [.CenterX, .CenterY]
     }
     
-    /// alignFromHorizontallyCenter
     public final func applyConstraintToCenterHorizontallyInSuperview() {
         self +== .CenterX
     }
     
-    /// alignFromVerticallyCenter
     public final func applyConstraintToCenterVerticallyInSuperview() {
         self +== .CenterY
     }

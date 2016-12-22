@@ -1,5 +1,5 @@
 # KVConstraintKit
-KVConstraintKit made easy &amp; impressive Auto Layout constraints in modern way.
+Impressive Auto Layout DSL for iOS. & It is written in pure swift.
 
 ## Custom Operators
 The following types of `operators` are provided by `KVConstraintKit`, to `add`, `remove`, `access` and `modify` constraints.
@@ -18,9 +18,12 @@ The following types of `operators` are provided by `KVConstraintKit`, to `add`, 
 | +*>= | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint with `multiplier` |
 | +*<= | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint with `multiplier` |
 
+
+## Usage
+
 Here's a quick example:
 ##### Without Using KVConstraintKit
-```
+```swift
 let v = UIView.prepareNewViewForAutoLayout()
 v.backgroundColor = UIColor.redColor()
 view.addSubview(v)
@@ -28,31 +31,97 @@ view.addSubview(v)
 // Prepare constraints and then add them on superview of view
 let top = NSLayoutConstraint(item: v, attribute: .Top,
                              relatedBy: .Equal,
-                             toItem: view.superview!, attribute: .Top,
+                             toItem: v.superview!, attribute: .Top,
                              multiplier: 1.0, constant: 0)
 
 let leading = NSLayoutConstraint(item: v, attribute: .Leading,
                                  relatedBy: .Equal,
-                             toItem: view.superview!, attribute: .Leading,
+                             toItem: v.superview!, attribute: .Leading,
                              multiplier: 1.0, constant: 0)
 
 let trailing = NSLayoutConstraint(item: v, attribute: .Trailing,
-                             relatedBy: .Equal, toItem: view.superview!,
+                             relatedBy: .Equal, toItem: v.superview!,
                              attribute: .Trailing,
                              multiplier: 1.0, constant: 0)
 
 let bottom = NSLayoutConstraint(item: v, attribute: .Bottom,
                              relatedBy: .Equal,
-                             toItem: view.superview!, attribute: .Bottom,
+                             toItem: v.superview!, attribute: .Bottom,
                              multiplier: 1.0, constant: 0)
 
 v.superview?.addConstraints([top, leading, trailing, bottom])
 
 ```
-
 ##### Using KVConstraintKit
-> v +== [.Top, .Leading, .Trailing, .Bottom]
 
+> ```swift
+v +== [.Top, .Leading, .Trailing, .Bottom]
+```
+
+##### Similarly for margin constraints
+> ```swift
+v +== [ .LeadingMargin, .TrailingMargin, .TopMargin, .BottomMargin]
+```
+
+### Center
+Horizontally
+
+```swift
+view.applyConstraintToCenterHorizontallyInSuperview()
+```
+Vertically
+
+```swift
+view.applyConstraintToCenterVerticallyInSuperview()
+```
+Horizontally & Vertically
+
+```swift
+view.applyConstraintToCenterInSuperview()
+```
+
+### Fit
+Horizontally
+
+```swift
+view.applyConstraintFitHorizontallyToSuperview()
+```
+Vertically
+
+```swift
+view.applyConstraintFitVerticallyToSuperview()
+```
+Horizontally & Vertically
+
+```swift
+view.applyConstraintFitToSuperview()
+```
+
+Fit with inset
+
+```swift
+let inset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)    
+view.applyConstraintFitToSuperview(contentInset:inset)
+```
+### Size
+
+Width
+
+```swift
+view.applyWidthConstraint(100)
+```
+
+Height
+
+```swift
+view.applyHeightConstraint(100)
+```
+
+Aspact Ratio
+
+```swift
+view.applyAspectRatioConstraint()
+```
 
 ## License
 
