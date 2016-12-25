@@ -93,10 +93,12 @@ extension View
         (self +== .Trailing).constant = -padding
     }
     
+    /// To Horizontally Center In Superview
     public final func applyCenterXPinConstraintToSuperview(offset: CGFloat) {
         (self +== .CenterX).constant = offset
     }
-    
+
+    /// To Vertically Center In Superview
     public final func applyCenterYPinConstraintToSuperview(offset: CGFloat) {
         (self +== .CenterY).constant = offset
     }
@@ -161,14 +163,4 @@ extension View
         (self +== .CenterY).constant = offset.y
     }
     
-    public final func applyConstraintToCenterHorizontallyInSuperview(offset:CGFloat = 0)
-    {
-        (self +== .CenterX).constant = offset
-    }
-    
-    public final func applyConstraintToCenterVerticallyInSuperview(offset:CGFloat = 0)
-    {
-        (self +== .CenterY).constant = offset
-    }
-
 }
