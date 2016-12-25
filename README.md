@@ -29,25 +29,25 @@ v.backgroundColor = UIColor.redColor()
 view.addSubview(v)
     
 // Prepare constraints and then add them on superview of view
-let top = NSLayoutConstraint(item: v, attribute: .Top,
+let top = NSLayoutConstraint( item: v, attribute: .Top,
 	                          relatedBy: .Equal,
 	                          toItem: v.superview!, attribute: .Top,
 	                          multiplier: 1.0, constant: 0)
 
-let leading = NSLayoutConstraint(item: v, attribute: .Leading,
+let leading = NSLayoutConstraint( item: v, attribute: .Leading,
 	                              relatedBy: .Equal,
-	                          toItem: v.superview!, attribute: .Leading,
-	                          multiplier: 1.0, constant: 0)
+	                              toItem: v.superview!, attribute: .Leading,
+	                              multiplier: 1.0, constant: 0)
 
-let trailing = NSLayoutConstraint(item: v, attribute: .Trailing,
-	                              relatedBy: .Equal,
-	                          toItem: v.superview!, attribute: .Trailing,
-	                          multiplier: 1.0, constant: 0)
+let trailing = NSLayoutConstraint( item: v, attribute: .Trailing,
+	                               relatedBy: .Equal,
+	                               toItem: v.superview!, attribute: .Trailing,
+	                               multiplier: 1.0, constant: 0)
 
-let bottom = NSLayoutConstraint(item: v, attribute: .Bottom,
-	                              relatedBy: .Equal,
-	                          toItem: v.superview!, attribute: .Bottom,
-	                          multiplier: 1.0, constant: 0)
+let bottom = NSLayoutConstraint( item: v, attribute: .Bottom,
+	                             relatedBy: .Equal,
+	                             toItem: v.superview!, attribute: .Bottom,
+	                             multiplier: 1.0, constant: 0)
 
 v.superview?.addConstraints([top, leading, trailing, bottom])
 
