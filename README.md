@@ -120,7 +120,7 @@ Aspact Ratio
 |   `Bottom`   | `subview.applyBottomPinConstraintToSuperview(20)`   | `(subview +== .Bottom).constant = 20`   | ![Bottom](./Assets/BottomPinConstraintToSuper.png) |
 |   `CenterX`  | `subview.applyCenterXPinConstraintToSuperview()`   | `subview +== .CenterX` | ![CenterX](./Assets/CenterXPinConstraintToSuper.png) |
 |   `CenterY`  | `subview.applyCenterYPinConstraintToSuperview()`   | `subview +== .CenterY` | ![CenterY](./Assets/CenterYPinConstraintToSuper.png) |
-|  `CenterX`&`CenterY`  | `subview. view.applyConstraintToCenterInSuperview()`   | `subview +== [.CenterX, .CenterY]` | ![CenterY](./Assets/CenterXYPinConstraintToSuper.png) |
+|  `CenterX`&`CenterY`  | `subview.applyConstraintToCenterInSuperview()`   | `subview +== [.CenterX, .CenterY]` | ![CenterY](./Assets/CenterXYPinConstraintToSuper.png) |
 
 For more details see the [ApplyViewConstraint](./ConstraintKit/KVConstraintKit-Swift-2.3/KVConstraintKit/ApplyViewConstraint.swift) extension and [LayoutRelationable Protocol](./ConstraintKit/KVConstraintKit-Swift-2.3/KVConstraintKit/KVConstraintKitProtocol.swift) of `KVConstraintKit`.
 
