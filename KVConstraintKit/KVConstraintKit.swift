@@ -54,7 +54,7 @@ extension View {
     
     /// Generalized public constraint methods for views.
     public final func prepareConstraintToSuperview( attribute attr1: NSLayoutAttribute, attribute attr2:NSLayoutAttribute, relation: NSLayoutRelation = .Equal, multiplier:CGFloat = 1.0 ) -> NSLayoutConstraint! {
-        assert(superview != nil, "You should have `addSubView` on any other it's called `superview` \(self)");
+        assert(superview != nil, "You should have `addSubView` on any other view, called `superview` of receiver’s \(self)");
         return View.prepareConstraint(self, attribute: attr1, secondView: superview, attribute:attr2, relation: relation, multiplier:multiplier)
     }
     
@@ -76,7 +76,7 @@ extension View
         if (appliedConstraint != nil)
         {
             appliedConstraint!.constant = c.constant
-            if appliedConstraint!.multiplier != c.multiplier  || appliedConstraint!.relation != c.relation  {
+            if appliedConstraint!.multiplier != c.multiplier || appliedConstraint!.relation != c.relation  {
                 self - appliedConstraint!
             }
             else{
@@ -131,28 +131,20 @@ extension View
         return appliedConstraint
     }
 
-    
-    /** 
-        This method is used to access already applied constraint apply\add constraint between two sibling views. No matter by which sibling View you call this method & no matter order of attributes but you need to call it by one sibling View and pass second other sibling View.
-    */
-    //    public final func accessAppliedConstraintFromSiblingViewByAttribute(attribute: NSLayoutAttribute, toAttribute: NSLayoutAttribute, ofView otherSiblingView: UIView!) -> NSLayoutConstraint{
-    //
-    //    }
-    
 }
 
 /// MARK: TO UPDATE/MODIFY APPLIED CONSTRAINTS
 extension View
 {
     /// This method is used to replace already applied constraint by new constraint.
-    public final func replaceAppliedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceBy constraint: NSLayoutConstraint!) {
+    public final func replacedConastrainInView(appliedConstraint ac: NSLayoutConstraint!, replaceBy constraint: NSLayoutConstraint!) {
         assert( constraint != nil, "modified constraint must not be nil")
         self ~ (ac, constraint )
     }
     
     /// This method is used to change the priority of constraint.
-    public final func changeAppliedConstraint(priority p: UILayoutPriority, forAttribute attr: NSLayoutAttribute) {
-        self ~ (attr, p )
+    public final func changedConstraint(priority: LayoutPriority, byAttribute attr: NSLayoutAttribute) {
+        self ~ (attr, priority )
     }
     
     /// This method is used to Update Modified Applied Constraints
@@ -175,6 +167,12 @@ extension View
     public final func updateAppliedConstraintConstantValueForIpadBy(attribute a: NSLayoutAttribute) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) {
             updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRation )
+        }
+    }
+    
+    public final func updateAppliedConstraintConstantValueForIphoneBy(attribute a: NSLayoutAttribute) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone) {
+            updateAppliedConstraintConstantValueBy(a, withConstantRatio: 1.0 / NSLayoutConstraint.Defualt.iPadRation )
         }
     }
     

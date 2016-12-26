@@ -27,6 +27,18 @@
 
 import UIKit
 
+public enum SelfAttribute:Int {
+    case Width = 7, Height, AspectRatio = 64
+    
+    func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
+        if self == .AspectRatio {
+            return (.Height, .Width)//(.Width, .Height)
+        }else{
+            return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
+        }
+    }
+}
+
 extension NSLayoutConstraint
 {
     public struct Defualt {

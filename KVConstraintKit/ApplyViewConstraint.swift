@@ -107,28 +107,30 @@ extension View
 
 extension View
 {
+    /// This method is used to apply\add CenterX and CenterY pin constraints to superview with same padding.
+    public final func applyConstraintToCenterInSuperview(offset:CGPoint = CGPointZero) {
+        (self +== .CenterX).constant = offset.x
+        (self +== .CenterY).constant = offset.y
+    }
+    
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview with same padding.
-
     public final func applyConstraintFitToSuperview(padding: CGFloat = 0.0) {
         applyConstraintFitToSuperview(contentInset: UIEdgeInsetsMake(padding, padding, padding, padding))
     }
     
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
-    
     public final func applyConstraintFitHorizontallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Leading).constant  = padding
         (self +== .Trailing).constant = -padding
     }
 
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
- 
     public final func applyConstraintFitVerticallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Top).constant    = padding
         (self +== .Bottom).constant = -padding
     }
     
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview.
-
     public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets = UIEdgeInsetsZero)
     {
         if !(inset.top.isFinite && inset.top.isNaN) {
@@ -155,12 +157,6 @@ extension View
             debugPrint("can not add inset.top because it does not have finite value")
         }
         
-    }
-    
-    public final func applyConstraintToCenterInSuperview(offset:CGPoint = CGPointZero)
-    {
-        (self +== .CenterX).constant = offset.x
-        (self +== .CenterY).constant = offset.y
     }
     
 }

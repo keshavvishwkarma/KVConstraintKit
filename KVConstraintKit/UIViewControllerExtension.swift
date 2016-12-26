@@ -35,18 +35,6 @@ public enum LayoutGuideType {
     case Top, Bottom
 }
 
-public enum SelfAttribute:Int {
-    case Width = 7, Height, AspectRatio = 64
-    
-    func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
-        if self == .AspectRatio {
-            return (.Height, .Width)//(.Width, .Height)
-        }else{
-            return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
-        }
-    }
-}
-
 @available(iOS 7.0, *)
 extension UIViewController : LayoutGuidable {   }
 
