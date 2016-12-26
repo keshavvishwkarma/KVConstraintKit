@@ -9,29 +9,20 @@
 import UIKit
 
 //********* DEFINE NEW OPERATOR *********//
-infix operator    ~ { }
-infix operator   <- { }
-infix operator  +== { }
-infix operator  +>= { }
-infix operator  +<= { }
-infix operator +*<= { }
-infix operator +*== { }
-infix operator +*>= { }
-
-infix operator <+==> { }
-infix operator <+>=> { }
-infix operator <+<=> { }
+infix operator   ~ { }
+infix operator  <- { }
+infix operator +== { }
+infix operator +>= { }
+infix operator +<= { }
+infix operator *<= { }
+infix operator *== { }
+infix operator *>= { }
 
 /**
- 
- ### Relations
- 
  Relations are expressed using the overloaded operators `==` (`NSLayoutRelation.Equal`), `>=` (`NSLayoutRelation.GreaterThanOrEqual`), and `<=` (`NSLayoutRelation.LessThanOrEqual`).
- The following types of operators are provided by KVConstraintKit, to add, remove, access and modify constraints.
- 
  */
 
-//Defining operators definations
+// Defining operators definations
 
 // MARK: Addable
 extension View : Addable { }
@@ -151,16 +142,16 @@ public func +>=(lhs: View, rhs: [NSLayoutAttribute]) {
 //-------------------------------------------------------------
 /// (containerView +== (.Top, 1.5)).constant = 0
 
-public func +*>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
 }
 
 /// (containerView +*== (.Top, multiplier) ).constant = 0
-public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, multiplier: rhs.1)
 }
 
-public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .LessThanOrEqual, multiplier: rhs.1)
 }
 
@@ -168,31 +159,16 @@ public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstr
 //-------------------------------------------------------------
 /// (containerView +== [(.Height, 1.5), (.Width, 0.8)])
 
-public func +*<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*<= attribute }
+public func *<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *<= attribute }
 }
 
-public func +*==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*== attribute }
+public func *==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *== attribute }
 }
 
-public func +*>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*>= attribute }
-}
-
-/// TO ADD SIBLINGS RELATION CONSTRAINT
-//-------------------------------------------------------------
-
-public func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.LessThanOrEqual, multiplier: rhs.3)
-}
-
-public func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, multiplier: rhs.3)
-}
-
-public func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.GreaterThanOrEqual, multiplier: rhs.3)
+public func *>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *>= attribute }
 }
 
 /// TO ADD SelfAddable CONSTRAINT

@@ -65,19 +65,15 @@ public protocol LayoutRelationable: class {
     func +<=(lhs: Self, rhs: [NSLayoutAttribute])
     
     /// TO ADD SINGLE RELATION CONSTRAINT WITH MULTIPLEIR
-    func +*>=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
-    func +*==(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
-    func +*<=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    func *>=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    func *==(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    func *<=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
-    func +*==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    func +*>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    func +*<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    
-    /// TO ADD SIBLINGS RELATION CONSTRAINT
-    func <+<=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
-    func <+==>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
-    func <+>=>(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutAttribute, Self, CGFloat)) -> NSLayoutConstraint
+    func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
+    func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
+    func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
+
 }
 
 //********* Define Accessable protocol *********//
