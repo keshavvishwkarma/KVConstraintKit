@@ -33,20 +33,24 @@ public typealias LayoutPriority = UILayoutPriority
 
 /// MARK: TO PREPARE VIEW FOR CONSTRAINTS
 
-extension View {
+/// Types adopting the `AutoLayoutView` protocol can be used to construct Views.
+public protocol AutoLayoutView {}
+extension View : AutoLayoutView {}
+
+extension AutoLayoutView where Self : View {
     
     /// This method is used to create new instance of ui elements for autolayout.
-    public final class func prepareNewViewForAutoLayout<T:View>() -> T! {
-        let preparedView = T()
+    public static func prepareAutoLayoutView() -> Self {
+        let preparedView = Self()
         preparedView.translatesAutoresizingMaskIntoConstraints = false
         return preparedView
     }
     
     ///This method is used to prepare already created instance of ui elements for autolayout.
-    public final func prepareViewForAutoLayout() {
+    public final func prepareAutoLayoutView() {
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
 }
 
 /// MARK: TO PREPARE CONSTRAINTS
@@ -98,14 +102,14 @@ extension View
     }
     
     /// MARK: - Remove Constraints From a specific View
-    public final func removeAppliedConstraintFromSupreview() {
+    public final func removedConstraintFromSupreview() {
         let superview = self.superview
         removeFromSuperview()
         superview?.addSubview(self)
     }
     
-    public final func removeAllAppliedConstraints() {
-        removeAppliedConstraintFromSupreview()
+    public final func removedAllConstraints() {
+        removedConstraintFromSupreview()
         removeConstraints(constraints)
     }
     
@@ -115,22 +119,47 @@ extension View
 extension View
 {
     // MARK: - To Access Applied Constraint By Attributes From a specific View.
-    public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal)->NSLayoutConstraint? {
+    
+    public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, relation: NSLayoutRelation = .Equal)->NSLayoutConstraint?
+    {
+        if (attr == .Width || attr == .Height) {            
+            let appliedConstraint = accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation)
+            if appliedConstraint == nil {
+                return accessAppliedConstraintBy(attribute: attr, attribute: .NotAnAttribute, relation: relation)
+            }
+            return appliedConstraint
+        }
+        
         return accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation)
     }
     
+    
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, completionHandler: (NSLayoutConstraint?) -> Void){
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            completionHandler(self.accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation))
+            completionHandler(self.accessAppliedConstraintBy(attribute: attr, relation: relation))
         }
     }
     
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, attribute attr2: NSLayoutAttribute,  relation: NSLayoutRelation = .Equal)->NSLayoutConstraint? {
-        let c = prepareConstraintToSuperview(attribute: attr, attribute: attr2, relation: relation)
-        let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
-        return appliedConstraint
+        
+        // For Aspect Ratio
+        if ( attr == .Width && attr2 == .Height || attr == .Height && attr2 == .Width){
+            let c = View.prepareConstraint(self, attribute:attr, relation:relation, secondView:self, attribute:attr2)
+            let appliedConstraint = constraints.containsApplied(constraint: c)
+            return appliedConstraint
+        } // For height & width
+        else if attr2 == .NotAnAttribute && (attr == .Width || attr == .Height){
+            let c = View.prepareConstraint(self, attribute:attr, relation:relation, attribute:attr2)
+            let appliedConstraint = constraints.containsApplied(constraint: c)
+            return appliedConstraint
+        }
+        else {
+            let c = prepareConstraintToSuperview(attribute: attr, attribute: attr2, relation: relation)
+            let appliedConstraint = superview?.constraints.containsApplied(constraint: c)
+            return appliedConstraint
+        }
     }
-
+    
 }
 
 /// MARK: TO UPDATE/MODIFY APPLIED CONSTRAINTS
@@ -166,13 +195,13 @@ extension View
     
     public final func updateAppliedConstraintConstantValueForIpadBy(attribute a: NSLayoutAttribute) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) {
-            updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRation )
+            updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRatio )
         }
     }
     
     public final func updateAppliedConstraintConstantValueForIphoneBy(attribute a: NSLayoutAttribute) {
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone) {
-            updateAppliedConstraintConstantValueBy(a, withConstantRatio: 1.0 / NSLayoutConstraint.Defualt.iPadRation )
+            updateAppliedConstraintConstantValueBy(a, withConstantRatio: 1.0 / NSLayoutConstraint.Defualt.iPadRatio )
         }
     }
     

@@ -32,7 +32,7 @@ public enum SelfAttribute:Int {
     
     func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
         if self == .AspectRatio {
-            return (.Height, .Width)//(.Width, .Height)
+            return (.Width, .Height)
         }else{
             return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
         }
@@ -42,7 +42,7 @@ public enum SelfAttribute:Int {
 extension NSLayoutConstraint
 {
     public struct Defualt {
-        public static let iPadRation      = CGFloat(3.0/4.0)
+        public static let iPadRatio      = CGFloat(3.0/4.0)
         public static let lessMaxPriority = CGFloat(999.99996)
     }
     

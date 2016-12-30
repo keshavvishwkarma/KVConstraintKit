@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 s.name             = 'KVConstraintKit'
 s.version          = '1.0.0'
-s.summary          = 'An impressive Auto layout DSL for iOS written in pure swift.'
+s.summary          = 'An impressive Auto layout DSL for iOS & tvOS written in pure swift.'
 s.homepage         = 'https://github.com/keshavvishwkarma/KVConstraintKit'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'keshav vishwkarma' => 'keshavvbe@gmail.com' }
