@@ -100,9 +100,6 @@ public protocol LayoutRelationable: class {
 public protocol Accessable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
     func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
-    
-    // To Do -> Optiomise In Future
-    func <-(lhs: Self, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?
 }
 
 //********* Define Modifyable protocol *********//

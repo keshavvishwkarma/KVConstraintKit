@@ -82,10 +82,6 @@ public func <-(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint?{
     return lhs.accessAppliedConstraintBy(attribute: rhs)
 }
 
-public func <-(lhs: View, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?{
-    return lhs.accessAppliedConstraintBy(attribute: rhs.0, relation: rhs.1)
-}
-
 // MARK: Modifiable
 extension View :  Modifiable { }
 
