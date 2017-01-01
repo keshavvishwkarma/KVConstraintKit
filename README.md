@@ -1,5 +1,19 @@
 # KVConstraintKit
+[![CI Status](http://img.shields.io/travis/keshav vishwkarma/KVConstraintKit.svg?style=flat)](https://travis-ci.org/keshav vishwkarma/KVConstraintKit)
+[![Version](https://img.shields.io/cocoapods/v/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+[![License](https://img.shields.io/cocoapods/l/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+[![Platform](https://img.shields.io/cocoapods/p/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+
 KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS with Swift
+
+## Installation
+
+KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "KVConstraintKit"
+```
 
 ## Custom Operators
 The following types of `operators` are provided by `KVConstraintKit`, to `add`, `remove`, `access` and `modify` constraints.
