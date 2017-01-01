@@ -1,5 +1,5 @@
 # KVConstraintKit
-[![CI Status](http://img.shields.io/travis/keshav vishwkarma/KVConstraintKit.svg?style=flat)](https://travis-ci.org/keshav vishwkarma/KVConstraintKit)
+[![CI Status](http://img.shields.io/travis/keshavvishwkarma/KVConstraintKit.svg?style=flat)](https://travis-ci.org/keshavvishwkarma/KVConstraintKit)
 [![Version](https://img.shields.io/cocoapods/v/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 [![License](https://img.shields.io/cocoapods/l/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 [![Platform](https://img.shields.io/cocoapods/p/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
