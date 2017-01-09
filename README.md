@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 [![Platform](https://img.shields.io/cocoapods/p/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 
-KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS with Swift
+KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS, tvOS & OSX with Swift
 
 ## Installation
 
@@ -134,7 +134,7 @@ Aspact Ratio
 	view.applyAspectRatioConstraint()
 ```
 ## Auto Layout Attributes
-`KVConstraintKit` supports all built-in layout attributes as of iOS, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
+`KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
 
 #### Quick Reference
 

@@ -35,6 +35,19 @@ public enum LayoutGuideType {
     case Top, Bottom
 }
 
+//********* Define LayoutGuidable protocol *********//
+
+public protocol LayoutGuidable: class {
+    /// TO ADD SINGLE CONSTRAINTS
+    func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
+    
+    /// TO REMOVE SINGLE CONSTRAINTS
+    func -(lhs: Self, rhs: (View, LayoutGuideType))
+    
+    /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
+    func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
+}
+
 @available(iOS 7.0, *)
 extension UIViewController : LayoutGuidable {   }
 

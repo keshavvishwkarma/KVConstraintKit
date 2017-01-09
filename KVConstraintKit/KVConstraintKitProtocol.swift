@@ -26,23 +26,10 @@
 //
 //
 
-import UIKit
-
 #if os(iOS) || os(tvOS)
-
-//********* Define LayoutGuidable protocol *********//
-
-public protocol LayoutGuidable: class {
-    /// TO ADD SINGLE CONSTRAINTS
-    func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
-    
-    /// TO REMOVE SINGLE CONSTRAINTS
-    func -(lhs: Self, rhs: (View, LayoutGuideType))
-    
-    /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
-    func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
-}
-
+    import UIKit
+#else
+    import AppKit
 #endif
 
 //********* Define Addable protocol *********//

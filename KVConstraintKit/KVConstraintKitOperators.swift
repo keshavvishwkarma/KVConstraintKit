@@ -26,7 +26,11 @@
 //
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
 //********* DEFINE NEW OPERATOR *********//
 infix operator   ~ { }
@@ -42,7 +46,7 @@ infix operator *>= { }
  Relations are expressed using the overloaded operators `==` (`NSLayoutRelation.Equal`), `>=` (`NSLayoutRelation.GreaterThanOrEqual`), and `<=` (`NSLayoutRelation.LessThanOrEqual`).
  */
 
-// Defining operators definations
+// Operators Definations
 
 // MARK: Addable
 extension View : Addable { }
@@ -107,13 +111,13 @@ public func ~(lhs: View, rhs: (NSLayoutAttribute, LayoutPriority)) {
     guard let constraint = (lhs <- rhs.0) else { return  }
     
     if constraint.isSelfConstraint() {
-        lhs - constraint
+        _ = lhs - constraint
         constraint.priority = rhs.1
-        lhs + constraint
+        _ = lhs + constraint
     } else {
-        lhs.superview! - constraint
+        _ = lhs.superview! - constraint
         constraint.priority = rhs.1
-        lhs.superview! + constraint
+        _ = lhs.superview! + constraint
     }
     
 }

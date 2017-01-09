@@ -26,7 +26,11 @@
 //
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
 // MARK: - TO APPLY PREPARED SELF CONSTRAINTS -
 
@@ -74,7 +78,7 @@ extension View
     }
     
     public final func applyRightPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Right).constant = -padding
+        (self +== .Right).constant = padding
     }
     
     public final func applyTopPinConstraintToSuperview(padding: CGFloat) {
@@ -82,7 +86,7 @@ extension View
     }
     
     public final func applyBottomPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Bottom).constant = -padding
+        (self +== .Bottom).constant = padding
     }
     
     public final func applyLeadingPinConstraintToSuperview(padding: CGFloat) {
@@ -90,7 +94,7 @@ extension View
     }
     
     public final func applyTrailingPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Trailing).constant = -padding
+        (self +== .Trailing).constant = padding
     }
     
     /// To Horizontally Center In Superview
@@ -115,23 +119,23 @@ extension View
     
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview with same padding.
     public final func applyConstraintFitToSuperview(padding: CGFloat = 0.0) {
-        applyConstraintFitToSuperview(contentInset: UIEdgeInsetsMake(padding, padding, padding, padding))
+        applyConstraintFitToSuperview(contentInset: EdgeInsets.edgeInset(CGFloat(0)))
     }
     
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
     public final func applyConstraintFitHorizontallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Leading).constant  = padding
-        (self +== .Trailing).constant = -padding
+        (self +== .Trailing).constant = padding
     }
 
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
     public final func applyConstraintFitVerticallyToSuperview(padding: CGFloat = 0.0) {
         (self +== .Top).constant    = padding
-        (self +== .Bottom).constant = -padding
+        (self +== .Bottom).constant = padding
     }
     
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview.
-    public final func applyConstraintFitToSuperview(contentInset inset:UIEdgeInsets = UIEdgeInsetsZero)
+    public final func applyConstraintFitToSuperview(contentInset inset:EdgeInsets = EdgeInsets.zero)
     {
         if !(inset.top.isFinite && inset.top.isNaN) {
             (self +== .Top).constant = inset.top
@@ -140,7 +144,7 @@ extension View
         }
         
         if !(inset.bottom.isFinite && inset.bottom.isNaN) {
-            (self +== .Bottom).constant = -inset.bottom
+            (self +== .Bottom).constant = inset.bottom
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
@@ -152,7 +156,7 @@ extension View
         }
         
         if !(inset.right.isFinite && inset.right.isNaN) {
-            (self +== .Trailing).constant = -inset.right
+            (self +== .Trailing).constant = inset.right
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
