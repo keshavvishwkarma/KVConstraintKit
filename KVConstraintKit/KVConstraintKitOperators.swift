@@ -1,37 +1,52 @@
 //
 //  KVConstraintKitOperators.swift
-//  KVConstraintKit
+//  https://github.com/keshavvishwkarma/KVConstraintKit.git
 //
-//  Created by Keshav on 8/16/16.
-//  Copyright © 2016 Keshav. All rights reserved.
+//  Distributed under the MIT License.
+//
+//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy of
+//  this software and associated documentation files (the "Software"), to deal in
+//  the Software without restriction, including without limitation the rights to
+//  use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+//  of the Software, and to permit persons to whom the Software is furnished to do
+//  so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in all
+//  copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//  SOFTWARE.
+//
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
 
 //********* DEFINE NEW OPERATOR *********//
-infix operator    ~ { }
-infix operator   <- { }
-infix operator  +== { }
-infix operator  +>= { }
-infix operator  +<= { }
-infix operator +*<= { }
-infix operator +*== { }
-infix operator +*>= { }
-
-infix operator <+==> { }
-infix operator <+>=> { }
-infix operator <+<=> { }
+infix operator   ~ { }
+infix operator  <- { }
+infix operator +== { }
+infix operator +>= { }
+infix operator +<= { }
+infix operator *<= { }
+infix operator *== { }
+infix operator *>= { }
 
 /**
- 
- ### Relations
- 
  Relations are expressed using the overloaded operators `==` (`NSLayoutRelation.Equal`), `>=` (`NSLayoutRelation.GreaterThanOrEqual`), and `<=` (`NSLayoutRelation.LessThanOrEqual`).
- The following types of operators are provided by KVConstraintKit, to add, remove, access and modify constraints.
- 
  */
 
-//Defining operators definations
+// Operators Definations
 
 // MARK: Addable
 extension View : Addable { }
@@ -71,10 +86,6 @@ public func <-(lhs: View, rhs: NSLayoutAttribute) -> NSLayoutConstraint?{
     return lhs.accessAppliedConstraintBy(attribute: rhs)
 }
 
-public func <-(lhs: View, rhs: (NSLayoutAttribute, NSLayoutRelation)) -> NSLayoutConstraint?{
-    return lhs.accessAppliedConstraintBy(attribute: rhs.0, relation: rhs.1)
-}
-
 // MARK: Modifiable
 extension View :  Modifiable { }
 
@@ -96,17 +107,17 @@ public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutConstraint)) {
 }
 
 /// (containerView ~ (.Top, .Equal))
-public func ~(lhs: View, rhs: (NSLayoutAttribute, UILayoutPriority)) {
+public func ~(lhs: View, rhs: (NSLayoutAttribute, LayoutPriority)) {
     guard let constraint = (lhs <- rhs.0) else { return  }
     
     if constraint.isSelfConstraint() {
-        lhs - constraint
+        _ = lhs - constraint
         constraint.priority = rhs.1
-        lhs + constraint
+        _ = lhs + constraint
     } else {
-        lhs.superview! - constraint
+        _ = lhs.superview! - constraint
         constraint.priority = rhs.1
-        lhs.superview! + constraint
+        _ = lhs.superview! + constraint
     }
     
 }
@@ -151,16 +162,16 @@ public func +>=(lhs: View, rhs: [NSLayoutAttribute]) {
 //-------------------------------------------------------------
 /// (containerView +== (.Top, 1.5)).constant = 0
 
-public func +*>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *>=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .GreaterThanOrEqual, multiplier: rhs.1)
 }
 
 /// (containerView +*== (.Top, multiplier) ).constant = 0
-public func +*==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *==(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, multiplier: rhs.1)
 }
 
-public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
+public func *<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
     return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .LessThanOrEqual, multiplier: rhs.1)
 }
 
@@ -168,31 +179,16 @@ public func +*<=(lhs: View, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstr
 //-------------------------------------------------------------
 /// (containerView +== [(.Height, 1.5), (.Width, 0.8)])
 
-public func +*<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*<= attribute }
+public func *<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *<= attribute }
 }
 
-public func +*==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*== attribute }
+public func *==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *== attribute }
 }
 
-public func +*>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
-    for attribute in rhs { lhs +*>= attribute }
-}
-
-/// TO ADD SIBLINGS RELATION CONSTRAINT
-//-------------------------------------------------------------
-
-public func <+<=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.LessThanOrEqual, multiplier: rhs.3)
-}
-
-public func <+==>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, multiplier: rhs.3)
-}
-
-public func <+>=>(lhs: View, rhs: (NSLayoutAttribute, NSLayoutAttribute, View, CGFloat)) -> NSLayoutConstraint {
-    return lhs.superview! + lhs.prepareConstraintFromSiblingView(attribute: rhs.0, toAttribute: rhs.1, ofView: rhs.2, relation:.GreaterThanOrEqual, multiplier: rhs.3)
+public func *>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]){
+    for attribute in rhs { lhs *>= attribute }
 }
 
 /// TO ADD SelfAddable CONSTRAINT

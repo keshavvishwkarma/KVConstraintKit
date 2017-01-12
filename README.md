@@ -1,22 +1,36 @@
 # KVConstraintKit
-KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS with Swift
+[![CI Status](http://img.shields.io/travis/keshavvishwkarma/KVConstraintKit.svg?style=flat)](https://travis-ci.org/keshavvishwkarma/KVConstraintKit)
+[![Version](https://img.shields.io/cocoapods/v/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+[![License](https://img.shields.io/cocoapods/l/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+[![Platform](https://img.shields.io/cocoapods/p/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+
+KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iOS, tvOS & OSX with Swift
+
+## Installation
+
+KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "KVConstraintKit"
+```
 
 ## Custom Operators
 The following types of `operators` are provided by `KVConstraintKit`, to `add`, `remove`, `access` and `modify` constraints.
 
 | Operator | Meaning |
 | :--------: |-------|
-| + | to `add` constraint |
-| - | to `remove` constraint |
-| * | to modify `multiplier` of constraint |
-| ~ | to modify `Priority` ( **UILayoutPriority** ), `Relation` ( **NSLayoutRelation** ) & `Replace` constraint|
-| <- | to access constraint by attributes ( **eg. NSLayoutAttribute.Height** ) |
+|  +  | to `add` constraint |
+|  -  | to `remove` constraint |
+|  *  | to modify `multiplier` of constraint |
+|  ~  | to modify `Priority` ( **UILayoutPriority** ), `Relation` ( **NSLayoutRelation** ) & `Replace` constraint|
+| <-  | to access constraint by attributes ( **eg. NSLayoutAttribute.Height** ) |
 | +== | to add equal relation ( **NSLayoutRelation.Equal** ) constraint |
 | +>= | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint |
 | +<= | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint |
-| +*== | to add equal relation ( **NSLayoutRelation.Equal** ) constraint with `multiplier` |
-| +*>= | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint with `multiplier` |
-| +*<= | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint with `multiplier` |
+| *== | to add equal relation ( **NSLayoutRelation.Equal** ) constraint with `multiplier` |
+| *>= | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint with `multiplier` |
+| *<= | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint with `multiplier` |
 
 
 ## Usage
@@ -68,18 +82,22 @@ Horizontally
 
 ```swift
 	view.applyConstraintFitHorizontallyToSuperview()
+OR
+	view.applyConstraintFitHorizontallyToSuperview(20) // padding
 ```
 Vertically
 
 ```swift
 	view.applyConstraintFitVerticallyToSuperview()
+OR
+	view.applyConstraintFitVerticallyToSuperview(20) // padding
 ```
 Horizontally & Vertically
 
 ```swift
 	view.applyConstraintFitToSuperview()
 OR
-	view.applyConstraintFitToSuperview(20) // width same padding 
+	view.applyConstraintFitToSuperview(20) // width same padding for all edge
 ```
 
 Fit with inset
@@ -94,12 +112,20 @@ Width
 
 ```swift
 	view.applyWidthConstraint(100)
+OR
+	view.applyAtLeastWidthConstraint(100)
+OR
+	view.applyAtMostWidthConstraint(100)
 ```
 
 Height
 
 ```swift
 	view.applyHeightConstraint(100)
+OR
+	view.applyAtLeastHeightConstraint(100)
+OR
+	view.applyAtMostHeightConstraint(100)
 ```
 
 Aspact Ratio
@@ -108,7 +134,7 @@ Aspact Ratio
 	view.applyAspectRatioConstraint()
 ```
 ## Auto Layout Attributes
-`KVConstraintKit` supports all built-in layout attributes as of iOS, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
+`KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
 
 #### Quick Reference
 
@@ -120,15 +146,17 @@ Aspact Ratio
 |   `Bottom`   | `subview.applyBottomPinConstraintToSuperview(20)`   | `(subview +== .Bottom).constant = 20`   | ![Bottom](./Assets/BottomPinConstraintToSuper.png) |
 |   `CenterX`  | `subview.applyCenterXPinConstraintToSuperview()`   | `subview +== .CenterX` | ![CenterX](./Assets/CenterXPinConstraintToSuper.png) |
 |   `CenterY`  | `subview.applyCenterYPinConstraintToSuperview()`   | `subview +== .CenterY` | ![CenterY](./Assets/CenterYPinConstraintToSuper.png) |
-|  `CenterX`&`CenterY`  | `subview. view.applyConstraintToCenterInSuperview()`   | `subview +== [.CenterX, .CenterY]` | ![CenterY](./Assets/CenterXYPinConstraintToSuper.png) |
+|   `Height`  | `subview.applyHeightConstraint(100)`   | `subview +== (.Height, 100)` | ![Height](./Assets/HeightPinConstraintToSuper.png) |
+|   `Width`  | `subview.applyWidthConstraint(100)`   | `subview +== (.Width, 100)` | ![Width](./Assets/WidthPinConstraintToSuper.png) |
+|  `CenterX`&`CenterY`  | `subview.applyConstraintToCenterInSuperview()`   | `subview +== [.CenterX, .CenterY]` | ![CenterXY](./Assets/CenterXYPinConstraintToSuper.png) |
 
-For more details see the [ApplyViewConstraint](./ConstraintKit/KVConstraintKit-Swift-2.3/KVConstraintKit/ApplyViewConstraint.swift) extension and [LayoutRelationable Protocol](./ConstraintKit/KVConstraintKit-Swift-2.3/KVConstraintKit/KVConstraintKitProtocol.swift) of `KVConstraintKit`.
+For more details see the [ApplyViewConstraint](./KVConstraintKit/ApplyViewConstraint.swift) extension and [LayoutRelationable Protocol](./KVConstraintKit/KVConstraintKitProtocol.swift) of `KVConstraintKit`.
 
 **Note:** Avoid using **Left** and **Right** attributes. Use **Leading** and **Trailing** instead. This allows the layout to adapt to the view’s reading direction. By default the reading direction is determined based on the current language set by the user.
 
 ## License
 
-KVConstraintKit is available under the MIT license. See the LICENSE file for more info.
+`KVConstraintKit` is available under the MIT license. See the LICENSE file for more info.
 
 ## Contributions
 

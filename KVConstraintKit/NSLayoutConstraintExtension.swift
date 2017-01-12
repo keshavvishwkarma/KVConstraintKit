@@ -25,12 +25,31 @@
 //  SOFTWARE.
 //
 
-import UIKit
+#if os(iOS) || os(tvOS)
+    import UIKit
+#else
+    import AppKit
+#endif
+
+public enum SelfAttribute: Int {
+    case Width = 7, Height, AspectRatio = 64
+    
+    func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
+        if self == .AspectRatio {
+            return (.Width, .Height)
+        }else{
+            return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
+        }
+    }
+}
 
 extension NSLayoutConstraint
 {
     public struct Defualt {
-        public static let iPadRation      = CGFloat(3.0/4.0)
+        #if os(iOS) || os(tvOS)
+        public static let iPadRatio = CGFloat(3.0/4.0)
+        #endif
+        
         public static let lessMaxPriority = CGFloat(999.99996)
     }
     
@@ -45,7 +64,13 @@ extension NSLayoutConstraint
 {
     public final func isEqualTo(constraint c:NSLayoutConstraint, shouldIgnoreMutiplier m:Bool = true, shouldIgnoreRelation r:Bool = true)-> Bool
     {
-        let isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && secondItem === c.secondItem && secondAttribute == c.secondAttribute
+        var isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && secondItem === c.secondItem && secondAttribute == c.secondAttribute
+     
+        if !isEqualExceptMultiplier
+        {
+            isEqualExceptMultiplier = firstItem === c.secondItem && firstAttribute == c.secondAttribute && secondItem === c.firstItem && secondAttribute == c.firstAttribute
+        }
+        
         debugPrint(isEqualExceptMultiplier)
         
         if m && r {
@@ -109,9 +134,13 @@ extension NSLayoutConstraint
 extension Array where Element: NSLayoutConstraint
 {
     func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
-        let reverseConstraints = reverse().filter {
-            !( $0.firstItem is UILayoutSupport || $0.secondItem is UILayoutSupport)
-        }
+        #if os(iOS) || os(tvOS)
+            let reverseConstraints = reverse().filter {
+                !( $0.firstItem is UILayoutSupport || $0.secondItem is UILayoutSupport)
+            }
+        #else
+            let reverseConstraints = reverse()
+        #endif
         
         return reverseConstraints.filter {
             $0.isEqualTo(constraint: c, shouldIgnoreMutiplier: m)

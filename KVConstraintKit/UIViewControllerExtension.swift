@@ -35,16 +35,17 @@ public enum LayoutGuideType {
     case Top, Bottom
 }
 
-public enum SelfAttribute:Int {
-    case Width = 7, Height, AspectRatio = 64
+//********* Define LayoutGuidable protocol *********//
+
+public protocol LayoutGuidable: class {
+    /// TO ADD SINGLE CONSTRAINTS
+    func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
     
-    func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
-        if self == .AspectRatio {
-            return (.Height, .Width)//(.Width, .Height)
-        }else{
-            return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
-        }
-    }
+    /// TO REMOVE SINGLE CONSTRAINTS
+    func -(lhs: Self, rhs: (View, LayoutGuideType))
+    
+    /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
+    func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
 }
 
 @available(iOS 7.0, *)
