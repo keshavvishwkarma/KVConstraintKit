@@ -138,17 +138,69 @@ Aspact Ratio
 
 #### Quick Reference
 
-| Auto Layout Attributes  | Using Method  | Using Operator | Sketch | 
-| :--------: |:--------:|:--------:|:--------:| 
-|  `Leading`   | `subview.applyLeadingPinConstraintToSuperview(20)`  | `(subview +== .Leading).constant = 20`   | ![Leading](./Assets/LeadingPinConstraintToSuper.png) |
-|  `Trailing`  | `subview.applyTrailingPinConstraintToSuperview(20)` | `(subview +== .Trailing).constant = 20`  | ![Trailing](./Assets/TrailingPinConstraintToSuper.png) |
-|    `Top`     | `subview.applyTopPinConstraintToSuperview(20)`      | `(subview +== .Top).constant = 20`       | ![Top](./Assets/TopPinConstraintToSuper.png) |
-|   `Bottom`   | `subview.applyBottomPinConstraintToSuperview(20)`   | `(subview +== .Bottom).constant = 20`   | ![Bottom](./Assets/BottomPinConstraintToSuper.png) |
-|   `CenterX`  | `subview.applyCenterXPinConstraintToSuperview()`   | `subview +== .CenterX` | ![CenterX](./Assets/CenterXPinConstraintToSuper.png) |
-|   `CenterY`  | `subview.applyCenterYPinConstraintToSuperview()`   | `subview +== .CenterY` | ![CenterY](./Assets/CenterYPinConstraintToSuper.png) |
-|   `Height`  | `subview.applyHeightConstraint(100)`   | `subview +== (.Height, 100)` | ![Height](./Assets/HeightPinConstraintToSuper.png) |
-|   `Width`  | `subview.applyWidthConstraint(100)`   | `subview +== (.Width, 100)` | ![Width](./Assets/WidthPinConstraintToSuper.png) |
-|  `CenterX`&`CenterY`  | `subview.applyConstraintToCenterInSuperview()`   | `subview +== [.CenterX, .CenterY]` | ![CenterXY](./Assets/CenterXYPinConstraintToSuper.png) |
+<table style="width:100%">
+<tr style="text-align: center"> 
+<!--    <th width="20%" > Layout Attributes width Sketch </th> --> 
+<th width="20%"> Layout Attributes </th>
+<th width="40%"> Using Operator    </th>
+<th width="40%"> Using Method      </th>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> Leading </code> <img src="./Assets/leading_pin.png"/> </td>
+<td width="40%"> <code> (subview +== .Leading).constant = 20 </code> </td>
+<td width="40%"> <code> subview.applyLeadingPinConstraintToSuperview(20) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> Trailing </code> <img src="./Assets/trailing_pin.png"/> </td>
+<td width="40%"> <code> (subview +== .Trailing).constant = 20 </code> </td>
+<td width="40%"> <code> subview.applyTrailingPinConstraintToSuperview(20) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> Top </code> <img src="./Assets/top_pin.png"/> </td>
+<td width="40%"> <code> (subview +== .Top).constant = 20 </code> </td>
+<td width="40%"> <code> subview.applyTopPinConstraintToSuperview(20) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> Bottom </code> <img src="./Assets/bottom_pin.png"/> </td>
+<td width="40%"> <code> (subview +== .Bottom).constant = 20 </code> </td>
+<td width="40%"> <code> subview.applyBottomPinConstraintToSuperview(20) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> CenterX </code> <img src="./Assets/center_x.png"/> </td>
+<td width="40%"> <code> subview +== .CenterX </code> </td>
+<td width="40%"> <code> subview.applyCenterXPinConstraintToSuperview() </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> CenterY </code> <img src="./Assets/center_y.png"/> </td>
+<td width="40%"> <code> subview +== .CenterY </code> </td>
+<td width="40%"> <code> subview.applyCenterYPinConstraintToSuperview() </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> Height </code> <img src="./Assets/height.png"/> </td>
+<td width="40%"> <code> subview +== (.Height, 100) </code> </td>
+<td width="40%"> <code> subview.applyHeightConstraint(100) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code>  Width </code> <img src="./Assets/width.png"/> </td>
+<td width="40%"> <code> subview +== (. Width, 100) </code> </td>
+<td width="40%"> <code> subview.applyWidthConstraint(100) </code> </td>
+</tr>
+
+<tr style="text-align: center">
+<td width="20%"> <code> CenterX & CenterY </code> <img src="./Assets/center_xy.png"/> </td>
+<td width="40%"> <code> subview +== [.CenterX, .CenterY] </code> </td>
+<td width="40%"> <code> subview.applyConstraintToCenterInSuperview() </code> </td>
+</tr>
+
+</table>
 
 For more details see the [ApplyViewConstraint](./KVConstraintKit/ApplyViewConstraint.swift) extension and [LayoutRelationable Protocol](./KVConstraintKit/KVConstraintKitProtocol.swift) of `KVConstraintKit`.
 
