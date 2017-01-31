@@ -84,7 +84,7 @@ public func +(lhs: View, rhs: [View]) -> View {
     }
     return lhs
 }
- 
+
 @discardableResult
 public func +(lhs: View, rhs: View) -> View {
     lhs.addSubview(rhs)
