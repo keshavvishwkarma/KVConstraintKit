@@ -32,13 +32,13 @@
 #endif
 
 public enum SelfAttribute: Int {
-    case Width = 7, Height, AspectRatio = 64
+    case width = 7, height, aspectRatio = 64
     
     func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
-        if self == .AspectRatio {
-            return (.Width, .Height)
+        if self == .aspectRatio {
+            return (.width, .height)
         }else{
-            return (NSLayoutAttribute(rawValue: self.rawValue)!,.NotAnAttribute )
+            return (NSLayoutAttribute(rawValue: self.rawValue)!, .notAnAttribute )
         }
     }
 }
@@ -54,7 +54,7 @@ extension NSLayoutConstraint
     }
     
     /// :name:	prepareConstraint
-    public final class func prepareConstraint(item: AnyObject, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .Equal, toItem: AnyObject?=nil, attribute attr2: NSLayoutAttribute = .NotAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+    public final class func prepareConstraint(_ item: AnyObject, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .equal, toItem: AnyObject?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: item, attribute: attr1, relatedBy: relation, toItem: toItem, attribute: attr2, multiplier: multiplier, constant: constant)
     }
     
@@ -65,7 +65,7 @@ extension NSLayoutConstraint
     public final func isEqualTo(constraint c:NSLayoutConstraint, shouldIgnoreMutiplier m:Bool = true, shouldIgnoreRelation r:Bool = true)-> Bool
     {
         var isEqualExceptMultiplier = firstItem === c.firstItem && firstAttribute == c.firstAttribute && secondItem === c.secondItem && secondAttribute == c.secondAttribute
-     
+        
         if !isEqualExceptMultiplier
         {
             isEqualExceptMultiplier = firstItem === c.secondItem && firstAttribute == c.secondAttribute && secondItem === c.firstItem && secondAttribute == c.firstAttribute
@@ -117,12 +117,12 @@ extension NSLayoutConstraint
     final func isSelfConstraint() -> Bool
     {
         // For aspect Ratio
-        if firstItem === secondItem && ( firstAttribute == .Width && secondAttribute == .Height || firstAttribute == .Height && secondAttribute == .Width){
+        if firstItem === secondItem && ( firstAttribute == .width && secondAttribute == .height || firstAttribute == .height && secondAttribute == .width){
             return true
         }
         // if (firstItem !== secondItem && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height)
         
-        if (secondItem == nil && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height) {
+        if (secondItem == nil && secondAttribute == .notAnAttribute) && (firstAttribute == .width || firstAttribute == .height) {
             return true
         }
         
@@ -135,7 +135,7 @@ extension Array where Element: NSLayoutConstraint
 {
     func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
         #if os(iOS) || os(tvOS)
-            let reverseConstraints = reverse().filter {
+            let reverseConstraints = reversed().filter {
                 !( $0.firstItem is UILayoutSupport || $0.secondItem is UILayoutSupport)
             }
         #else

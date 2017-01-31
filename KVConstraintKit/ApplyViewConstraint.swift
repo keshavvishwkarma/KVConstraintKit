@@ -39,31 +39,31 @@ extension View
     /// All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
     
     public final func applyAspectRatioConstraint() {
-        self +== (.AspectRatio, 0)
+        self +== (.aspectRatio, 0)
     }
     
-    public final func applyWidthConstraint(width: CGFloat) {
-        self +== (.Width, width)
+    public final func applyWidthConstraint(_ width: CGFloat) {
+        self +== (.width, width)
     }
     
-    public final func applyHeightConstraint(height: CGFloat) {
-        self +== (.Height, height)
+    public final func applyHeightConstraint(_ height: CGFloat) {
+        self +== (.height, height)
     }
     
-    public final func applyAtLeastHeightConstraint(height: CGFloat) {
-        self +>= (.Height, height)
+    public final func applyAtLeastHeightConstraint(_ height: CGFloat) {
+        self +>= (.height, height)
     }
     
-    public final func applyAtMostHeightConstraint(height: CGFloat) {
-        self +<= (.Height, height)
+    public final func applyAtMostHeightConstraint(_ height: CGFloat) {
+        self +<= (.height, height)
     }
     
-    public final func applyAtLeastWidthConstraint(width: CGFloat) {
-        self +>= (.Width, width)
+    public final func applyAtLeastWidthConstraint(_ width: CGFloat) {
+        self +>= (.width, width)
     }
     
-    public final func applyAtMostWidthConstraint(width:CGFloat) {
-        self +<= (.Width, width)
+    public final func applyAtMostWidthConstraint(_ width:CGFloat) {
+        self +<= (.width, width)
     }
     
 }
@@ -73,38 +73,38 @@ extension View
 {
     /// All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     
-    public final func applyLeftPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Left).constant = padding
+    public final func applyLeftPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .left).constant = padding
     }
     
-    public final func applyRightPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Right).constant = padding
+    public final func applyRightPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .right).constant = padding
     }
     
-    public final func applyTopPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Top).constant = padding
+    public final func applyTopPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .top).constant = padding
     }
     
-    public final func applyBottomPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Bottom).constant = padding
+    public final func applyBottomPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .bottom).constant = padding
     }
     
-    public final func applyLeadingPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Leading).constant = padding
+    public final func applyLeadingPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .leading).constant = padding
     }
     
-    public final func applyTrailingPinConstraintToSuperview(padding: CGFloat) {
-        (self +== .Trailing).constant = padding
+    public final func applyTrailingPinConstraintToSuperview(_ padding: CGFloat) {
+        (self +== .trailing).constant = padding
     }
     
     /// To Horizontally Center In Superview
-    public final func applyCenterXPinConstraintToSuperview(offset: CGFloat) {
-        (self +== .CenterX).constant = offset
+    public final func applyCenterXPinConstraintToSuperview(_ offset: CGFloat) {
+        (self +== .centerX).constant = offset
     }
-
+    
     /// To Vertically Center In Superview
-    public final func applyCenterYPinConstraintToSuperview(offset: CGFloat) {
-        (self +== .CenterY).constant = offset
+    public final func applyCenterYPinConstraintToSuperview(_ offset: CGFloat) {
+        (self +== .centerY).constant = offset
     }
     
 }
@@ -112,51 +112,51 @@ extension View
 extension View
 {
     /// This method is used to apply\add CenterX and CenterY pin constraints to superview with same padding.
-    public final func applyConstraintToCenterInSuperview(offset:CGPoint = CGPointZero) {
-        (self +== .CenterX).constant = offset.x
-        (self +== .CenterY).constant = offset.y
+    public final func applyConstraintToCenterInSuperview(_ offset:CGPoint = CGPoint.zero) {
+        (self +== .centerX).constant = offset.x
+        (self +== .centerY).constant = offset.y
     }
     
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview with same padding.
-    public final func applyConstraintFitToSuperview(padding: CGFloat = 0.0) {
+    public final func applyConstraintFitToSuperview(_ padding: CGFloat = 0.0) {
         applyConstraintFitToSuperview(contentInset: EdgeInsets.edgeInset(CGFloat(0)))
     }
     
     /// This method is used to apply\add same leading and trailing pin constraints to superview.
-    public final func applyConstraintFitHorizontallyToSuperview(padding: CGFloat = 0.0) {
-        (self +== .Leading).constant  = padding
-        (self +== .Trailing).constant = padding
+    public final func applyConstraintFitHorizontallyToSuperview(_ padding: CGFloat = 0.0) {
+        (self +== .leading).constant  = padding
+        (self +== .trailing).constant = padding
     }
-
+    
     /// This method is used to apply\add same Top and Bottom pin constraints to superview.
-    public final func applyConstraintFitVerticallyToSuperview(padding: CGFloat = 0.0) {
-        (self +== .Top).constant    = padding
-        (self +== .Bottom).constant = padding
+    public final func applyConstraintFitVerticallyToSuperview(_ padding: CGFloat = 0.0) {
+        (self +== .top).constant    = padding
+        (self +== .bottom).constant = padding
     }
     
     /// This method is used to apply\add same leading, trailing, Top and Bottom pin constraints to superview.
     public final func applyConstraintFitToSuperview(contentInset inset:EdgeInsets = EdgeInsets.zero)
     {
         if !(inset.top.isFinite && inset.top.isNaN) {
-            (self +== .Top).constant = inset.top
+            (self +== .top).constant = inset.top
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.bottom.isFinite && inset.bottom.isNaN) {
-            (self +== .Bottom).constant = inset.bottom
+            (self +== .bottom).constant = inset.bottom
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.left.isFinite && inset.left.isNaN) {
-            (self +== .Leading).constant = inset.left
+            (self +== .leading).constant = inset.left
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.right.isFinite && inset.right.isNaN) {
-            (self +== .Trailing).constant = inset.right
+            (self +== .trailing).constant = inset.right
         } else {
             debugPrint("can not add inset.top because it does not have finite value")
         }
