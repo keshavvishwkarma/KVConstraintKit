@@ -121,8 +121,8 @@ extension UIViewController
 private extension UIViewController
 {
         /// These method is used to generate Top/Bottom Layout Guide constraint
-        final func prepareLayoutGuideConstraint(_ view: View, _ type: LayoutGuideType) -> NSLayoutConstraint {
-            switch type {
+        final func prepareLayoutGuideConstraint(_ view: View, type t: LayoutGuideType) -> NSLayoutConstraint {
+            switch t {
             case .top:
                 return NSLayoutConstraint.prepareConstraint(view, attribute: .top, toItem: topLayoutGuide, attribute: .bottom)
             case .bottom:
@@ -131,11 +131,11 @@ private extension UIViewController
         }
         
         /// To add Top/Bottom layout guide constaints
-        final func applyLayoutGuideConastraint(_ view: View, _ type: LayoutGuideType)->NSLayoutConstraint {
-            if let appliedConstraint = accessLayoutGuideConstraint(view, type: type) {
+        final func applyLayoutGuideConastraint(_ view: View, type t: LayoutGuideType)->NSLayoutConstraint {
+            if let appliedConstraint = accessLayoutGuideConstraint(view, type: t) {
                 return appliedConstraint
             } else {
-                let prepareConstraint = prepareLayoutGuideConstraint(view, type: type)
+                let prepareConstraint = prepareLayoutGuideConstraint(view, type: t)
                 self.view.addConstraint(prepareConstraint)
                 return prepareConstraint
             }
