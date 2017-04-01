@@ -149,55 +149,55 @@ Aspact Ratio
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Leading</code> <img src="./Assets/leading_pin.png"/> </td>
-<td width="40%" align=center valign=middle> <code>(subview +== .Leading).constant = 20</code> </td>
+<td width="40%" align=center valign=middle> <code>(subview +== .leading).constant = 20</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyLeadingPinConstraintToSuperview(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Trailing</code> <img src="./Assets/trailing_pin.png"/> </td>
-<td width="40%" align=center valign=middle> <code>(subview +== .Trailing).constant = 20</code> </td>
+<td width="40%" align=center valign=middle> <code>(subview +== .trailing).constant = 20</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyTrailingPinConstraintToSuperview(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Top</code> <img src="./Assets/top_pin.png"/> </td>
-<td width="40%" align=center valign=middle> <code>(subview +== .Top).constant = 20</code> </td>
+<td width="40%" align=center valign=middle> <code>(subview +== .top).constant = 20</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyTopPinConstraintToSuperview(20) </code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Bottom</code> <img src="./Assets/bottom_pin.png"/> </td>
-<td width="40%" align=center valign=middle> <code>(subview +== .Bottom).constant = 20</code> </td>
+<td width="40%" align=center valign=middle> <code>(subview +== .bottom).constant = 20</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyBottomPinConstraintToSuperview(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterX</code> <img src="./Assets/center_x.png"/> </td>
-<td width="40%" align=center valign=middle> <code>subview +== .CenterX</code> </td>
+<td width="40%" align=center valign=middle> <code>subview +== .centerX</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyCenterXPinConstraintToSuperview()</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterY</code> <img src="./Assets/center_y.png"/> </td>
-<td width="40%" align=center valign=middle> <code>subview +== .CenterY</code> </td>
+<td width="40%" align=center valign=middle> <code>subview +== .centerY</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyCenterYPinConstraintToSuperview()</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Height</code> <img src="./Assets/height.png"/> </td>
-<td width="40%" align=center valign=middle> <code>subview +== (.Height, 100)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview +== (.height, 100)</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyHeightConstraint(100)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Width</code> <img src="./Assets/width.png"/> </td>
-<td width="40%" align=center valign=middle> <code>subview +== (. Width, 100)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview +== (.width, 100)</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyWidthConstraint(100)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterX & CenterY</code> <img src="./Assets/center_xy.png"/> </td>
-<td width="40%" align=center valign=middle> <code>subview +== [.CenterX, .CenterY]</code> </td>
+<td width="40%" align=center valign=middle> <code>subview +== [.centerX, .centerY]</code> </td>
 <td width="40%" align=center valign=middle> <code>subview.applyConstraintToCenterInSuperview()</code> </td>
 </tr>
 
