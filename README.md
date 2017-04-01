@@ -12,7 +12,7 @@ KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "KVConstraintKit"
+pod 'KVConstraintKit'
 ```
 
 ## Custom Operators
@@ -43,38 +43,37 @@ v.backgroundColor = UIColor.redColor()
 view.addSubview(v)
     
 // Prepare constraints and then add them on superview of view
-let top = NSLayoutConstraint( item: v, attribute: .Top,
-	                          relatedBy: .Equal,
-	                          toItem: v.superview!, attribute: .Top,
+let top = NSLayoutConstraint( item: v, attribute: .top,
+	                          relatedBy: .equal,
+	                          toItem: v.superview!, attribute: .top,
 	                          multiplier: 1.0, constant: 0)
 
-let leading = NSLayoutConstraint( item: v, attribute: .Leading,
-	                              relatedBy: .Equal,
-	                              toItem: v.superview!, attribute: .Leading,
+let leading = NSLayoutConstraint( item: v, attribute: .leading,
+	                              relatedBy: .equal,
+	                              toItem: v.superview!, attribute: .leading,
 	                              multiplier: 1.0, constant: 0)
 
-let trailing = NSLayoutConstraint( item: v, attribute: .Trailing,
-	                               relatedBy: .Equal,
-	                               toItem: v.superview!, attribute: .Trailing,
+let trailing = NSLayoutConstraint( item: v, attribute: .trailing,
+	                               relatedBy: .equal,
+	                               toItem: v.superview!, attribute: .trailing,
 	                               multiplier: 1.0, constant: 0)
 
-let bottom = NSLayoutConstraint( item: v, attribute: .Bottom,
-	                             relatedBy: .Equal,
-	                             toItem: v.superview!, attribute: .Bottom,
+let bottom = NSLayoutConstraint( item: v, attribute: .bottom,
+	                             relatedBy: .equal,
+	                             toItem: v.superview!, attribute: .bottom,
 	                             multiplier: 1.0, constant: 0)
 
 v.superview?.addConstraints([top, leading, trailing, bottom])
 
 ```
 ##### Using KVConstraintKit
-
 > ```swift
-v +== [.Top, .Leading, .Trailing, .Bottom]
+v +== [.top, .leading, .trailing, .bottom]
 ```
 
 ##### Similarly for margin constraints
 > ```swift
-v +== [ .LeadingMargin, .TrailingMargin, .TopMargin, .BottomMargin]
+v +== [ .leadingMargin, .trailingMargin, .topMargin, .bottomMargin]
 ```
 
 ### Fit
