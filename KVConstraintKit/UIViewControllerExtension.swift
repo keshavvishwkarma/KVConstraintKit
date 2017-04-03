@@ -73,7 +73,7 @@ extension LayoutGuidable where Self: UIViewController {
 }
 
 @available(iOS 7.0, *)
-extension UIViewController
+extension UIViewController: LayoutGuidable
 {
     /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
@@ -90,7 +90,7 @@ extension UIViewController
     /// To add Top layout guide constaints
     @available(iOS 7.0, *)
     public final func applyTopLayoutGuideConastraint(_ toView: View, padding p: CGFloat) {
-        applyLayoutGuideConastraint(toView, type: .bottom).constant = p
+        applyLayoutGuideConastraint(toView, type: .top).constant = p
     }
     
     /// To add Bottom layout guide constaints
