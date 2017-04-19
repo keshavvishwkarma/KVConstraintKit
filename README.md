@@ -30,24 +30,24 @@ view.addSubview(v)
 
 // Prepare constraints and then add them on superview of view
 let top = NSLayoutConstraint( item: v, attribute: .top,
-relatedBy: .equal,
-toItem: v.superview!, attribute: .top,
-multiplier: 1.0, constant: 0)
+                         relatedBy: .equal,
+                            toItem: v.superview!, attribute: .top,
+                        multiplier: 1.0, constant: 0)
 
 let leading = NSLayoutConstraint( item: v, attribute: .leading,
-relatedBy: .equal,
-toItem: v.superview!, attribute: .leading,
-multiplier: 1.0, constant: 0)
+                             relatedBy: .equal,
+                            toItem: v.superview!, attribute: .leading,
+                        multiplier: 1.0, constant: 0)
 
 let trailing = NSLayoutConstraint( item: v, attribute: .trailing,
-relatedBy: .equal,
-toItem: v.superview!, attribute: .trailing,
-multiplier: 1.0, constant: 0)
+                         relatedBy: .equal,
+                            toItem: v.superview!, attribute: .trailing,
+                        multiplier: 1.0, constant: 0)
 
 let bottom = NSLayoutConstraint( item: v, attribute: .bottom,
-relatedBy: .equal,
-toItem: v.superview!, attribute: .bottom,
-multiplier: 1.0, constant: 0)
+                         relatedBy: .equal,
+                            toItem: v.superview!, attribute: .bottom,
+                        multiplier: 1.0, constant: 0)
 
 v.superview?.addConstraints([top, leading, trailing, bottom])
 ```
