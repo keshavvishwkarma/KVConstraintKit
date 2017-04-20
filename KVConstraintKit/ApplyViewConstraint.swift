@@ -37,12 +37,12 @@
 extension View
 {
     // All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
-
+    
     /// Sets the aspect ratio of a view.
     public final func applyAspectRatioConstraint() {
         self +== (.aspectRatio, 0)
     }
-
+    
     /**
      Sets the width of a view.
      - Parameter width: A CGFloat value.
@@ -98,9 +98,9 @@ extension View
 {
     // All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     /**
-     A receiver view is aligned from the left with padding.
-     - Parameter padding: A CGFloat value to the left side padding.
-     */
+    A receiver view is aligned from the left with padding.
+    - Parameter padding: A CGFloat value to the left side padding.
+    */
     public final func applyLeftPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .left).constant = padding
     }
@@ -120,7 +120,7 @@ extension View
     public final func applyTopPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .top).constant = padding
     }
-
+    
     /**
      A receiver view is aligned from the bottom with padding.
      - Parameter padding: A CGFloat value to the bottom side padding.
@@ -129,7 +129,6 @@ extension View
         (self +== .bottom).constant = padding
     }
     
-    #if os(iOS) || os(tvOS)
     /**
      A receiver view is aligned from the left with padding.
      - Parameter padding: A CGFloat value to the left side padding.
@@ -137,7 +136,7 @@ extension View
     public final func applyLeadingPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .leading).constant = padding
     }
-
+    
     /**
      A receiver view is aligned from the right with padding.
      - Parameter padding: A CGFloat value to the right side padding.
@@ -146,23 +145,20 @@ extension View
         (self +== .trailing).constant = padding
     }
     
-    #endif
-
     /**
      To horizontally Center a receiver view in it's superview with an optional offset value.
-     - Parameter offset: A CGFloat value for the offset along the x axis.
+     - Parameter offsetX: A CGFloat value for the offset along the x axis.
      */
-    public final func applyCenterXPinConstraintToSuperview(_ offset: CGFloat) {
-        (self +== .centerX).constant = offset
+    public final func applyCenterXPinConstraintToSuperview(_ offsetX: CGFloat) {
+        (self +== .centerX).constant = offsetX
     }
     
-    /// To Vertically Center In Superview
     /**
      To vertically Center a receiver view in it's superview with an optional offset value.
-     - Parameter offset: A CGFloat value for the offset along the y axis.
+     - Parameter offsetY: A CGFloat value for the offset along the y axis.
      */
-    public final func applyCenterYPinConstraintToSuperview(_ offset: CGFloat) {
-        (self +== .centerY).constant = offset
+    public final func applyCenterYPinConstraintToSuperview(_ offsetY: CGFloat) {
+        (self +== .centerY).constant = offsetY
     }
     
 }
@@ -172,15 +168,15 @@ extension View
 extension View
 {
     /// Centers the view horizontally in its superview with an optional offset.
-    /// - Parameter offset: A CGFloat value for the offset along the x axis.
-    public final func applyCenterHorizontallyInSuperview(_ offset: CGFloat = 0) {
-        (self +== .centerX).constant = offset.x
+    /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
+    public final func applyConstraintToCenterHorizontallyInSuperview(_ offsetX: CGFloat = 0) {
+        (self +== .centerX).constant = offsetX
     }
     
     /// Centers the view vertically in its superview with an optional offset.
-    /// - Parameter offset: A CGFloat value for the offset along the y axis.
-    public final func applyCenterVerticallyInSuperview(_ offset: CGFloat = 0) {
-        (self +== .centerY).constant = offset.y
+    /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
+    public final func applyConstraintToCenterVerticallyInSuperview(_ offsetY: CGFloat = 0) {
+        (self +== .centerY).constant = offsetY
     }
     
     /// Centers the view horizontally & vertically in its superview with an optional offset.
@@ -189,7 +185,7 @@ extension View
         (self +== .centerX).constant = offset.x
         (self +== .centerY).constant = offset.y
     }
-
+    
 }
 
 extension View
