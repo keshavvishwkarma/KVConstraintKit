@@ -129,7 +129,6 @@ extension View
         (self +== .bottom).constant = padding
     }
     
-    #if os(iOS) || os(tvOS)
     /**
      A receiver view is aligned from the left with padding.
      - Parameter padding: A CGFloat value to the left side padding.
@@ -146,11 +145,9 @@ extension View
         (self +== .trailing).constant = padding
     }
     
-    #endif
-
     /**
      To horizontally Center a receiver view in it's superview with an optional offset value.
-     - Parameter offset: A CGFloat value for the offset along the x axis.
+     - Parameter offsetX: A CGFloat value for the offset along the x axis.
      */
     public final func applyCenterXPinConstraintToSuperview(_ offsetX: CGFloat) {
         (self +== .centerX).constant = offsetX
@@ -159,7 +156,7 @@ extension View
     /// To Vertically Center In Superview
     /**
      To vertically Center a receiver view in it's superview with an optional offset value.
-     - Parameter offset: A CGFloat value for the offset along the y axis.
+     - Parameter offsetY: A CGFloat value for the offset along the y axis.
      */
     public final func applyCenterYPinConstraintToSuperview(_ offsetY: CGFloat) {
         (self +== .centerY).constant = offsetY
@@ -172,14 +169,14 @@ extension View
 extension View
 {
     /// Centers the view horizontally in its superview with an optional offset.
-    /// - Parameter offset: A CGFloat value for the offset along the x axis.
-    public final func applyCenterHorizontallyInSuperview(_ offsetX: CGFloat = 0) {
+    /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
+    public final func applyConstraintToCenterHorizontallyInSuperview(_ offsetX: CGFloat = 0) {
         (self +== .centerX).constant = offsetX
     }
     
     /// Centers the view vertically in its superview with an optional offset.
-    /// - Parameter offset: A CGFloat value for the offset along the y axis.
-    public final func applyCenterVerticallyInSuperview(_ offsetY: CGFloat = 0) {
+    /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
+    public final func applyConstraintToCenterVerticallyInSuperview(_ offsetY: CGFloat = 0) {
         (self +== .centerY).constant = offsetY
     }
     
