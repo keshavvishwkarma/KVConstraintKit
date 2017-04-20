@@ -129,7 +129,6 @@ extension View
         (self +== .bottom).constant = padding
     }
     
-    #if os(iOS) || os(tvOS)
     /**
      A receiver view is aligned from the left with padding.
      - Parameter padding: A CGFloat value to the left side padding.
@@ -146,8 +145,6 @@ extension View
         (self +== .trailing).constant = padding
     }
     
-    #endif
-
     /**
      To horizontally Center a receiver view in it's superview with an optional offset value.
      - Parameter offset: A CGFloat value for the offset along the x axis.
