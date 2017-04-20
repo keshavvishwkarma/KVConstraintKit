@@ -51,7 +51,7 @@ public protocol LayoutGuidable: class {
 // MARK: LayoutGuidable
 
 @available(iOS 7.0, *)
-extension LayoutGuidable where Self: UIViewController {
+extension LayoutGuidable where Self == UIViewController {
     
     @discardableResult
     public static func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint {

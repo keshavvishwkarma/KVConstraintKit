@@ -52,7 +52,7 @@ extension View : Addable, Removable, Accessable, LayoutRelationable {}
 // Operators Definations
 
 // MARK: Addable
-extension Addable where Self : View
+extension Addable where Self == View
 {
     /// To add single constraint on the receiver view
     @discardableResult
@@ -73,7 +73,7 @@ extension Addable where Self : View
 }
 
 // MARK: Removable
-extension Removable where Self : View
+extension Removable where Self == View
 {
     /// To remove single constraint from the receiver view
     @discardableResult
@@ -91,7 +91,7 @@ extension Removable where Self : View
 }
 
 // MARK: Accessable
-extension Accessable where Self: View
+extension Accessable where Self == View
 {
     @discardableResult
     public static func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?{
@@ -106,7 +106,7 @@ extension Accessable where Self: View
 }
 
 // MARK: Modifiable
-extension View :  Modifiable { }
+extension View : Modifiable { }
 
 /// (containerView ~ (constraint, multiplier))
 public func *(lhs: View, rhs: (NSLayoutConstraint, CGFloat)) {
@@ -142,7 +142,7 @@ public func ~(lhs: View, rhs: (NSLayoutAttribute, LayoutPriority)) {
 }
 
 // MARK: LayoutRelationable
-extension LayoutRelationable where Self: View {
+extension LayoutRelationable where Self == View {
     
     /// TO ADD SINGLE RELATION CONSTRAINT
     //-----------------------------------------
