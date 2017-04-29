@@ -71,9 +71,9 @@ public protocol LayoutRelationable: class {
     static func +<=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE RELATION CONSTRAINT
-    static func +==(lhs: Self, rhs: [NSLayoutAttribute])
-    static func +>=(lhs: Self, rhs: [NSLayoutAttribute])
-    static func +<=(lhs: Self, rhs: [NSLayoutAttribute])
+    static func +==(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
+    static func +>=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
+    static func +<=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
     
     /// TO ADD SINGLE RELATION CONSTRAINT WITH MULTIPLEIR
     static func *>=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
@@ -81,9 +81,9 @@ public protocol LayoutRelationable: class {
     static func *<=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
-    static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
-    static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)])
+    static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
+    static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
+    static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
     
 }
 

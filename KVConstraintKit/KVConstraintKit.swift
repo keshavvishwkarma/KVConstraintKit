@@ -56,7 +56,7 @@ extension EdgeInsets {
 public protocol AutoLayoutView {}
 extension View : AutoLayoutView {}
 
-extension AutoLayoutView where Self == View {
+extension AutoLayoutView where Self: View {
     
     /// This method is used to create new instance of ui elements for autolayout.
     public static func prepareAutoLayoutView() -> Self {
@@ -77,7 +77,6 @@ extension AutoLayoutView where Self == View {
     
 }
 
-@discardableResult
 public func +(lhs: View, rhs: [View]) -> View {
     for aView in rhs {
         _ = lhs + aView
@@ -85,7 +84,6 @@ public func +(lhs: View, rhs: [View]) -> View {
     return lhs
 }
 
-@discardableResult
 public func +(lhs: View, rhs: View) -> View {
     lhs.addSubview(rhs)
     rhs.prepareAutoLayoutView()
