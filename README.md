@@ -204,9 +204,9 @@ The following types of `operators` are provided by `KVConstraintKit`, to `add`, 
 | `*==` | to add equal relation constraint with `multiplier` |
 | `*>=` | to add greater than or equal relation constraint with `multiplier` |
 | `*<=` | to add less than or equal relation constraint with `multiplier` |
-| `|==|` | to add or equal relation constraint between sibling views |
-| `|<=|` | to add greater than or equal relation constraint between sibling views |
-| `|<=|` | to add less than or equal relation constraint between sibling views |
+| &#124;==&#124; | to add or equal relation constraint between sibling views |
+| &#124;<=&#124; | to add greater than or equal relation constraint between sibling views |
+| &#124;<=&#124; | to add less than or equal relation constraint between sibling views |
 
 ## License
 
