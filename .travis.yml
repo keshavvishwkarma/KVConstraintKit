@@ -7,3 +7,4 @@ xcode_project: KVConstraintKit.xcodeproj
 branches:
 only:
 - master
+- swift_3.1
