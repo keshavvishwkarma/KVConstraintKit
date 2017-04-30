@@ -155,30 +155,30 @@ extension View
     // (containerView +== [.Top, Bottom, Leading, Trailing])
     
     /// With defualt constant that is - 0 (Zero) on a specific attribute
-    public static func +<=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+    public static func +<=(lhs: View, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
         return rhs.map { lhs +<= $0 }
     }
     
-    public static func +==(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+    public static func +==(lhs: View, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
         return rhs.map { lhs +== $0 }
     }
     
-    public static func +>=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+    public static func +>=(lhs: View, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
         return rhs.map { lhs +>= $0 }
     }
     
     // TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
     //-------------------------------------------------------------
     // (containerView +== [(.Height, 1.5), (.Width, 0.8)])
-    public static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+    public static func *<=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
         return rhs.map { lhs *<= $0 }
     }
     
-    public static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+    public static func *==(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
         return rhs.map { lhs *== $0 }
     }
     
-    public static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+    public static func *>=(lhs: View, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
         return rhs.map { lhs *>= $0 }
     }
     

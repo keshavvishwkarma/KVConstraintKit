@@ -193,20 +193,20 @@ The following types of `operators` are provided by `KVConstraintKit`, to `add`, 
 
 | Operator | Meaning |
 | :--------: |-------|
-|  `+`  | to `add` constraint |
-|  `-`  | to `remove` constraint |
-|  `*`  | to modify `multiplier` of constraint |
-|  `~`  | to modify `Priority` ( **UILayoutPriority** ), `Relation` ( **NSLayoutRelation** ) & `Replace` constraint|
-| `<-`  | to access constraint by attributes ( **eg. NSLayoutAttribute.Height** ) |
-| `+==` | to add equal relation ( **NSLayoutRelation.Equal** ) constraint |
-| `+>=` | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint |
-| `+<=` | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint |
-| `*==` | to add equal relation constraint with `multiplier` |
-| `*>=` | to add greater than or equal relation constraint with `multiplier` |
-| `*<=` | to add less than or equal relation constraint with `multiplier` |
-| `|==|` | to add or equal relation constraint between sibling views |
-| `|<=|` | to add greater than or equal relation constraint between sibling views |
-| `|<=|` | to add less than or equal relation constraint between sibling views |
+|   +   | to `add` constraint |
+|   -   | to `remove` constraint |
+|   *   | to modify `multiplier` of constraint |
+|   ~   | to modify `Priority` ( **UILayoutPriority** ), `Relation` ( **NSLayoutRelation** ) & `Replace` constraint|
+|  <-   | to access constraint by attributes ( **eg. NSLayoutAttribute.Height** ) |
+|  +==  | to add equal relation ( **NSLayoutRelation.Equal** ) constraint |
+|  +>=  | to add greater than or equal relation ( **NSLayoutRelation.GreaterThanOrEqual** ) constraint |
+|  +<=  | to add less than or equal relation ( **NSLayoutRelation.LessThanOrEqual** ) constraint |
+|  *==  | to add equal relation constraint with `multiplier` |
+|  *>=  | to add greater than or equal relation constraint with `multiplier` |
+|  *<=  | to add less than or equal relation constraint with `multiplier` |
+| &#124;==&#124; | to add or equal relation constraint between sibling views |
+| &#124;<=&#124; | to add greater than or equal relation constraint between sibling views |
+| &#124;<=&#124; | to add less than or equal relation constraint between sibling views |
 
 ## License
 
