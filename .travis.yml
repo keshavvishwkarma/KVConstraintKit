@@ -6,4 +6,4 @@ xcode_project: KVConstraintKit.xcodeproj
 # whitelist
 branches:
 only:
-- master
+- swift_3.0
