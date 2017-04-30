@@ -37,12 +37,12 @@
 extension View
 {
     // All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
-
+    
     /// Sets the aspect ratio of a view.
     public final func applyAspectRatioConstraint() {
         self +== (.aspectRatio, 0)
     }
-
+    
     /**
      Sets the width of a view.
      - Parameter width: A CGFloat value.
@@ -98,9 +98,9 @@ extension View
 {
     // All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
     /**
-     A receiver view is aligned from the left with padding.
-     - Parameter padding: A CGFloat value to the left side padding.
-     */
+    A receiver view is aligned from the left with padding.
+    - Parameter padding: A CGFloat value to the left side padding.
+    */
     public final func applyLeftPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .left).constant = padding
     }
@@ -120,7 +120,7 @@ extension View
     public final func applyTopPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .top).constant = padding
     }
-
+    
     /**
      A receiver view is aligned from the bottom with padding.
      - Parameter padding: A CGFloat value to the bottom side padding.
@@ -136,7 +136,7 @@ extension View
     public final func applyLeadingPinConstraintToSuperview(_ padding: CGFloat) {
         (self +== .leading).constant = padding
     }
-
+    
     /**
      A receiver view is aligned from the right with padding.
      - Parameter padding: A CGFloat value to the right side padding.
@@ -153,7 +153,6 @@ extension View
         (self +== .centerX).constant = offsetX
     }
     
-    /// To Vertically Center In Superview
     /**
      To vertically Center a receiver view in it's superview with an optional offset value.
      - Parameter offsetY: A CGFloat value for the offset along the y axis.
@@ -186,7 +185,7 @@ extension View
         (self +== .centerX).constant = offset.x
         (self +== .centerY).constant = offset.y
     }
-
+    
 }
 
 extension View
