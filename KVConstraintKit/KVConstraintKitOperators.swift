@@ -63,11 +63,7 @@ extension Addable where Self : View
     /// To add multiple constraints on the receiver view
     @discardableResult
     public static func +(lhs: Self, rhs: [NSLayoutConstraint]) -> [NSLayoutConstraint] {
-        var constraints = [NSLayoutConstraint]()
-        for c in rhs {
-            constraints.append( lhs + c )
-        }
-        return constraints
+        return rhs.map { lhs + $0 }
     }
     
 }
@@ -170,18 +166,18 @@ extension LayoutRelationable where Self: View {
     
     // With defualt constant toCGFloat that is - 0 (Zero) on a specific attribute
     @discardableResult
-    public static func +<=(lhs: Self, rhs: [NSLayoutAttribute]) {
-        for attribute in rhs { _ = lhs +<= attribute }
+    public static func +<=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs +<= $0 }
     }
     
     @discardableResult
-    public static func +==(lhs: Self, rhs: [NSLayoutAttribute]) {
-        for attribute in rhs { _ = lhs +== attribute }
+    public static func +==(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs +== $0 }
     }
     
     @discardableResult
-    public static func +>=(lhs: Self, rhs: [NSLayoutAttribute]) {
-        for attribute in rhs { _ = lhs +>= attribute }
+    public static func +>=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs +>= $0 }
     }
     
     /// TO ADD SINGLE EQUAL RELATION CONSTRAINT WITH MULTIPLEIR
@@ -207,18 +203,18 @@ extension LayoutRelationable where Self: View {
     //-------------------------------------------------------------
     /// (containerView +== [(.Height, 1.5), (.Width, 0.8)])
     @discardableResult
-    public static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]){
-        for attribute in rhs { _ = lhs *<= attribute }
+    public static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs *<= $0 }
+    }
+
+    @discardableResult
+    public static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs *== $0 }
     }
     
     @discardableResult
-    public static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]){
-        for attribute in rhs { _ = lhs *== attribute }
-    }
-    
-    @discardableResult
-    public static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]){
-        for attribute in rhs { _ = lhs *>= attribute }
+    public static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint] {
+        return rhs.map { lhs *>= $0 }
     }
     
     /// TO ADD SIBLINGS RELATION CONSTRAINT
