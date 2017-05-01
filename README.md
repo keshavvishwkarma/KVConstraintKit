@@ -13,7 +13,7 @@ KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KVConstraintKit'
+pod 'KVConstraintKit', :git => 'https://github.com/keshavvishwkarma/KVConstraintKit.git', :branch => 'master'
 ```
 ## Auto Layout Attributes
 `KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
@@ -89,6 +89,29 @@ Fit with inset
 ```swift
 let inset = UIEdgeInsets(top: 4, left: 8, bottom: 12, right: 16)    
 view.applyConstraintFitToSuperview(contentInset:inset)
+```
+### Center
+
+Horizontally
+
+```swift
+view.applyConstraintToCenterHorizontallyInSuperview()
+OR
+view.applyConstraintToCenterHorizontallyInSuperview(20) // X offset
+```
+Vertically
+
+```swift
+view.applyConstraintToCenterVerticallyInSuperview()
+OR
+view.applyConstraintToCenterVerticallyInSuperview(20) // Y offset
+```
+Horizontally & Vertically
+
+```swift
+view.applyConstraintToCenterInSuperview()
+OR
+view.applyConstraintToCenterInSuperview(CGPoint(x:20, y:20)) // XY offset
 ```
 ### Size
 
