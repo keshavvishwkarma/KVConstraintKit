@@ -90,6 +90,30 @@ Fit with inset
 let inset = UIEdgeInsets(top: 4, left: 8, bottom: 12, right: 16)    
 view.applyConstraintFitToSuperview(contentInset:inset)
 ```
+### Center
+
+Horizontally
+
+```swift
+view.applyConstraintToCenterHorizontallyInSuperview()
+OR
+view.applyConstraintToCenterHorizontallyInSuperview(20) // X offset
+```
+Vertically
+
+```swift
+view.applyConstraintToCenterVerticallyInSuperview()
+OR
+view.applyConstraintToCenterVerticallyInSuperview(20) // Y offset
+```
+Horizontally & Vertically
+
+```swift
+view.applyConstraintToCenterInSuperview()
+OR
+view.applyConstraintToCenterInSuperview(CGPoint(x:20, y:20)) // XY offset
+```
+
 ### Size
 
 Width
