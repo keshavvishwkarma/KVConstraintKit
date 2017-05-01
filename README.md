@@ -13,7 +13,8 @@ KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To insta
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KVConstraintKit'
+pod 'KVConstraintKit', :git => 'https://github.com/keshavvishwkarma/KVConstraintKit.git', :branch => 'swift_3.0'
+
 ```
 ## Auto Layout Attributes
 `KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
