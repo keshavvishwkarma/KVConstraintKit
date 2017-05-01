@@ -75,25 +75,25 @@ extension LayoutGuidable where Self: UIViewController {
 @available(iOS 7.0, *)
 extension UIViewController: LayoutGuidable
 {
-    /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
+    /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for fromView.
     @available(iOS 7.0, *)
     public final func accessAppliedTopLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .top)
     }
     
-    /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for v.
+    /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for fromView.
     @available(iOS 7.0, *)
     public final func accessAppliedBottomLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .bottom)
     }
     
-    /// To add Top layout guide constaints
+    /// To add Top layout guide constaints with an optional padding value.
     @available(iOS 7.0, *)
     public final func applyTopLayoutGuideConastraint(_ toView: View, padding p: CGFloat) {
         applyLayoutGuideConastraint(toView, type: .top).constant = p
     }
     
-    /// To add Bottom layout guide constaints
+    /// To add Bottom layout guide constaints with an optional padding value.
     @available(iOS 7.0, *)
     public final func applyBottomLayoutGuideConastraint(_ toView: View, padding p: CGFloat) {
         applyLayoutGuideConastraint(toView, type: .bottom).constant = p
@@ -120,7 +120,7 @@ extension UIViewController: LayoutGuidable
 @available(iOS 7.0, *)
 private extension UIViewController
 {
-    /// These method is used to generate Top/Bottom Layout Guide constraint
+    /// This method is used to generate Top/Bottom Layout Guide constraint.
     final func prepareLayoutGuideConstraint(_ view: View, type t: LayoutGuideType) -> NSLayoutConstraint {
         switch t {
         case .top:
@@ -130,7 +130,7 @@ private extension UIViewController
         }
     }
     
-    /// To add Top/Bottom layout guide constaints
+    /// To add Top/Bottom layout guide constaint.
     final func applyLayoutGuideConastraint(_ view: View, type t: LayoutGuideType)->NSLayoutConstraint {
         if let appliedConstraint = accessLayoutGuideConstraint(view, type: t) {
             return appliedConstraint
@@ -141,7 +141,7 @@ private extension UIViewController
         }
     }
     
-    /// These method is used to access applied LayoutGuide constraint from view of ViewController(self.view) to a specific view(toView).
+    /// This method is used to access applied LayoutGuide constraint from view of ViewController(self.view) to a specific view.
     final func accessLayoutGuideConstraint(_ fromView: View, type: LayoutGuideType) -> NSLayoutConstraint?
     {
         let layoutGuide : UILayoutSupport            = (type == .top) ? topLayoutGuide : bottomLayoutGuide

@@ -26,7 +26,7 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for KVConstraintKit.
 FOUNDATION_EXPORT double KVConstraintKitVersionNumber;

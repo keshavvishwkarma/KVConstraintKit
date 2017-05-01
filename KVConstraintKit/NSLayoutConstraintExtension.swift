@@ -86,6 +86,7 @@ extension NSLayoutConstraint
         return isEqualExceptMultiplier && multiplier == c.multiplier && relation == c.relation
     }
     
+    /// Reverses the first and second items of 'NSLayoutConstraint' object.
     public final func reversed() -> NSLayoutConstraint
     {
         if let secondItemObj = secondItem {
@@ -96,6 +97,7 @@ extension NSLayoutConstraint
         
     }
     
+    /// modifies the layout relation of 'NSLayoutConstraint' object.
     public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint
     {
         if relation == r {
@@ -104,7 +106,8 @@ extension NSLayoutConstraint
         
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
     }
-    
+
+    /// modifies the multiplier of 'NSLayoutConstraint' object.
     public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint
     {
         if multiplier == m {
