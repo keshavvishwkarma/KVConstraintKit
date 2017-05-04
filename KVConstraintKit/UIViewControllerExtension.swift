@@ -77,12 +77,14 @@ extension UIViewController: LayoutGuidable
 {
     /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
+    @discardableResult
     public final func accessAppliedTopLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .top)
     }
     
     /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
+    @discardableResult
     public final func accessAppliedBottomLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .bottom)
     }
