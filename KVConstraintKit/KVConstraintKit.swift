@@ -37,7 +37,9 @@
     
     public typealias View = NSView
     public typealias LayoutPriority = NSLayoutPriority
-    public typealias EdgeInsets = NSEdgeInsets
+    #if !swift(>=3.0)
+        public typealias EdgeInsets = NSEdgeInsets
+    #endif
 #endif
 
 extension EdgeInsets {
@@ -106,7 +108,7 @@ extension View {
             
         #else
             switch attr1 {
-            case .Right, .Trailing, .Bottom:
+            case .right, .trailing, .bottom:
                 return View.prepareConstraint(superview, attribute: attr1, secondView: self, attribute:attr2, relation: relation, multiplier:multiplier)
             default: break
             }

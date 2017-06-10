@@ -96,24 +96,48 @@ extension NSLayoutConstraint
         
     }
     
+#if os(iOS) || os(tvOS)
+
     public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint
     {
         if relation == r {
             return self
         }
-        
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
     }
-    
+
     public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint
     {
         if multiplier == m {
             return self
         }
-        
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: m, constant: constant)
     }
     
+#else
+
+    public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint?
+    {
+        if relation == r {
+            return self
+        }
+        guard let firstItem = self.firstItem else { return nil }
+        return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
+    }
+
+    public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint?
+    {
+        if multiplier == m {
+            return self
+        }
+        guard let firstItem = self.firstItem else { return nil }
+        return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: m, constant: constant)
+    }
+    
+#endif
+
+    
+   
     final func isSelfConstraint() -> Bool
     {
         // For aspect Ratio
@@ -139,7 +163,7 @@ extension Array where Element: NSLayoutConstraint
                 !( $0.firstItem is UILayoutSupport || $0.secondItem is UILayoutSupport)
             }
         #else
-            let reverseConstraints = reverse()
+            let reverseConstraints = reversed()
         #endif
         
         return reverseConstraints.filter {
