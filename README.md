@@ -40,14 +40,14 @@ let leading = NSLayoutConstraint( item: v, attribute: .leading,
                             multiplier: 1.0, constant: 0)
 
 let trailing = NSLayoutConstraint( item: v, attribute: .trailing,
-                              relatedBy: .equal,
-                                 toItem: v.superview!, attribute: .trailing,
-                             multiplier: 1.0, constant: 0)
+                         relatedBy: .equal,
+                            toItem: v.superview!, attribute: .trailing,
+                        multiplier: 1.0, constant: 0)
 
 let bottom = NSLayoutConstraint( item: v, attribute: .bottom,
-                            relatedBy: .equal,
-                               toItem: v.superview!, attribute: .bottom,
-                           multiplier: 1.0, constant: 0)
+                         relatedBy: .equal,
+                            toItem: v.superview!, attribute: .bottom,
+                        multiplier: 1.0, constant: 0)
 
 v.superview?.addConstraints([top, leading, trailing, bottom])
 ```

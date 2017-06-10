@@ -192,7 +192,7 @@ extension View
 {
     /// To apply\add same leading, trailing, Top and Bottom pin constraints to superview with same optional padding.
     /// - Parameter padding: A CGFloat value to the all side (left, right, top & bottm) padding between the receiver view & its superview.
-    public final func applyConstraintFitToSuperview(_ padding: CGFloat = 0.0) {
+    public final func applyConstraintFitToSuperview(_ padding: CGFloat ) {
         applyConstraintFitToSuperview(contentInset: EdgeInsets.edgeInset(CGFloat(0)))
     }
     

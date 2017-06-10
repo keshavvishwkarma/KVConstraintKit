@@ -42,7 +42,7 @@ public protocol LayoutGuidable: class {
     static func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
     
     /// TO REMOVE SINGLE CONSTRAINTS
-    static func -(lhs: Self, rhs: (View, LayoutGuideType))
+    static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
     
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
     static func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
@@ -59,10 +59,11 @@ extension LayoutGuidable where Self: UIViewController {
     }
     
     @discardableResult
-    public static func -(lhs: Self, rhs: (View, LayoutGuideType)) {
+    public static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
         if let appliedConstraint = lhs.accessLayoutGuideConstraint(rhs.0, type: rhs.1) {
-            lhs.view - (appliedConstraint)
+            return lhs.view - (appliedConstraint)
         }
+        return nil
     }
     
     @discardableResult
@@ -77,12 +78,14 @@ extension UIViewController: LayoutGuidable
 {
     /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
+    @discardableResult
     public final func accessAppliedTopLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .top)
     }
     
     /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for v.
     @available(iOS 7.0, *)
+    @discardableResult
     public final func accessAppliedBottomLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .bottom)
     }
