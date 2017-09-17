@@ -4,7 +4,7 @@
 //
 //  Distributed under the MIT License.
 //
-//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//  Copyright © 2016-2017 Keshav Vishwkarma <keshavvbe@gmail.com>. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in

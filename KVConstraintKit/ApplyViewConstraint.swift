@@ -4,7 +4,7 @@
 //
 //  Distributed under the MIT License.
 //
-//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//  Copyright © 2016-2017 Keshav Vishwkarma <keshavvbe@gmail.com>. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -216,27 +216,29 @@ extension View
         if !(inset.top.isFinite && inset.top.isNaN) {
             (self +== .top).constant = inset.top
         } else {
-            debugPrint("can not add inset.top because it does not have finite value")
+            log("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.bottom.isFinite && inset.bottom.isNaN) {
             (self +== .bottom).constant = inset.bottom
         } else {
-            debugPrint("can not add inset.top because it does not have finite value")
+            log("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.left.isFinite && inset.left.isNaN) {
             (self +== .leading).constant = inset.left
         } else {
-            debugPrint("can not add inset.top because it does not have finite value")
+            log("can not add inset.top because it does not have finite value")
         }
         
         if !(inset.right.isFinite && inset.right.isNaN) {
             (self +== .trailing).constant = inset.right
         } else {
-            debugPrint("can not add inset.top because it does not have finite value")
+            log("can not add inset.top because it does not have finite value")
         }
         
     }
     
 }
+
+

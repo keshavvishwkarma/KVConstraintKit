@@ -4,7 +4,7 @@
 //
 //  Distributed under the MIT License.
 //
-//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//  Copyright © 2016-2017 Keshav Vishwkarma <keshavvbe@gmail.com>. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -53,8 +53,8 @@ extension NSLayoutConstraint
         public static let lessMaxPriority = CGFloat(999.99996)
     }
     
-    /// :name:	prepareConstraint
-    public final class func prepareConstraint(_ item: AnyObject, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .equal, toItem: AnyObject?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+    /// :name: prepareConstraint
+    public final class func prepareConstraint(_ item: Any, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .equal, toItem: Any?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: item, attribute: attr1, relatedBy: relation, toItem: toItem, attribute: attr2, multiplier: multiplier, constant: constant)
     }
     
@@ -71,7 +71,7 @@ extension NSLayoutConstraint
             isEqualExceptMultiplier = firstItem === c.secondItem && firstAttribute == c.secondAttribute && secondItem === c.firstItem && secondAttribute == c.firstAttribute
         }
         
-        debugPrint(isEqualExceptMultiplier)
+        log(isEqualExceptMultiplier)
         
         if m && r {
             return isEqualExceptMultiplier
@@ -136,10 +136,7 @@ extension NSLayoutConstraint
     
 #endif
 
-    
-   
-    final func isSelfConstraint() -> Bool
-    {
+    internal final func isSelfConstraint() -> Bool {
         // For aspect Ratio
         if firstItem === secondItem && ( firstAttribute == .width && secondAttribute == .height || firstAttribute == .height && secondAttribute == .width){
             return true
@@ -155,9 +152,8 @@ extension NSLayoutConstraint
     
 }
 
-extension Array where Element: NSLayoutConstraint
-{
-    func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
+extension Array where Element: NSLayoutConstraint {
+   internal func containsApplied(constraint c: Element, shouldIgnoreMutiplier m:Bool = true) -> Element? {
         #if os(iOS) || os(tvOS)
             let reverseConstraints = reversed().filter {
                 !( $0.firstItem is UILayoutSupport || $0.secondItem is UILayoutSupport)
@@ -172,4 +168,11 @@ extension Array where Element: NSLayoutConstraint
     }
 }
 
+internal func log( disable: Bool = true, _ args: Any...) {
+    if !disable {
+        var messageFormat = ""
+        args.forEach {  messageFormat.append( " " + String(describing: $0) ) }
+        print( "👀 KVConstraintKit :", messageFormat )
+    }
+}
 

@@ -4,7 +4,7 @@
 //
 //  Distributed under the MIT License.
 //
-//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//  Copyright © 2016-2017 Keshav Vishwkarma <keshavvbe@gmail.com>. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -189,28 +189,27 @@ extension View
         return accessAppliedConstraintBy(attribute: attr, attribute: attr, relation: relation)
     }
     
-    
     public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, relation: NSLayoutRelation = .equal, completionHandler: @escaping (NSLayoutConstraint?) -> Void){
         DispatchQueue.main.async { () -> Void in
             completionHandler(self.accessAppliedConstraintBy(attribute: attr, relation: relation))
         }
     }
     
-    public final func accessAppliedConstraintBy(attribute attr: NSLayoutAttribute, attribute attr2: NSLayoutAttribute,  relation: NSLayoutRelation = .equal)->NSLayoutConstraint? {
+    public final func accessAppliedConstraintBy(attribute attr1: NSLayoutAttribute, attribute attr2: NSLayoutAttribute,  relation: NSLayoutRelation = .equal)->NSLayoutConstraint? {
         
         // For Aspect Ratio
-        if ( attr == .width && attr2 == .height || attr == .height && attr2 == .width){
-            let c = View.prepareConstraint(self, attribute:attr, secondView:self, attribute:attr2, relation:relation)
+        if ( attr1 == .width && attr2 == .height || attr1 == .height && attr2 == .width){
+            let c = View.prepareConstraint(self, attribute:attr1, secondView:self, attribute:attr2, relation:relation)
             let appliedConstraint = constraints.containsApplied(constraint: c!)
             return appliedConstraint
         } // For height & width
-        else if attr2 == .notAnAttribute && (attr == .width || attr == .height){
-            let c = View.prepareConstraint(self, attribute:attr, attribute:attr2, relation:relation)
+        else if attr2 == .notAnAttribute && (attr1 == .width || attr1 == .height){
+            let c = View.prepareConstraint(self, attribute:attr1, attribute:attr2, relation:relation)
             let appliedConstraint = constraints.containsApplied(constraint: c!)
             return appliedConstraint
         }
         else {
-            let c = prepareConstraintToSuperview(attribute: attr, attribute: attr2, relation: relation)
+            let c = prepareConstraintToSuperview(attribute: attr1, attribute: attr2, relation: relation)
             let appliedConstraint = superview?.constraints.containsApplied(constraint: c!)
             return appliedConstraint
         }
@@ -240,14 +239,13 @@ extension View
         setNeedsLayout()
     }
     
-    public final func updateModifyConstraintsWithAnimation(_ completion:((Bool) -> Void)?)
-    {
+    public final func updateModifyConstraintsWithAnimation(_ completion:((Bool) -> Void)?) {
         let duration = TimeInterval(UINavigationControllerHideShowBarDuration)
         let referenceView = (superview != nil) ? superview! : self
         
         UIView.animate(withDuration: duration, animations: { () -> Void in
             referenceView.updateModifyConstraints()
-            }, completion: completion)
+        }, completion: completion)
         
     }
     
@@ -269,24 +267,19 @@ extension View
         accessAppliedConstraintBy(attribute: attribute)?.constant *= ratio
     }
     
-    
 }
 
 extension View
 {
-    class final func prepareConstraint(_ firstView: View!, attribute attr1: NSLayoutAttribute, secondView: View?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint!{
-        // assert( (secondView != nil), "both firstView & secondView must not be nil.")
-        
+    internal class final func prepareConstraint(_ firstView: View!, attribute attr1: NSLayoutAttribute, secondView: View?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, relation: NSLayoutRelation = .equal, multiplier: CGFloat = 1, constant: CGFloat = 0) -> NSLayoutConstraint!{
+
         assert(!multiplier.isInfinite, "Multiplier/Ratio of view must not be INFINITY.")
         assert(!multiplier.isNaN, "Multiplier/Ratio of view must not be NaN.")
-        
         assert(!constant.isInfinite, "constant of view must not be INFINITY.")
         assert(!constant.isNaN, "constant of view must not be NaN.")
-        
-        // let preparePinConastrain : NSLayoutConstraint = NSLayoutConstraint(item: firstView, attribute: attr1, relatedBy: relation, toItem: secondView, attribute: attr2, multiplier: multiplier, constant: constant)
-        // return preparePinConastrain
         
         return NSLayoutConstraint(item: firstView, attribute: attr1, relatedBy: relation, toItem: secondView, attribute: attr2, multiplier: multiplier, constant: constant)
         
     }
+    
 }

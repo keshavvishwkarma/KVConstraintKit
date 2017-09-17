@@ -4,7 +4,7 @@
 //
 //  Distributed under the MIT License.
 //
-//  Copyright © 2016 Keshav Vishwkarma. All rights reserved.
+//  Copyright © 2016-2017 Keshav Vishwkarma <keshavvbe@gmail.com>. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of
 //  this software and associated documentation files (the "Software"), to deal in
@@ -38,10 +38,10 @@ public enum LayoutGuideType {
 //********* Define LayoutGuidable protocol *********//
 @available(iOS 7.0, *)
 public protocol LayoutGuidable: class {
-    /// TO ADD SINGLE CONSTRAINTS
+    /// TO ADD SINGLE CONSTRAINT
     static func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint
     
-    /// TO REMOVE SINGLE CONSTRAINTS
+    /// TO REMOVE SINGLE CONSTRAINT
     static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint?
     
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT GUIDE TYPE
@@ -53,21 +53,16 @@ public protocol LayoutGuidable: class {
 @available(iOS 7.0, *)
 extension LayoutGuidable where Self: UIViewController {
     
-    @discardableResult
-    public static func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint {
-        return lhs.applyLayoutGuideConastraint(rhs.0, type: rhs.1)
+    @discardableResult public static func +(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint {
+        return lhs.applyLayoutGuideConstraint(rhs.0, type: rhs.1)
     }
     
-    @discardableResult
-    public static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
-        if let appliedConstraint = lhs.accessLayoutGuideConstraint(rhs.0, type: rhs.1) {
-            return lhs.view - (appliedConstraint)
-        }
-        return nil
+    @discardableResult public static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
+        guard let appliedConstraint = lhs.accessLayoutGuideConstraint(rhs.0, type: rhs.1) else { return nil }
+        return lhs.view - (appliedConstraint)
     }
     
-    @discardableResult
-    public static func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
+    @discardableResult public static func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
         return lhs.accessLayoutGuideConstraint(rhs.0, type: rhs.1)
     }
     
@@ -77,45 +72,35 @@ extension LayoutGuidable where Self: UIViewController {
 extension UIViewController: LayoutGuidable
 {
     /// This method is used to access applied Top Layout Guide constraint if layout guide constraint is exist in self.view for v.
-    @available(iOS 7.0, *)
-    @discardableResult
-    public final func accessAppliedTopLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
+    @discardableResult public final func accessAppliedTopLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .top)
     }
     
     /// This method is used to access applied Bottom Layout Guide constraint if layout guide constraint is exist in self.view for v.
-    @available(iOS 7.0, *)
-    @discardableResult
-    public final func accessAppliedBottomLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
+    @discardableResult public final func accessAppliedBottomLayoutGuideConstraint(_ fromView: View) -> NSLayoutConstraint? {
         return accessLayoutGuideConstraint(fromView, type: .bottom)
     }
     
-    /// To add Top layout guide constaints
-    @available(iOS 7.0, *)
-    public final func applyTopLayoutGuideConastraint(_ toView: View, padding p: CGFloat) {
-        applyLayoutGuideConastraint(toView, type: .top).constant = p
+    /// To add Top layout guide constaint.
+    public final func applyTopLayoutGuideConstraint(_ toView: View, padding p: CGFloat) {
+        applyLayoutGuideConstraint(toView, type: .top).constant = p
     }
     
-    /// To add Bottom layout guide constaints
-    @available(iOS 7.0, *)
-    public final func applyBottomLayoutGuideConastraint(_ toView: View, padding p: CGFloat) {
-        applyLayoutGuideConastraint(toView, type: .bottom).constant = p
+    /// To add Bottom layout guide constaint.
+    public final func applyBottomLayoutGuideConstraint(_ toView: View, padding p: CGFloat) {
+        applyLayoutGuideConstraint(toView, type: .bottom).constant = p
     }
     
     /// These method is used to remove the Top Layout Guide constraint. But you cann't remove default TopLayoutGuide constraint.
-    @available(iOS 7.0, *)
     public final func removeAppliedTopLayoutGuideConstraint(_ fromView: View) {
-        if let appliedConstraint = accessLayoutGuideConstraint(fromView, type: .top) {
-            view.removeConstraint(appliedConstraint)
-        }
+        guard let appliedConstraint = accessLayoutGuideConstraint(fromView, type: .top) else { return }
+        view.removeConstraint(appliedConstraint)
     }
     
     /// These method is used to remove the Bottom Layout Guide constraint. But you cann't remove default BottomLayoutGuide constraint.
-    @available(iOS 7.0, *)
     public final func removeAppliedBottomLayoutGuideConstraint(_ fromView: View)  {
-        if  let appliedConstraint = accessLayoutGuideConstraint(fromView, type: .bottom) {
-            view.removeConstraint(appliedConstraint)
-        }
+        guard let appliedConstraint = accessLayoutGuideConstraint(fromView, type: .bottom) else { return }
+        view.removeConstraint(appliedConstraint)
     }
     
 }
@@ -134,7 +119,7 @@ private extension UIViewController
     }
     
     /// To add Top/Bottom layout guide constaints
-    final func applyLayoutGuideConastraint(_ view: View, type t: LayoutGuideType)->NSLayoutConstraint {
+    final func applyLayoutGuideConstraint(_ view: View, type t: LayoutGuideType)->NSLayoutConstraint {
         if let appliedConstraint = accessLayoutGuideConstraint(view, type: t) {
             return appliedConstraint
         } else {

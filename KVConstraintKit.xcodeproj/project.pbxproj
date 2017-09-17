@@ -84,12 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */,
-				6BF09CE11D58F7410030699A /* KVConstraintKit.swift */,
-				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
-				6BA7D2921D83EE4A004B3A91 /* KVConstraintKitProtocol.swift */,
-				6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */,
-				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
-				6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */,
+				6BFBB58D1F6F14EC009CE1FF /* Core */,
+				6BFBB58E1F6F1504009CE1FF /* Extensions */,
 				6BF09CCC1D58F67C0030699A /* Info.plist */,
 			);
 			path = KVConstraintKit;
@@ -102,6 +98,26 @@
 				6BF09CD81D58F67C0030699A /* Info.plist */,
 			);
 			path = KVConstraintKitTests;
+			sourceTree = "<group>";
+		};
+		6BFBB58D1F6F14EC009CE1FF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6BF09CE11D58F7410030699A /* KVConstraintKit.swift */,
+				6BA7D2921D83EE4A004B3A91 /* KVConstraintKitProtocol.swift */,
+				6B4B394C1D62601B006AE3E4 /* KVConstraintKitOperators.swift */,
+				6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		6BFBB58E1F6F1504009CE1FF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
+				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
