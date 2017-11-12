@@ -42,12 +42,13 @@
     #endif
 #endif
 
+
 extension EdgeInsets {
-    static var zero: EdgeInsets {
+    public static var zero: EdgeInsets {
         return edgeInset(CGFloat(0))
     }
     
-    static func edgeInset(_ side: CGFloat) -> EdgeInsets {
+    public static func edgeInset(_ side: CGFloat) -> EdgeInsets {
         return EdgeInsets(top: side, left: side, bottom: side, right: side)
     }
 }
@@ -68,7 +69,7 @@ extension AutoLayoutView where Self: View {
     }
     
     ///This method is used to prepare already created instance of ui elements for autolayout.
-    public final func prepareAutoLayoutView() {
+    public func prepareAutoLayoutView() {
         translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -216,21 +216,13 @@ extension View : Modifiable { }
 
 /// (containerView ~ (constraint, multiplier))
 public func *(lhs: View, rhs: (NSLayoutConstraint, CGFloat)) {
-    #if os(iOS) || os(tvOS)
-        let constraint = rhs.0.modified(multiplier: rhs.1)
-    #else
-        guard let constraint = rhs.0.modified(multiplier: rhs.1) else { return  }
-    #endif
+    guard let constraint = rhs.0.modified(multiplier: rhs.1) else { return  }
     (lhs ~ (rhs.0, constraint))
 }
 
 /// (containerView ~ (constraint, multiplier))
 public func ~(lhs: View, rhs: (NSLayoutConstraint, NSLayoutRelation)) {
-    #if os(iOS) || os(tvOS)
-        let constraint = rhs.0.modified(relation: rhs.1)
-    #else
-        guard let constraint = rhs.0.modified(relation: rhs.1) else { return  }
-    #endif
+    guard let constraint = rhs.0.modified(relation: rhs.1) else { return  }
     (lhs ~ (rhs.0, constraint))
 }
 

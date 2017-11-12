@@ -93,56 +93,32 @@ extension NSLayoutConstraint
         } else {
             return self
         }
-        
     }
     
-#if os(iOS) || os(tvOS)
-
-    public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint
-    {
-        if relation == r {
-            return self
-        }
-        return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
-    }
-
-    public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint
-    {
-        if multiplier == m {
-            return self
-        }
-        return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: m, constant: constant)
-    }
-    
-#else
-
     public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint?
     {
-        if relation == r {
-            return self
-        }
-        guard let firstItem = self.firstItem else { return nil }
+        if relation == r { return self }
+        #if !(os(iOS) || os(tvOS))
+            guard let firstItem = self.firstItem else { return nil }
+        #endif
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
     }
-
+    
     public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint?
     {
-        if multiplier == m {
-            return self
-        }
-        guard let firstItem = self.firstItem else { return nil }
+        if multiplier == m { return self }
+        #if !(os(iOS) || os(tvOS))
+            guard let firstItem = self.firstItem else { return nil }
+        #endif
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: m, constant: constant)
     }
-    
-#endif
 
     internal final func isSelfConstraint() -> Bool {
         // For aspect Ratio
         if firstItem === secondItem && ( firstAttribute == .width && secondAttribute == .height || firstAttribute == .height && secondAttribute == .width){
             return true
         }
-        // if (firstItem !== secondItem && secondAttribute == .NotAnAttribute) && (firstAttribute == .Width || firstAttribute == .Height)
-        
+
         if (secondItem == nil && secondAttribute == .notAnAttribute) && (firstAttribute == .width || firstAttribute == .height) {
             return true
         }
