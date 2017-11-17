@@ -40,7 +40,7 @@ extension View
     
     /// A receiver view is aligned from the left with padding.
     /// - Parameter padding: A CGFloat value to the left side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyLeft' instead", renamed: "applyLeft")
+    @available(*, deprecated: 1.2, message: "Use 'applyLeft' instead")
     @discardableResult public final func applyLeftPinConstraintToSuperview(_ padding: CGFloat) -> View {
         return applyLeft(padding)
     }
