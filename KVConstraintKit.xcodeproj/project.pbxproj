@@ -12,12 +12,13 @@
 		6BDF81801FB7890D00948ED6 /* KVConstraintKit+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDF817F1FB7890D00948ED6 /* KVConstraintKit+Size.swift */; };
 		6BDF81821FB78A2F00948ED6 /* KVConstraintKit+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDF81811FB78A2F00948ED6 /* KVConstraintKit+Pin.swift */; };
 		6BDF81841FB78E6100948ED6 /* KVConstraintKit+Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDF81831FB78E6100948ED6 /* KVConstraintKit+Access.swift */; };
+		6BECBC451FBF6EC600CADDB3 /* KVConstraintKit+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BECBC431FBF6EC500CADDB3 /* KVConstraintKit+Center.swift */; };
+		6BECBC461FBF6EC600CADDB3 /* KVConstraintKit+Fit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BECBC441FBF6EC600CADDB3 /* KVConstraintKit+Fit.swift */; };
 		6BF09CCB1D58F67C0030699A /* KVConstraintKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BF09CD21D58F67C0030699A /* KVConstraintKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */; };
 		6BF09CD71D58F67C0030699A /* KVConstraintKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CD61D58F67C0030699A /* KVConstraintKitTests.swift */; };
 		6BF09CE21D58F7410030699A /* KVConstraintKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE11D58F7410030699A /* KVConstraintKit.swift */; };
 		6BF09CE81D58F94C0030699A /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */; };
-		6BF09CEA1D58F9620030699A /* ApplyViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */; };
 		6BF09CEC1D58FC7A0030699A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		6BDF817F1FB7890D00948ED6 /* KVConstraintKit+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVConstraintKit+Size.swift"; sourceTree = "<group>"; };
 		6BDF81811FB78A2F00948ED6 /* KVConstraintKit+Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVConstraintKit+Pin.swift"; sourceTree = "<group>"; };
 		6BDF81831FB78E6100948ED6 /* KVConstraintKit+Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KVConstraintKit+Access.swift"; sourceTree = "<group>"; };
+		6BECBC431FBF6EC500CADDB3 /* KVConstraintKit+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KVConstraintKit+Center.swift"; sourceTree = "<group>"; };
+		6BECBC441FBF6EC600CADDB3 /* KVConstraintKit+Fit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KVConstraintKit+Fit.swift"; sourceTree = "<group>"; };
 		6BF09CC71D58F67C0030699A /* KVConstraintKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KVConstraintKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF09CCA1D58F67C0030699A /* KVConstraintKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVConstraintKit.h; sourceTree = "<group>"; };
 		6BF09CCC1D58F67C0030699A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +48,6 @@
 		6BF09CD81D58F67C0030699A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BF09CE11D58F7410030699A /* KVConstraintKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVConstraintKit.swift; sourceTree = "<group>"; };
 		6BF09CE71D58F94C0030699A /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
-		6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyViewConstraint.swift; sourceTree = "<group>"; };
 		6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,8 +122,9 @@
 		6BFBB58E1F6F1504009CE1FF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				6BF09CE91D58F9620030699A /* ApplyViewConstraint.swift */,
 				6BDF81811FB78A2F00948ED6 /* KVConstraintKit+Pin.swift */,
+				6BECBC431FBF6EC500CADDB3 /* KVConstraintKit+Center.swift */,
+				6BECBC441FBF6EC600CADDB3 /* KVConstraintKit+Fit.swift */,
 				6BDF817F1FB7890D00948ED6 /* KVConstraintKit+Size.swift */,
 				6BDF81831FB78E6100948ED6 /* KVConstraintKit+Access.swift */,
 				6BF09CEB1D58FC7A0030699A /* UIViewControllerExtension.swift */,
@@ -240,12 +243,13 @@
 				6BA7D2931D83EE4A004B3A91 /* KVConstraintKitProtocol.swift in Sources */,
 				6BF09CEC1D58FC7A0030699A /* UIViewControllerExtension.swift in Sources */,
 				6BF09CE21D58F7410030699A /* KVConstraintKit.swift in Sources */,
+				6BECBC461FBF6EC600CADDB3 /* KVConstraintKit+Fit.swift in Sources */,
 				6BDF81821FB78A2F00948ED6 /* KVConstraintKit+Pin.swift in Sources */,
 				6BDF81841FB78E6100948ED6 /* KVConstraintKit+Access.swift in Sources */,
 				6BDF81801FB7890D00948ED6 /* KVConstraintKit+Size.swift in Sources */,
-				6BF09CEA1D58F9620030699A /* ApplyViewConstraint.swift in Sources */,
 				6BF09CE81D58F94C0030699A /* NSLayoutConstraintExtension.swift in Sources */,
 				6B4B394D1D62601B006AE3E4 /* KVConstraintKitOperators.swift in Sources */,
+				6BECBC451FBF6EC600CADDB3 /* KVConstraintKit+Center.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
