@@ -65,80 +65,82 @@ v +== [ .leadingMargin, .trailingMargin, .topMargin, .bottomMargin]
 Horizontally
 
 ```swift
-view.applyConstraintFitHorizontallyToSuperview()
+view.fitHorizontallyToSuperview()
 OR
-view.applyConstraintFitHorizontallyToSuperview(20) // padding
+view.fitHorizontallyToSuperview(20) // padding
 ```
 Vertically
 
 ```swift
-view.applyConstraintFitVerticallyToSuperview()
+view.fitVerticallyToSuperview()
 OR
-view.applyConstraintFitVerticallyToSuperview(20) // padding
+view.fitVerticallyToSuperview(20) // padding
 ```
 Horizontally & Vertically
 
 ```swift
-view.applyConstraintFitToSuperview()
+view.fitToSuperview()
 OR
-view.applyConstraintFitToSuperview(20) // width same padding for all edge
+view.fitToSuperview(20) // width same padding for all edge
 ```
 
 Fit with inset
 
 ```swift
 let inset = UIEdgeInsets(top: 4, left: 8, bottom: 12, right: 16)    
-view.applyConstraintFitToSuperview(contentInset:inset)
+view.fitToSuperview(contentInset:inset)
 ```
 ### Center
 
 Horizontally
 
 ```swift
-view.applyConstraintToCenterHorizontallyInSuperview()
+view.applyCenterX()
 OR
-view.applyConstraintToCenterHorizontallyInSuperview(20) // X offset
+view.applyCenterX(20) // X offset
 ```
 Vertically
 
 ```swift
-view.applyConstraintToCenterVerticallyInSuperview()
+view.applyCenterY()
 OR
-view.applyConstraintToCenterVerticallyInSuperview(20) // Y offset
+view.applyCenterY(20) // Y offset
 ```
 Horizontally & Vertically
 
 ```swift
-view.applyConstraintToCenterInSuperview()
+view.centerInSuperview()
 OR
-view.applyConstraintToCenterInSuperview(CGPoint(x:20, y:20)) // XY offset
+view.centerInSuperview(CGPoint(x:20, y:20)) // XY offset
+OR
+view.applyCenterX(4).applyCenterY(16) // XY offset
 ```
 ### Size
 
 Width
 
 ```swift
-view.applyWidthConstraint(100)
+view.applyWidth(100)
 OR
-view.applyAtLeastWidthConstraint(100)
+view.applyAtLeastWidth(100)
 OR
-view.applyAtMostWidthConstraint(100)
+view.applyAtMostWidth(100)
 ```
 
 Height
 
 ```swift
-view.applyHeightConstraint(100)
+view.applyHeight(100)
 OR
-view.applyAtLeastHeightConstraint(100)
+view.applyAtLeastHeight(100)
 OR
-view.applyAtMostHeightConstraint(100)
+view.applyAtMostHeight(100)
 ```
 
 Aspact Ratio
 
 ```swift
-view.applyAspectRatioConstraint()
+view.applyAspectRatio()
 ```
 
 #### Quick Reference
@@ -154,55 +156,55 @@ view.applyAspectRatioConstraint()
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Leading</code> <img src="./Assets/leading_pin.png"/> </td>
 <td width="40%" align=center valign=middle> <code>(subview +== .leading).constant = 20</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyLeadingPinConstraintToSuperview(20)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyLeading(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Trailing</code> <img src="./Assets/trailing_pin.png"/> </td>
 <td width="40%" align=center valign=middle> <code>(subview +== .trailing).constant = 20</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyTrailingPinConstraintToSuperview(20)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyTrailing(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Top</code> <img src="./Assets/top_pin.png"/> </td>
 <td width="40%" align=center valign=middle> <code>(subview +== .top).constant = 20</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyTopPinConstraintToSuperview(20) </code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyTop(20) </code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Bottom</code> <img src="./Assets/bottom_pin.png"/> </td>
 <td width="40%" align=center valign=middle> <code>(subview +== .bottom).constant = 20</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyBottomPinConstraintToSuperview(20)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyBottom(20)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterX</code> <img src="./Assets/center_x.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== .centerX</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyCenterXPinConstraintToSuperview()</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyCenterX()</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterY</code> <img src="./Assets/center_y.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== .centerY</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyCenterYPinConstraintToSuperview()</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyCenterY()</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Height</code> <img src="./Assets/height.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== (.height, 100)</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyHeightConstraint(100)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyHeight(100)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>Width</code> <img src="./Assets/width.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== (.width, 100)</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyWidthConstraint(100)</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyWidth(100)</code> </td>
 </tr>
 
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterX & CenterY</code> <img src="./Assets/center_xy.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== [.centerX, .centerY]</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.applyConstraintToCenterInSuperview()</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.centerInSuperview()</code> </td>
 </tr>
 
 </table>
