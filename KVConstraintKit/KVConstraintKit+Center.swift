@@ -36,46 +36,6 @@
 
 extension View
 {
-    /// Centers the view horizontally in its `superview` with an optional offset.
-    /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
-    @available(*, deprecated: 1.2, message: "Use 'centerHorizontallyInSuperview' instead")
-    public final func applyConstraintToCenterHorizontallyInSuperview(_ offsetX: CGFloat = 0) -> View {
-        return centerHorizontallyInSuperview()
-    }
-
-    /// Centers the view vertically in its superview with an optional offset.
-    /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
-    @available(*, deprecated: 1.2, message: "Use 'centerVerticallyInSuperview' instead")
-    public final func applyConstraintToCenterVerticallyInSuperview(_ offsetY: CGFloat = 0) -> View {
-        return centerVerticallyInSuperview()
-    }
-
-    /// Centers the view horizontally & vertically in its superview with an optional offset.
-    /// - Parameter offset: A CGFloat value for the offset along the x & y axis.
-    @available(*, deprecated: 1.2, message: "Use 'centerInSuperview' instead")
-    public final func applyConstraintToCenterInSuperview(_ offset:CGPoint = CGPoint.zero) -> View {
-        return centerInSuperview()
-    }
-
-}
-
-extension View
-{
-    
-    /// Centers the view horizontally in its `superview` with an optional offset.
-    /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
-    /// - Returns: Itself, enabling chaining,
-    @discardableResult public final func centerHorizontallyInSuperview(_ offsetX: CGFloat = 0) -> View {
-        (self +== .centerX).constant = offsetX; return self
-    }
-    
-    /// Centers the view vertically in its superview with an optional offset.
-    /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
-    /// - Returns: Itself, enabling chaining,
-    @discardableResult public final func centerVerticallyInSuperview(_ offsetY: CGFloat = 0) -> View {
-        (self +== .centerY).constant = offsetY; return self
-    }
-    
     /// Centers the view horizontally & vertically in its superview with an optional offset.
     /// - Parameter offset: A CGFloat value for the offset along the x & y axis.
     /// - Returns: Itself, enabling chaining,
@@ -85,5 +45,6 @@ extension View
         return self
     }
     
-    
 }
+
+

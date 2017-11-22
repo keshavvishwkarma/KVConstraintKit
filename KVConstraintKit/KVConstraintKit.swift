@@ -42,17 +42,6 @@
     #endif
 #endif
 
-
-extension EdgeInsets {
-    public static var zero: EdgeInsets {
-        return edgeInset(CGFloat(0))
-    }
-    
-    public static func edgeInset(_ side: CGFloat) -> EdgeInsets {
-        return EdgeInsets(top: side, left: side, bottom: side, right: side)
-    }
-}
-
 /// MARK: TO PREPARE VIEW FOR CONSTRAINTS
 
 /// Types adopting the `AutoLayoutView` protocol can be used to construct Views.
@@ -251,13 +240,13 @@ extension View
     }
     
     public final func updateAppliedConstraintConstantValueForIpadBy(attribute a: NSLayoutAttribute) {
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) {
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad ) {
             updateAppliedConstraintConstantValueBy(a, withConstantRatio: NSLayoutConstraint.Defualt.iPadRatio )
         }
     }
     
     public final func updateAppliedConstraintConstantValueForIphoneBy(attribute a: NSLayoutAttribute) {
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone) {
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone ) {
             updateAppliedConstraintConstantValueBy(a, withConstantRatio: 1.0 / NSLayoutConstraint.Defualt.iPadRatio )
         }
     }

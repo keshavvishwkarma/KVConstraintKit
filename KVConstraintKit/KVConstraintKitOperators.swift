@@ -97,7 +97,7 @@ extension LayoutRelationable where Self: View {
     
     /// TO ADD SINGLE RELATION CONSTRAINT
     //-----------------------------------------
-    /// (containerView +== .Top).constant = 0
+    /// (containerView +<= .Top).constant = 0
     @discardableResult public static func +<=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs, relation: .lessThanOrEqual)
     }
@@ -107,23 +107,24 @@ extension LayoutRelationable where Self: View {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs)
     }
     
-    /// (leftContainerView +== .Top).constant = 0
+    /// (leftContainerView +>= .Top).constant = 0
     @discardableResult public static func +>=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs, attribute: rhs, relation: .greaterThanOrEqual)
     }
     
     /// TO ADD SINGLE EQUAL RELATION CONSTRAINT WITH MULTIPLEIR
     //-------------------------------------------------------------
-    /// (containerView +== (.Top, 1.5)).constant = 0
+    /// (containerView *>= (.Top, 1.5)).constant = 0
     @discardableResult public static func *>=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .greaterThanOrEqual, multiplier: rhs.1)
     }
     
-    /// (containerView +*== (.Top, multiplier) ).constant = 0
+    /// (containerView *== (.Top, multiplier) ).constant = 0
     @discardableResult public static func *==(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, multiplier: rhs.1)
     }
-    
+
+    /// (containerView *<=(.Top, multiplier) ).constant = 0
     @discardableResult public static func *<=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint {
         return lhs.superview! + lhs.prepareConstraintToSuperview(attribute: rhs.0, attribute: rhs.0, relation: .lessThanOrEqual, multiplier: rhs.1)
     }

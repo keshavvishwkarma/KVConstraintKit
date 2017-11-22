@@ -39,60 +39,6 @@ extension View
     // All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
     
     /// Sets the aspect ratio of a view.
-    @available(*, deprecated: 1.2, message: "Use 'applyAspectRatio' instead")
-    @discardableResult public final func applyAspectRatioConstraint() -> View {
-        return applyAspectRatio()
-    }
-    
-    /// Sets the width of a view.
-    /// - Parameter width: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyWidth' instead")
-    @discardableResult public final func applyWidthConstraint(_ width: CGFloat) -> View {
-        return applyWidth(width)
-    }
-    
-    /// Sets the height of a view.
-    /// - Parameter height: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyHeight' instead")
-    @discardableResult public final func applyHeightConstraint(_ height: CGFloat) -> View {
-        return applyHeight(height)
-    }
-    
-    /// Sets the at least height of a view.
-    /// - Parameter height: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyAtLeastHeight' instead")
-    @discardableResult public final func applyAtLeastHeightConstraint(_ height: CGFloat) -> View {
-        return applyAtLeastHeight(height)
-    }
-    
-    /// Sets the at most height of a view.
-    /// - Parameter height: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyAtMostHeight' instead")
-    @discardableResult public final func applyAtMostHeightConstraint(_ height: CGFloat) -> View {
-        return applyAtMostHeight(height)
-    }
-    
-    /// Sets the at least width of a view.
-    /// - Parameter width: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyAtLeastWidth' instead")
-    @discardableResult public final func applyAtLeastWidthConstraint(_ width: CGFloat) -> View {
-        return applyAtLeastWidth(width)
-    }
-    
-    /// Sets the at most width of a view.
-    /// - Parameter width: A CGFloat value.
-    @available(*, deprecated: 1.2, message: "Use 'applyAtMostWidth' instead")
-    @discardableResult public final func applyAtMostWidthConstraint(_ width: CGFloat) -> View {
-        return applyAtMostWidth(width)
-    }
-    
-}
-
-extension View
-{
-    // All of the below methods of this extension are used to Apply\Add constraint in receiver view (self ).
-    
-    /// Sets the aspect ratio of a view.
     @discardableResult public final func applyAspectRatio() -> View {
         self +== (.aspectRatio, 0); return self
     }

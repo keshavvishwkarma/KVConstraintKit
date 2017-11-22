@@ -40,68 +40,6 @@ extension View
     
     /// A receiver view is aligned from the left with padding.
     /// - Parameter padding: A CGFloat value to the left side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyLeft' instead")
-    @discardableResult public final func applyLeftPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyLeft(padding)
-    }
-    
-    /// A receiver view is aligned from the right with padding.
-    /// - Parameter padding: A CGFloat value to the right side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyRight' instead")
-    @discardableResult public final func applyRightPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyRight(padding)
-    }
-    
-    /// A receiver view is aligned from the top with padding.
-    /// - Parameter padding: A CGFloat value to the top side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyTop' instead")
-    @discardableResult public final func applyTopPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyTop(padding)
-    }
-    
-    /// A receiver view is aligned from the bottom with padding.
-    /// - Parameter padding: A CGFloat value to the bottom side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyBottom' instead")
-    @discardableResult public final func applyBottomPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyBottom(padding)
-    }
-    
-    /// A receiver view is aligned from the left with padding.
-    /// - Parameter padding: A CGFloat value to the left side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyLeading' instead")
-    @discardableResult public final func applyLeadingPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyLeading(padding)
-    }
-    
-    /// A receiver view is aligned from the right with padding.
-    /// - Parameter padding: A CGFloat value to the right side padding.
-    @available(*, deprecated: 1.2, message: "Use 'applyTrailing' instead")
-    @discardableResult public final func applyTrailingPinConstraintToSuperview(_ padding: CGFloat) -> View {
-        return applyTrailing(padding)
-    }
-    
-    /// To horizontally Center a receiver view in it's superview with an optional offset value.
-    /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
-    @available(*, deprecated: 1.2, message: "Use 'applyCenterX' instead")
-    @discardableResult public final func applyCenterXPinConstraintToSuperview(_ offsetX: CGFloat) -> View {
-        return applyCenterX(offsetX)
-    }
-    
-    /// To vertically Center a receiver view in it's superview with an optional offset value.
-    /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
-    @available(*, deprecated: 1.2, message: "Use 'applyCenterY' instead")
-    @discardableResult public final func applyCenterYPinConstraintToSuperview(_ offsetY: CGFloat) -> View {
-        return applyCenterY(offsetY)
-    }
-    
-}
-
-extension View
-{
-    // All the below methods of this category are used to applied\add constraints in supreview of receiver view (self)
-    
-    /// A receiver view is aligned from the left with padding.
-    /// - Parameter padding: A CGFloat value to the left side padding.
     @discardableResult public final func applyLeft(_ padding: CGFloat) -> View {
         (self +== .left).constant = padding ; return self
     }

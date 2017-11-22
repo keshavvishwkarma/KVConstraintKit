@@ -32,7 +32,7 @@
     import AppKit
 #endif
 
-// MARK : - TO APPLIED PREPARED CONSTRAINTS
+// MARK : - TO ACCEESS APPLIED CONSTRAINTS
 
 public extension View {
     
@@ -42,6 +42,9 @@ public extension View {
     public var trailingConstraint : NSLayoutConstraint? { return self <- .trailing }
     public var topConstraint      : NSLayoutConstraint? { return self <- .top      }
     public var bottomConstraint   : NSLayoutConstraint? { return self <- .bottom   }
+    public var centerXConstraint : NSLayoutConstraint? { return self <- .centerX      }
+    public var centerYConstraint : NSLayoutConstraint? { return self <- .centerY      }
+
     
     public var heightConstraint   : NSLayoutConstraint? { return self <- .height   }
     public var widthConstraint    : NSLayoutConstraint? { return self <- .width    }
@@ -54,6 +57,9 @@ public extension View {
     public var trailingMarginConstraint : NSLayoutConstraint? { return self <- .trailingMargin }
     public var topMarginConstraint      : NSLayoutConstraint? { return self <- .topMargin      }
     public var bottomMarginConstraint   : NSLayoutConstraint? { return self <- .bottomMargin   }
+    
+    public var centerXWithinMarginsConstraint : NSLayoutConstraint? { return self <- .centerXWithinMargins }
+    public var centerYWithinMarginsConstraint : NSLayoutConstraint? { return self <- .centerYWithinMargins }
     
     #endif
     

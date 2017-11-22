@@ -36,39 +36,8 @@ extension View
 {
     /// To apply\add same leading, trailing, Top and Bottom pin constraints to superview with same optional padding.
     /// - Parameter padding: A CGFloat value to the all side (left, right, top & bottm) padding between the receiver view & its superview.
-    @available(*, deprecated: 1.2, message: "Use 'fitToSuperview' instead")
-    @discardableResult public final func applyConstraintFitToSuperview(_ padding: CGFloat ) -> View {
-        return fitToSuperview(padding)
-    }
-    
-    /// To apply\add same leading and trailing pin constraints to superview with same optional padding.
-    /// - Parameter padding: A CGFloat value to the left & right side padding between the receiver view & its superview.
-    @available(*, deprecated: 1.2, message: "Use 'fitHorizontallyToSuperview' instead")
-    @discardableResult public final func applyConstraintFitHorizontallyToSuperview(_ padding: CGFloat = 0.0) -> View {
-        return fitVerticallyToSuperview(padding)
-    }
-    
-    /// To apply\add same top and bottom pin constraints to superview with same optional padding.
-    /// - Parameter padding: A CGFloat value to the top & bottom side padding between the receiver view & its superview.
-    @available(*, deprecated: 1.2, message: "Use 'fitVerticallyToSuperview' instead")
-    @discardableResult public final func applyConstraintFitVerticallyToSuperview(_ padding: CGFloat = 0.0) -> View {
-        return fitVerticallyToSuperview(padding)
-    }
-    
-    /// To apply\add same leading, trailing, top and bottom pin constraints to superview with optional content inset.
-    @available(*, deprecated: 1.2, message: "Use 'fitToSuperview(contentInset:)' instead")
-    @discardableResult public final func applyConstraintFitToSuperview(contentInset inset:EdgeInsets = EdgeInsets.zero) -> View {
-        return fitToSuperview(contentInset:inset)
-    }
-    
-}
-
-extension View
-{
-    /// To apply\add same leading, trailing, Top and Bottom pin constraints to superview with same optional padding.
-    /// - Parameter padding: A CGFloat value to the all side (left, right, top & bottm) padding between the receiver view & its superview.
-    @discardableResult public final func fitToSuperview(_ padding: CGFloat ) -> View {
-        return fitToSuperview(contentInset: EdgeInsets.edgeInset(padding))
+    @discardableResult public final func fitToSuperview(_ padding: CGFloat = 0) -> View {
+        _ = (self +== [.top, .leading, .trailing, .bottom]).map { $0.constant = padding }; return self
     }
     
     /// To apply\add same leading and trailing pin constraints to superview with same optional padding.
@@ -86,7 +55,7 @@ extension View
     }
     
     /// To apply\add same leading, trailing, top and bottom pin constraints to superview with optional content inset.
-    @discardableResult public final func fitToSuperview(contentInset inset:EdgeInsets = EdgeInsets.zero) -> View {
+    @discardableResult public final func fitToSuperview(contentInset inset:EdgeInsets) -> View {
         (self +== .top).constant      = inset.top
         (self +== .bottom).constant   = inset.bottom
         (self +== .leading).constant  = inset.left
