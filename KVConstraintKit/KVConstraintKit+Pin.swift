@@ -40,49 +40,49 @@ extension View
     
     /// A receiver view is aligned from the left with padding.
     /// - Parameter padding: A CGFloat value to the left side padding.
-    @discardableResult public final func applyLeft(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyLeft(_ padding: CGFloat = 0) -> View {
         (self +== .left).constant = padding ; return self
     }
     
     /// A receiver view is aligned from the right with padding.
     /// - Parameter padding: A CGFloat value to the right side padding.
-    @discardableResult public final func applyRight(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyRight(_ padding: CGFloat = 0) -> View {
         (self +== .right).constant = padding ; return self
     }
     
     /// A receiver view is aligned from the top with padding.
     /// - Parameter padding: A CGFloat value to the top side padding.
-    @discardableResult public final func applyTop(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyTop(_ padding: CGFloat = 0) -> View {
         (self +== .top).constant = padding ; return self
     }
     
     /// A receiver view is aligned from the bottom with padding.
     /// - Parameter padding: A CGFloat value to the bottom side padding.
-    @discardableResult public final func applyBottom(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyBottom(_ padding: CGFloat = 0) -> View {
         (self +== .bottom).constant = padding ; return self
     }
     
     /// A receiver view is aligned from the left with padding.
     /// - Parameter padding: A CGFloat value to the left side padding.
-    @discardableResult public final func applyLeading(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyLeading(_ padding: CGFloat = 0) -> View {
         (self +== .leading).constant = padding ; return self
     }
     
     /// A receiver view is aligned from the right with padding.
     /// - Parameter padding: A CGFloat value to the right side padding.
-    @discardableResult public final func applyTrailing(_ padding: CGFloat) -> View {
+    @discardableResult public final func applyTrailing(_ padding: CGFloat = 0) -> View {
         (self +== .trailing).constant = padding ; return self
     }
     
-    /// To horizontally Center a receiver view in it's superview with an optional offset value.
+    /// To horizontally Center a receiver view in it's superview with an offset value.
     /// - Parameter offsetX: A CGFloat value for the offset along the x axis.
-    @discardableResult public final func applyCenterX(_ offsetX: CGFloat) -> View {
+    @discardableResult public final func applyCenterX(_ offsetX: CGFloat = 0) -> View {
         (self +== .centerX).constant = offsetX ; return self
     }
     
-    /// To vertically Center a receiver view in it's superview with an optional offset value.
+    /// To vertically Center a receiver view in it's superview with an offset value.
     /// - Parameter offsetY: A CGFloat value for the offset along the y axis.
-    @discardableResult public final func applyCenterY(_ offsetY: CGFloat) -> View {
+    @discardableResult public final func applyCenterY(_ offsetY: CGFloat = 0) -> View {
         (self +== .centerY).constant = offsetY ; return self
     }
     

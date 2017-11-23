@@ -34,27 +34,27 @@
 
 extension View
 {
-    /// To apply\add same leading, trailing, Top and Bottom pin constraints to superview with same optional padding.
+    /// To apply\add same leading, trailing, Top and Bottom pin constraints to superview with same padding.
     /// - Parameter padding: A CGFloat value to the all side (left, right, top & bottm) padding between the receiver view & its superview.
     @discardableResult public final func fitToSuperview(_ padding: CGFloat = 0) -> View {
         _ = (self +== [.top, .leading, .trailing, .bottom]).map { $0.constant = padding }; return self
     }
     
-    /// To apply\add same leading and trailing pin constraints to superview with same optional padding.
+    /// To apply\add same leading and trailing pin constraints to superview with same padding.
     /// - Parameter padding: A CGFloat value to the left & right side padding between the receiver view & its superview.
-    @discardableResult public final func fitHorizontallyToSuperview(_ padding: CGFloat = 0.0) -> View {
+    @discardableResult public final func fitHorizontallyToSuperview(_ padding: CGFloat = 0) -> View {
         (self +== .leading).constant = padding; (self +== .trailing).constant = padding
         return self
     }
     
-    /// To apply\add same top and bottom pin constraints to superview with same optional padding.
+    /// To apply\add same top and bottom pin constraints to superview with same padding.
     /// - Parameter padding: A CGFloat value to the top & bottom side padding between the receiver view & its superview.
-    @discardableResult public final func fitVerticallyToSuperview(_ padding: CGFloat = 0.0) -> View {
+    @discardableResult public final func fitVerticallyToSuperview(_ padding: CGFloat = 0) -> View {
         (self +== .top).constant = padding ; (self +== .bottom).constant = padding
         return self
     }
     
-    /// To apply\add same leading, trailing, top and bottom pin constraints to superview with optional content inset.
+    /// To apply\add same leading, trailing, top and bottom pin constraints to superview with content inset.
     @discardableResult public final func fitToSuperview(contentInset inset:EdgeInsets) -> View {
         (self +== .top).constant      = inset.top
         (self +== .bottom).constant   = inset.bottom
