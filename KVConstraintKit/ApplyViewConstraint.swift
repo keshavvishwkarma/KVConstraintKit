@@ -176,9 +176,9 @@ extension View
     /// Centers the view horizontally & vertically in its superview with an optional offset.
     /// - Parameter offset: A CGFloat value for the offset along the x & y axis.
     /// - Returns: Itself, enabling chaining.
-    @available(*, deprecated: 1.2, message: "Use 'centerInSuperview' instead")
+    @available(*, deprecated: 1.2, message: "Use 'applyCenter' instead")
     public final func applyConstraintToCenterInSuperview(_ offset:CGPoint = CGPoint.zero) -> View {
-        return centerInSuperview()
+        return applyCenter()
     }
     
 }

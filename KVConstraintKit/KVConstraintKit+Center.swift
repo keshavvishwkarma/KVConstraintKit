@@ -39,7 +39,8 @@ extension View
     /// Centers the view horizontally & vertically in its superview with an optional offset.
     /// - Parameter offset: A CGFloat value for the offset along the x & y axis.
     /// - Returns: Itself, enabling chaining,
-    @discardableResult public final func centerInSuperview(_ offset:CGPoint = CGPoint.zero) -> View {
+    
+    @discardableResult public final func applyCenter(_ offset:CGPoint = CGPoint.zero) -> View {
         (self +== .centerX).constant = offset.x
         (self +== .centerY).constant = offset.y
         return self

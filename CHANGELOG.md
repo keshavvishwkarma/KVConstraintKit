@@ -2,7 +2,7 @@ Changelog
 =========
 All notable changes to this project will be documented in this file. 
 
-## [1.1](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.1)
+## [1.1](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.1) - macOS Support
 Released on 2017-6-10.
 
 ### Added

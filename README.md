@@ -16,7 +16,7 @@ it, simply add the following line to your Podfile:
 pod 'KVConstraintKit', :git => 'https://github.com/keshavvishwkarma/KVConstraintKit.git', :branch => 'master'
 ```
 ## Auto Layout Attributes
-`KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/reference/uikit/nslayoutattribute) enum.
+`KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/documentation/uikit/nslayoutconstraint.attribute) enum.
 <p align="center"> <img src="./Assets/ios&tvos_icon.png" /> </p>
 
 ## Usage
@@ -109,9 +109,9 @@ view.applyCenterY(20) // Y offset
 Horizontally & Vertically
 
 ```swift
-view.centerInSuperview()
+view.applyCenter()
 OR
-view.centerInSuperview(CGPoint(x:20, y:20)) // XY offset
+view.applyCenter(CGPoint(x:20, y:20)) // XY offset
 OR
 view.applyCenterX(4).applyCenterY(16) // XY offset
 ```
@@ -204,7 +204,7 @@ view.applyAspectRatio()
 <tr style="text-align: center">
 <td width="20%" align=center valign=middle> <code>CenterX & CenterY</code> <img src="./Assets/center_xy.png"/> </td>
 <td width="40%" align=center valign=middle> <code>subview +== [.centerX, .centerY]</code> </td>
-<td width="40%" align=center valign=middle> <code>subview.centerInSuperview()</code> </td>
+<td width="40%" align=center valign=middle> <code>subview.applyCenter()</code> </td>
 </tr>
 
 </table>
