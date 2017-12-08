@@ -42,9 +42,8 @@ public extension View {
     public var trailingConstraint : NSLayoutConstraint? { return self <- .trailing }
     public var topConstraint      : NSLayoutConstraint? { return self <- .top      }
     public var bottomConstraint   : NSLayoutConstraint? { return self <- .bottom   }
-    public var centerXConstraint : NSLayoutConstraint? { return self <- .centerX      }
-    public var centerYConstraint : NSLayoutConstraint? { return self <- .centerY      }
-
+    public var centerXConstraint  : NSLayoutConstraint?  { return self <- .centerX }
+    public var centerYConstraint  : NSLayoutConstraint?  { return self <- .centerY }
     
     public var heightConstraint   : NSLayoutConstraint? { return self <- .height   }
     public var widthConstraint    : NSLayoutConstraint? { return self <- .width    }
