@@ -46,13 +46,13 @@ extension View
     /// Sets the width of a view.
     /// - Parameter width: A CGFloat value.
     @discardableResult public final func applyWidth(_ width: CGFloat) -> View {
-        self +>= (.width, width); return self
+        self +== (.width, width); return self
     }
     
     /// Sets the height of a view.
     /// - Parameter height: A CGFloat value.
     @discardableResult public final func applyHeight(_ height: CGFloat) -> View {
-        self +>= (.height, height); return self
+        self +== (.height, height); return self
     }
     
     /// Sets the at least height of a view.
