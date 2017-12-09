@@ -58,9 +58,9 @@ public protocol Accessable: class {
 
 //********* Define SelfAddable protocol *********//
 public protocol SelfAddable: class {
-    static func +==(lhs: Self, rhs: (SelfAttribute, CGFloat))
-    static func +>=(lhs: Self, rhs: (SelfAttribute, CGFloat))
-    static func +<=(lhs: Self, rhs: (SelfAttribute, CGFloat))
+    static func +==(lhs: Self, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint
+    static func +>=(lhs: Self, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint
+    static func +<=(lhs: Self, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint
 }
 
 //********* Define LayoutRelationable protocol *********//
