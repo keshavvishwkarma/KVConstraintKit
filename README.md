@@ -1,6 +1,7 @@
 # KVConstraintKit
 [![CI Status](http://img.shields.io/travis/keshavvishwkarma/KVConstraintKit.svg?style=flat)](https://travis-ci.org/keshavvishwkarma/KVConstraintKit)
 [![Version](https://img.shields.io/cocoapods/v/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-Compatible-brightgreen.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 [![Platform](https://img.shields.io/cocoapods/p/KVConstraintKit.svg?style=flat)](http://cocoapods.org/pods/KVConstraintKit)
 
