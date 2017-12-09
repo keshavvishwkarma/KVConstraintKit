@@ -186,27 +186,27 @@ extension View {
 
 extension View : SelfAddable { }
 
-public func +<=(lhs: View, rhs: (SelfAttribute, CGFloat)){
+@discardableResult public func +<=(lhs: View, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint {
     if rhs.0 == .aspectRatio {
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs,attribute:rhs.0.attribute().1, relation:.lessThanOrEqual, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs,attribute:rhs.0.attribute().1, relation:.lessThanOrEqual, constant:rhs.1)
     }else{
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, relation:.lessThanOrEqual, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, relation:.lessThanOrEqual, constant:rhs.1)
     }
 }
 
-public func +==(lhs: View, rhs: (SelfAttribute, CGFloat)){
+@discardableResult public func +==(lhs: View, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint {
     if rhs.0 == .aspectRatio {
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs, attribute:rhs.0.attribute().1, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs, attribute:rhs.0.attribute().1, constant:rhs.1)
     }else{
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, constant:rhs.1)
     }
 }
 
-public func +>=(lhs: View, rhs: (SelfAttribute, CGFloat)){
+@discardableResult public func +>=(lhs: View, rhs: (SelfAttribute, CGFloat)) -> NSLayoutConstraint {
     if rhs.0 == .aspectRatio {
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs, attribute:rhs.0.attribute().1, relation:.greaterThanOrEqual, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, secondView:lhs, attribute:rhs.0.attribute().1, relation:.greaterThanOrEqual, constant:rhs.1)
     }else{
-        lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, relation:.greaterThanOrEqual, constant:rhs.1)
+        return lhs + View.prepareConstraint(lhs, attribute:rhs.0.attribute().0, attribute:rhs.0.attribute().1, relation:.greaterThanOrEqual, constant:rhs.1)
     }
 }
 
