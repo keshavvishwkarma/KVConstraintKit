@@ -3,7 +3,7 @@ Changelog
 All notable changes to this project will be documented in this file. 
 `KVConstraintKit` adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.2.0](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.2.0) - Carthage Support
+## [1.2.0](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.2.0)
 Released on 2017-9-12.
 
 
@@ -42,7 +42,7 @@ public final func applyConstraintFitToSuperview(contentInset inset:EdgeInsets = 
 
 ---
 
-## [1.1](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.1) - macOS Support
+## [1.1](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.1)
 Released on 2017-6-10.
 
 ### Added
