@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/keshav/Desktop/KVProtocol&apos;s/KVConstraintKit/KVConstraintKit-Playground.playground">
+      location = "group:KVConstraintKit-Playground.playground">
    </FileRef>
    <FileRef
       location = "container:KVConstraintKit.xcodeproj">

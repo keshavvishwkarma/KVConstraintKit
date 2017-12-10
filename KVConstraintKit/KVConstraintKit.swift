@@ -31,7 +31,8 @@
     
     public typealias View = UIView
     public typealias LayoutPriority = UILayoutPriority
-    public typealias EdgeInsets = UIEdgeInsets
+    public typealias EdgeInsets     = UIEdgeInsets
+    
 #else
     import AppKit
     
@@ -40,6 +41,13 @@
     #if !swift(>=3.0)
         public typealias EdgeInsets = NSEdgeInsets
     #endif
+    
+    extension EdgeInsets {
+        public static var zero: EdgeInsets {
+            return EdgeInsets()
+        }
+    }
+
 #endif
 
 /// MARK: TO PREPARE VIEW FOR CONSTRAINTS
