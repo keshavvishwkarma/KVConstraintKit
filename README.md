@@ -10,12 +10,31 @@ KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iO
 ![KVConstraintKit](./Assets/KVConstraintKit_small_big.png)
 ## Installation
 
-KVConstraintKit is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Using CocoaPods
+1. To integrate `KVConstraintKit` into your Xcode project using [CocoaPods](http://cocoapods.org), simply add the following line to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html) :
+
+```ruby
+use_frameworks!
+pod 'KVConstraintKit', '~> 1.2.0'
+```
+
+If you want to be on the bleeding edge, replace the last line with:
 
 ```ruby
 pod 'KVConstraintKit', :git => 'https://github.com/keshavvishwkarma/KVConstraintKit.git', :branch => 'master'
 ```
+
+2.  Run `pod install` and open the open the `{Project}.xcworkspace` instead of the `{Project}.xcodeproj` file to launch Xcode.
+
+### Using Carthage
+1. To integrate KVConstraintKit into your Xcode project using Carthage, specify it in your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile) :
+
+```ogdl
+github "keshavvishwkarma/KVConstraintKit" ~> 1.2.0
+```
+
+2. Run `carthage update` and follow [the additional steps](https://github.com/Carthage/Carthage#getting-started) in order to add `KVConstraintKit` to your project.
+
 ## Auto Layout Attributes
 `KVConstraintKit` supports all built-in layout attributes as of iOS, tvOS & OSX, see the [NSLayoutAttribute](https://developer.apple.com/documentation/uikit/nslayoutconstraint.attribute) enum.
 <p align="center"> <img src="./Assets/ios&tvos_icon.png" /> </p>
