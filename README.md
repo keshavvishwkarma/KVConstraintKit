@@ -11,7 +11,7 @@ KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iO
 ## Installation
 
 ### Using CocoaPods
-1. To integrate `KVConstraintKit` into your Xcode project using [CocoaPods](http://cocoapods.org), simply add the following line to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html):
+1. To integrate `KVConstraintKit` into your Xcode project using [CocoaPods](http://cocoapods.org), specify it to a target in your [Podfile](https://guides.cocoapods.org/using/the-podfile.html):
 
 ```ruby
 use_frameworks!
