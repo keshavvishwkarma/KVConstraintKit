@@ -208,7 +208,7 @@ extension View
     
     /// To apply\add same leading, trailing, top and bottom pin constraints to superview with optional content inset.
     @available(*, deprecated: 1.2, message: "Use 'fitToSuperview(contentInset:)' instead")
-    @discardableResult public final func applyConstraintFitToSuperview(contentInset inset:EdgeInsets) -> View {
+    @discardableResult public final func applyConstraintFitToSuperview(contentInset inset: EdgeInsets) -> View {
         return fitToSuperview(contentInset:inset)
     }
     

@@ -55,11 +55,12 @@ extension View
     }
     
     /// To apply\add same leading, trailing, top and bottom pin constraints to superview with content inset.
-    @discardableResult public final func fitToSuperview(contentInset inset:EdgeInsets) -> View {
+    @discardableResult public final func fitToSuperview(contentInset inset: EdgeInsets) -> View {
         (self +== .top).constant      = inset.top
         (self +== .bottom).constant   = inset.bottom
         (self +== .leading).constant  = inset.left
         (self +== .trailing).constant = inset.right
         return self
     }
+    
 }

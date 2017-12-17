@@ -59,7 +59,7 @@ extension LayoutGuidable where Self: UIViewController {
     
     @discardableResult public static func -(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {
         guard let appliedConstraint = lhs.accessLayoutGuideConstraint(rhs.0, type: rhs.1) else { return nil }
-        return lhs.view - (appliedConstraint)
+        return lhs.view - appliedConstraint
     }
     
     @discardableResult public static func <-(lhs: Self, rhs: (View, LayoutGuideType)) -> NSLayoutConstraint? {

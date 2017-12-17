@@ -53,7 +53,7 @@ public protocol Removable: class {
 //********* Define Accessable protocol *********//
 public protocol Accessable: class {
     /// TO ACCESS CONSTRAINT BASED ON LAYOUT ATTRIBUTE
-    static func <-(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint?
+    static func <-(lhs: Self, rhs: LayoutAttribute) -> NSLayoutConstraint?
 }
 
 //********* Define SelfAddable protocol *********//
@@ -66,24 +66,24 @@ public protocol SelfAddable: class {
 //********* Define LayoutRelationable protocol *********//
 public protocol LayoutRelationable: class {
     /// TO ADD SINGLE RELATION CONSTRAINT
-    static func +==(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
-    static func +>=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
-    static func +<=(lhs: Self, rhs: NSLayoutAttribute) -> NSLayoutConstraint
+    static func +==(lhs: Self, rhs: LayoutAttribute) -> NSLayoutConstraint
+    static func +>=(lhs: Self, rhs: LayoutAttribute) -> NSLayoutConstraint
+    static func +<=(lhs: Self, rhs: LayoutAttribute) -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE RELATION CONSTRAINT
-    static func +==(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
-    static func +>=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
-    static func +<=(lhs: Self, rhs: [NSLayoutAttribute]) -> [NSLayoutConstraint]
+    static func +==(lhs: Self, rhs: [LayoutAttribute]) -> [NSLayoutConstraint]
+    static func +>=(lhs: Self, rhs: [LayoutAttribute]) -> [NSLayoutConstraint]
+    static func +<=(lhs: Self, rhs: [LayoutAttribute]) -> [NSLayoutConstraint]
     
     /// TO ADD SINGLE RELATION CONSTRAINT WITH MULTIPLEIR
-    static func *>=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
-    static func *==(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
-    static func *<=(lhs: Self, rhs: (NSLayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    static func *>=(lhs: Self, rhs: (LayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    static func *==(lhs: Self, rhs: (LayoutAttribute, CGFloat)) -> NSLayoutConstraint
+    static func *<=(lhs: Self, rhs: (LayoutAttribute, CGFloat)) -> NSLayoutConstraint
     
     /// TO ADD MULTIPLE RELATION CONSTRAINT WITH MULTIPLEIR
-    static func *==(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
-    static func *>=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
-    static func *<=(lhs: Self, rhs: [(NSLayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
+    static func *==(lhs: Self, rhs: [(LayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
+    static func *>=(lhs: Self, rhs: [(LayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
+    static func *<=(lhs: Self, rhs: [(LayoutAttribute, CGFloat)]) -> [NSLayoutConstraint]
     
 }
 
@@ -93,10 +93,10 @@ public protocol Modifiable: class {
     static func *(lhs: Self, rhs: (NSLayoutConstraint, CGFloat))
     
     /// TO CHANGE PRIORITY OF CONSTRAINTS
-    static func ~(lhs: Self, rhs: (NSLayoutAttribute, LayoutPriority))
+    static func ~(lhs: Self, rhs: (LayoutAttribute, LayoutPriority))
     
     /// TO CHANGE RELATION OF CONSTRAINTS
-    static func ~(lhs: Self, rhs: (NSLayoutConstraint, NSLayoutRelation))
+    static func ~(lhs: Self, rhs: (NSLayoutConstraint, LayoutRelation))
     
     /// TO CHANGE REPLACE ALREADY APPLIED CONSTRAINTS VIA NEW ONE
     /// (containerView ~ (old, new))

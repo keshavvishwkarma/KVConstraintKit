@@ -34,11 +34,11 @@
 public enum SelfAttribute: Int {
     case width = 7, height, aspectRatio = 64
     
-    func attribute()-> (NSLayoutAttribute,NSLayoutAttribute){
+    func attribute()-> (LayoutAttribute,LayoutAttribute){
         if self == .aspectRatio {
             return (.width, .height)
         }else{
-            return (NSLayoutAttribute(rawValue: self.rawValue)!, .notAnAttribute )
+            return (LayoutAttribute(rawValue: self.rawValue)!, .notAnAttribute )
         }
     }
 }
@@ -54,7 +54,7 @@ extension NSLayoutConstraint
     }
     
     /// :name: prepareConstraint
-    public final class func prepareConstraint(_ item: Any, attribute attr1: NSLayoutAttribute, relation: NSLayoutRelation = .equal, toItem: Any?=nil, attribute attr2: NSLayoutAttribute = .notAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
+    public final class func prepareConstraint(_ item: Any, attribute attr1: LayoutAttribute, relation: LayoutRelation = .equal, toItem: Any?=nil, attribute attr2: LayoutAttribute = .notAnAttribute, multiplier: CGFloat = 1.0, constant: CGFloat = 0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: item, attribute: attr1, relatedBy: relation, toItem: toItem, attribute: attr2, multiplier: multiplier, constant: constant)
     }
     
@@ -95,10 +95,10 @@ extension NSLayoutConstraint
         }
     }
     
-    public final func modified(relation r: NSLayoutRelation) -> NSLayoutConstraint?
+    public final func modified(relation r: LayoutRelation) -> NSLayoutConstraint?
     {
         if relation == r { return self }
-        #if !(os(iOS) || os(tvOS))
+        #if swift(>=4.0) || (!swift(>=4.0) && os(OSX))
             guard let firstItem = self.firstItem else { return nil }
         #endif
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: r, toItem: secondItem, attribute: secondAttribute, multiplier: multiplier, constant: constant)
@@ -107,7 +107,7 @@ extension NSLayoutConstraint
     public final func modified(multiplier m: CGFloat) -> NSLayoutConstraint?
     {
         if multiplier == m { return self }
-        #if !(os(iOS) || os(tvOS))
+        #if swift(>=4.0) || (!swift(>=4.0) && os(OSX))
             guard let firstItem = self.firstItem else { return nil }
         #endif
         return NSLayoutConstraint(item: firstItem, attribute: firstAttribute, relatedBy: relation, toItem: secondItem, attribute: secondAttribute, multiplier: m, constant: constant)
