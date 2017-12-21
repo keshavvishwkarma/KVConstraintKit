@@ -3,6 +3,12 @@ Changelog
 All notable changes to this project will be documented in this file. 
 `KVConstraintKit` adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/2.0.0)
+Released on 2017-12-18.
+
+### Improved
+-  🎉 Support Swift 4 and Xcode 9  🎉
+
 ## [1.2.0](https://github.com/keshavvishwkarma/KVConstraintKit/releases/tag/1.2.0)
 Released on 2017-9-12.
 
