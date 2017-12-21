@@ -207,6 +207,12 @@ extension View
         }
     }
     
+    public final func accessConstraintFromSiblingView(by attribute: LayoutAttribute, toAttribute attr2:LayoutAttribute, of otherView: View, relation: LayoutRelation) ->NSLayoutConstraint? {
+        let c = View.prepareConstraint(self, attribute:attribute, secondView:otherView, attribute:attr2, relation:relation)
+        let appliedConstraint = lowestCommonAncestor(of: otherView)?.constraints.containsApplied(constraint: c)
+        return appliedConstraint
+    }
+    
     public final func accessAppliedConstraintBy(attribute attr1: LayoutAttribute, attribute attr2: LayoutAttribute,  relation: LayoutRelation = .equal)->NSLayoutConstraint? {
         
         // For Aspect Ratio
@@ -292,6 +298,18 @@ extension View
         
         return NSLayoutConstraint(item: firstView, attribute: attr1, relatedBy: relation, toItem: secondView, attribute: attr2, multiplier: multiplier, constant: constant)
         
+    }
+    
+    internal func lowestCommonAncestor(of otherItem: View?) -> View? {
+        guard let view = otherItem else {
+            return self
+        }
+        
+        var currentView: View? = self
+        while currentView != nil && !view.isDescendant(of: currentView!) {
+            currentView = currentView!.superview
+        }
+        return currentView
     }
     
 }
