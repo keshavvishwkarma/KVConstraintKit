@@ -92,13 +92,20 @@ extension AutoLayoutView where Self: View {
     public func prepareAutoLayoutView() -> Self {
         translatesAutoresizingMaskIntoConstraints = false; return self
     }
+    
+    /// This method adds the specified views or layout guides to the receiver's view.
+    @discardableResult public static func + (lhs: Self, rhs: AutoLayoutView) -> Self {
+        if let view = rhs as? View { lhs.addSubview(view.prepareAutoLayoutView()) }
+        if #available(iOS 9.0, OSX 10.11, *), let guide = rhs as? LayoutGuide { lhs.addLayoutGuide(guide) }
+        return lhs
+    }
+    
 }
 
 /// An `View`, `LayoutGuide` are adopting\confirmming `AutoLayoutView`.
 extension View : AutoLayoutView {}
 @available(iOS 9.0, OSX 10.11, *)
 extension LayoutGuide : AutoLayoutView {}
-
 
 /// MARK: TO PREPARE CONSTRAINTS
 extension View {
