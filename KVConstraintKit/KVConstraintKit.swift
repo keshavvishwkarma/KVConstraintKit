@@ -67,42 +67,38 @@
 
 /// MARK: TO PREPARE VIEW FOR CONSTRAINTS
 
-/// Types adopting the `AutoLayoutView` protocol can be used to construct Views.
-public protocol AutoLayoutView {}
-extension View : AutoLayoutView {}
+/// Types adopting the `AutoLayoutView` protocol can be used to construct views or layout guides.
+public protocol AutoLayoutView: class {
+    init()
+}
 
-extension AutoLayoutView where Self: View {
+extension AutoLayoutView {
     
-    /// This method is used to create new instance of ui elements for autolayout.
-    public static func prepareAutoLayoutView() -> Self {
+    /// A method that allows you to create and return new instance of ui elements for autolayout.
+    /// - parameter closure: The closure should take one parameter and have no return value.
+    /// - returns: The newly created instance.
+    public static func prepareAutoLayoutView(_ closure: @escaping (Self) -> Void = { _ in } ) -> Self {
         let preparedView = Self()
-        preparedView.translatesAutoresizingMaskIntoConstraints = false
+        if let view = preparedView as? View {
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        closure(preparedView)
         return preparedView
     }
-    
-    /// This method is used to prepare already created instance of ui elements for autolayout.
+}
+
+extension AutoLayoutView where Self: View {
+    /// A method that allows you to prepare already created instance of ui elements for autolayout.
     public func prepareAutoLayoutView() -> Self {
         translatesAutoresizingMaskIntoConstraints = false; return self
     }
-    
-    // MARK: Convenience
-    public func addSubviews(_ views : Self...) -> Self {
-        self + views; return self
-    }
-
-    @discardableResult static public func +(lhs: Self, rhs: Self) -> Self {
-        lhs.addSubview(rhs.prepareAutoLayoutView()); return lhs
-    }
-
 }
 
-@discardableResult public func +(lhs: View, rhs: [View]) -> View {
-    rhs.forEach { lhs + $0 }; return lhs
-}
+/// An `View`, `LayoutGuide` are adopting\confirmming `AutoLayoutView`.
+extension View : AutoLayoutView {}
+@available(iOS 9.0, OSX 10.11, *)
+extension LayoutGuide : AutoLayoutView {}
 
-//@discardableResult public func +(lhs: View, rhs: View) -> View {
-//    lhs.addSubview(rhs.prepareAutoLayoutView()); return lhs
-//}
 
 /// MARK: TO PREPARE CONSTRAINTS
 extension View {
