@@ -28,7 +28,6 @@
 
 /// MARK: TO PREPARE VIEW HIERARCHY
 
-// extension AutoLayoutView where Self: View
 extension View
 {
     /// Adds the specified views or layout guides to the receiver's view.
