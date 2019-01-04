@@ -132,9 +132,9 @@ private extension UIViewController
     /// These method is used to access applied LayoutGuide constraint from view of ViewController(self.view) to a specific view(toView).
     final func accessLayoutGuideConstraint(_ fromView: View, type: LayoutGuideType) -> NSLayoutConstraint?
     {
-        let layoutGuide : UILayoutSupport            = (type == .top) ? topLayoutGuide : bottomLayoutGuide
-        let viewAttribute : NSLayoutAttribute        = (type == .top) ?  .top          : .bottom;
-        let layoutGuideAttribute : NSLayoutAttribute = (type == .top) ?  .bottom       : .top;
+        let layoutGuide : UILayoutSupport          = (type == .top) ? topLayoutGuide : bottomLayoutGuide
+        let viewAttribute : LayoutAttribute        = (type == .top) ?  .top          : .bottom;
+        let layoutGuideAttribute : LayoutAttribute = (type == .top) ?  .bottom       : .top;
         
         // Exclude the default constraints and other constraint those can not be layout guide constraints
         let layoutGuideConstraints = self.view.constraints.filter {
