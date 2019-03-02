@@ -33,9 +33,15 @@
     @available(iOS 9.0, *)
     public typealias LayoutGuide     = UILayoutGuide
     public typealias EdgeInsets      = UIEdgeInsets
-    public typealias LayoutAttribute = NSLayoutAttribute
-    public typealias LayoutRelation  = NSLayoutRelation
     public typealias LayoutPriority  = UILayoutPriority
+
+    #if swift(>=4.2)
+        public typealias LayoutRelation  = NSLayoutConstraint.Relation
+        public typealias LayoutAttribute = NSLayoutConstraint.Attribute
+    #else
+        public typealias LayoutRelation  = NSLayoutRelation
+        public typealias LayoutAttribute = NSLayoutAttribute
+    #endif
 
 #elseif os(OSX)
 	import AppKit
@@ -261,7 +267,11 @@ extension View
     }
     
     public final func updateModifyConstraintsWithAnimation(_ completion:((Bool) -> Void)?) {
-        let duration = TimeInterval(UINavigationControllerHideShowBarDuration)
+	#if swift(>=4.2)
+            let duration = TimeInterval(UINavigationController.hideShowBarDuration)
+        #else
+            let duration = TimeInterval(UINavigationControllerHideShowBarDuration)
+        #endif
         let referenceView = (superview != nil) ? superview! : self
         
         UIView.animate(withDuration: duration, animations: { () -> Void in
