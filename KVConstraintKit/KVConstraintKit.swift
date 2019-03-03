@@ -267,10 +267,10 @@ extension View
     }
     
     public final func updateModifyConstraintsWithAnimation(_ completion:((Bool) -> Void)?) {
-	#if swift(>=4.2)
+        #if swift(>=4.2)
             let duration = TimeInterval(UINavigationController.hideShowBarDuration)
         #else
-            let duration = TimeInterval(UINavigationControllerHideShowBarDuration)
+        let duration = TimeInterval(UINavigationControllerHideShowBarDuration)
         #endif
         let referenceView = (superview != nil) ? superview! : self
         
