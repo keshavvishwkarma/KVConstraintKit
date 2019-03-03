@@ -1,7 +1,7 @@
+os: osx
 osx_image: xcode10.1
 language: objective-c
-
-xcode_project: KVConstraintKit.xcodeproj
+script: xcodebuild -workspace KVConstraintKit.xcworkspace -scheme KVConstraintKit -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 # whitelist
 branches:
