@@ -1,9 +1,12 @@
-osx_image: xcode8.3
-language: objective-c
-
-xcode_project: KVConstraintKit.xcodeproj
+os: osx
+osx_image: xcode10.1
+language: swift
+script:
+    - xcodebuild -workspace KVConstraintKit.xcworkspace -scheme KVConstraintKit -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+    - xcodebuild -workspace KVConstraintKit.xcworkspace -scheme KVConstraintKit-macOS -sdk macosx ONLY_ACTIVE_ARCH=NO
+    - xcodebuild -workspace KVConstraintKit.xcworkspace -scheme KVConstraintKit-tvOS -sdk appletvos ONLY_ACTIVE_ARCH=NO
 
 # whitelist
 branches:
 only:
-- master
+- swift_4.2
