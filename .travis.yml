@@ -9,4 +9,4 @@ script:
 # whitelist
 branches:
 only:
-- swift_4.2
+- master
