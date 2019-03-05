@@ -17,7 +17,7 @@ KVConstraintKit is a DSL to make easy & impressive Auto Layout constraints on iO
 
 ```ruby
 use_frameworks!
-pod 'KVConstraintKit', '~> 1.2.0'
+pod 'KVConstraintKit', '~> 2.1'
 ```
 
 If you want to be on the bleeding edge, replace the last line with:
