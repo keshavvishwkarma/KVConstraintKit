@@ -32,7 +32,7 @@ pod 'KVConstraintKit', :git => 'https://github.com/keshavvishwkarma/KVConstraint
 1. To integrate KVConstraintKit into your Xcode project using Carthage, specify it in your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile):
 
 ```ogdl
-github "keshavvishwkarma/KVConstraintKit" ~> 1.2.0
+github "keshavvishwkarma/KVConstraintKit" ~> 2.1
 ```
 
 2. Run `carthage update` and follow [the additional steps](https://github.com/Carthage/Carthage#getting-started) in order to add `KVConstraintKit` to your project.
